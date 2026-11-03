@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://mu67o72p0wml"]
+
+[ext_resource type="Script" uid="uid://c27dmbtj1yil8" path="res://player_controller.gd" id="1_wtcfe"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_urvta"]
+animations = [{
+"frames": [],
+"loop": 1,
+"name": &"quieto_abajo",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": 1,
+"name": &"quieto_arriba",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": 1,
+"name": &"quieto_derecha",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": 1,
+"name": &"quieto_izquierda",
+"speed": 5.0
+}]
+
+[node name="Node2D" type="Node2D" unique_id=62261494]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1059224120]
+script = ExtResource("1_wtcfe")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=2133104810]
+sprite_frames = SubResource("SpriteFrames_urvta")
+animation = &"quieto_derecha"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1409399490]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1693391]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=14160988]
