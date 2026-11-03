@@ -1,32 +1,43 @@
 extends CharacterBody2D
+@export var mapa: Node2D
 
-enum Direcciones {DERECHA, IZQUIERDA, ARRIBA, ABAJO}
-var grid_position: Vector2i
-var direccion_jugador: Direcciones
+var direcciones = {
+	"derecha": Vector2i(1, 0),
+	"arriba": Vector2i(0, -1),
+	"izquierda": Vector2i(-1, 0),
+	"abajo": Vector2i(0, 1)
+}
+
+var direccion_jugador: Vector2i
 
 func _ready() -> void:
-	grid_position = Vector2i(0,0)
+	await get_tree().process_frame
+	if mapa:
+		position = mapa.mapa.map_to_local(Global.posicion_jugador)
 
-func _process(delta: float) ->void:
-	pass
+func _process(delta: float) -> void:
+	apuntar()
 
 func apuntar():
-	if Input.is_action_pressed("right"):
-		var direccion_jugador = Direcciones.DERECHA
-	if Input.is_action_pressed("left"):
-		var direccion_jugador = Direcciones.IZQUIERDA
-	if Input.is_action_pressed("up"):
-		var direccion_jugador = Direcciones.ARRIBA
-	if Input.is_action_pressed("down"):
-		var direccion_jugador = Direcciones.ABAJO
-func comprobar_vecino(grid_position, direccion_jugador): 
-	if direccion_jugador == Direcciones.DERECHA:
-		pass
-	elif direccion_jugador == Direcciones.IZQUIERDA:
-		pass
-	elif direccion_jugador == Direcciones.ARRIBA:
-		pass
-	elif direccion_jugador == Direcciones.ABAJO:
-		pass
+	if Input.is_action_just_pressed("right"):
+		direccion_jugador = direcciones.derecha
+		mover()
+	elif Input.is_action_just_pressed("left"):
+		direccion_jugador = direcciones.izquierda
+		mover()
+	elif Input.is_action_just_pressed("up"):
+		direccion_jugador = direcciones.arriba
+		mover()
+	elif Input.is_action_just_pressed("down"):
+		direccion_jugador = direcciones.abajo
+		mover()
+
+func mover():
+	if mapa.es_transitable(Global.posicion_jugador + direccion_jugador):
+		Global.posicion_jugador += direccion_jugador
+		position = mapa.mapa.map_to_local(Global.posicion_jugador)
+	
+	
+	
 	
 	
