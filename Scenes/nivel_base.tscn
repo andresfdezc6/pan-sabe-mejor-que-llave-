@@ -1,10 +1,9 @@
-[gd_scene format=4 uid="uid://mu67o72p0wml"]
+[gd_scene format=4 uid="uid://cminuue6w0sfq"]
 
-[ext_resource type="Script" uid="uid://dtjn33g44ymej" path="res://global.gd" id="1_epypp"]
-[ext_resource type="Script" uid="uid://c27dmbtj1yil8" path="res://player_controller.gd" id="1_wtcfe"]
-[ext_resource type="Script" uid="uid://c061j87gv5mpt" path="res://nivel_base.gd" id="3_0hol4"]
-[ext_resource type="Texture2D" uid="uid://dloju11v2hydf" path="res://assets/DinoBase.png" id="3_q6r6c"]
-[ext_resource type="Texture2D" uid="uid://dlbw84wrg4a80" path="res://assets/tiles/walls_floor.png" id="4_0hol4"]
+[ext_resource type="Script" uid="uid://c061j87gv5mpt" path="res://Scripts/nivel_base.gd" id="1_qaap6"]
+[ext_resource type="Script" uid="uid://c27dmbtj1yil8" path="res://Scripts/player_controller.gd" id="2_ahwad"]
+[ext_resource type="Texture2D" uid="uid://dloju11v2hydf" path="res://assets/DinoBase.png" id="3_r5g0i"]
+[ext_resource type="Texture2D" uid="uid://dlbw84wrg4a80" path="res://assets/tiles/walls_floor.png" id="4_dfr37"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_urvta"]
 animations = [{
@@ -20,7 +19,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_q6r6c")
+"texture": ExtResource("3_r5g0i")
 }],
 "loop": 1,
 "name": &"quieto_derecha",
@@ -33,7 +32,7 @@ animations = [{
 }]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kdubu"]
-texture = ExtResource("4_0hol4")
+texture = ExtResource("4_dfr37")
 1:1/0 = 0
 2:1/0 = 0
 3:1/0 = 0
@@ -403,7 +402,7 @@ func _process(delta: float) -> void:
 "
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q6r6c"]
-texture = ExtResource("4_0hol4")
+texture = ExtResource("4_dfr37")
 1:1/0 = 0
 2:1/0 = 0
 3:1/0 = 0
@@ -760,19 +759,16 @@ custom_data_layer_0/name = "transitable"
 custom_data_layer_0/type = 1
 sources/0 = SubResource("TileSetAtlasSource_q6r6c")
 
-[node name="Node2D" type="Node2D" unique_id=62261494]
-script = ExtResource("1_epypp")
-
-[node name="nivel_base" type="Node2D" parent="." unique_id=473661913]
+[node name="nivel_base" type="Node2D" unique_id=275302144]
 y_sort_enabled = true
-script = ExtResource("3_0hol4")
+script = ExtResource("1_qaap6")
 
-[node name="jugador" type="CharacterBody2D" parent="nivel_base" unique_id=1059224120 node_paths=PackedStringArray("mapa")]
+[node name="jugador" type="CharacterBody2D" parent="." unique_id=25718703 node_paths=PackedStringArray("mapa")]
 y_sort_enabled = true
-script = ExtResource("1_wtcfe")
+script = ExtResource("2_ahwad")
 mapa = NodePath("..")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="nivel_base/jugador" unique_id=2133104810]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="jugador" unique_id=1982509324]
 z_index = 1
 position = Vector2(0.5000001, 1.1920929e-06)
 scale = Vector2(0.72, 0.806)
@@ -780,21 +776,18 @@ sprite_frames = SubResource("SpriteFrames_urvta")
 animation = &"quieto_derecha"
 offset = Vector2(4.5, -7)
 
-[node name="mapa_obstaculos" type="TileMapLayer" parent="nivel_base" unique_id=139080138]
+[node name="mapa_obstaculos" type="TileMapLayer" parent="." unique_id=527440772]
 z_index = 1
 y_sort_enabled = true
 tile_map_data = PackedByteArray("AAD+//3/AAABAAUAAAD///3/AAACAAUAAAAAAP3/AAACAAUAAAABAP3/AAACAAUAAAACAP3/AAADAAUAAAACAPz/AAADAAQAAAD+//z/AAABAAQAAAD///z/AAACAAQAAAAAAPz/AAACAAQAAAABAPz/AAACAAQAAAD+//v/AAABAAMAAAACAPv/AAADAAMAAAD///v/AAACAAMAAAAAAPv/AAACAAMAAAABAPv/AAACAAMAAAADAPz/AAAAABIAAAADAP3/AAAAABMAAAAEAPz/AAABABIAAAAEAP3/AAABABMAAAAFAPz/AAACABIAAAAFAP3/AAACABMAAAAGAPz/AAADABIAAAAGAP3/AAADABMAAAAGAP7/AAADABQAAAAHAPz/AAAEABIAAAAHAP3/AAAEABMAAAAHAP7/AAAEABQAAAADAP//AAAAABIAAAADAAAAAAAAABMAAAADAAEAAAAAABQAAAAEAP//AAABABIAAAAEAAAAAAABABMAAAAEAAEAAAABABQAAAAFAP//AAACABIAAAAFAAAAAAACABMAAAAFAAEAAAACABQAAAAGAP//AAADABIAAAAGAAAAAAADABMAAAAGAAEAAAADABQAAAAHAP//AAAEABIAAAAHAAAAAAAEABMAAAAHAAEAAAAEABQAAAAFAP7/AAACABEAAAA=")
 tile_set = SubResource("TileSet_urvta")
 script = SubResource("GDScript_q6r6c")
 
-[node name="mapa_base" type="TileMapLayer" parent="nivel_base" unique_id=1693391]
+[node name="mapa_base" type="TileMapLayer" parent="." unique_id=902094091]
 z_index = -3
 tile_map_data = PackedByteArray("AAAAAP//AAACAAgAAAABAP//AAACAAgAAAABAAAAAAAIAA0AAAABAAEAAAACAAgAAAAAAAEAAAACAAgAAAAAAAAAAAACAAgAAAD/////AAAHAA0AAAD//wAAAAACAAgAAAD//wEAAAAHAA4AAAACAAIAAAADAAkAAAACAAMAAAADAAoAAAD+/wMAAAABAAoAAAD//wMAAAACAAoAAAAAAAMAAAABAA0AAAABAAMAAAACAAoAAAD+/wIAAAABAAkAAAD//wIAAAACAAkAAAAAAAIAAAABAAwAAAABAAIAAAACAAkAAAACAAEAAAADAAgAAAACAAAAAAADAAgAAAACAP//AAAFAAcAAAD+/wEAAAABAAgAAAD+/wAAAAABAAgAAAD+////AAABAAgAAAACAP7/AAAFAAkAAAD+//7/AAABAAgAAAD///7/AAACAAgAAAAAAP7/AAACAAgAAAABAP7/AAACAAgAAAD///3/AAACAAcAAAAAAP3/AAACAAcAAAABAP3/AAACAAcAAAACAP3/AAADAAcAAAACAPz/AAADAAQAAAACAPv/AAADAAMAAAABAPv/AAACAAMAAAAAAPv/AAACAAMAAAD///v/AAACAAMAAAABAPz/AAACAAQAAAAAAPz/AAACAAQAAAD///z/AAACAAQAAAD+//z/AAABAAQAAAD+//v/AAABAAMAAAD+//3/AAABAAcAAAD9/wQAAAACAAIAAAD+/wQAAAACAAIAAAD//wQAAAACAAIAAAAAAAQAAAACAAIAAAABAAQAAAACAAIAAAACAAQAAAACAAIAAAADAAQAAAAAABQAAAADAAMAAAAAABMAAAADAAIAAAAAABIAAAADAAEAAAAAABQAAAADAAAAAAAAABMAAAADAP//AAACAAkAAAADAP7/AAACAAcAAAADAP3/AAAAABMAAAADAPz/AAAAABIAAAADAPv/AAACAAIAAAADAPr/AAACAAIAAAACAPr/AAACAAIAAAABAPr/AAACAAIAAAAAAPr/AAACAAIAAAD///r/AAACAAIAAAD+//r/AAACAAIAAAD9//r/AAACAAIAAAD9/wMAAAACAAIAAAD9/wIAAAACAAIAAAD9/wEAAAACAAIAAAD9/wAAAAACAAIAAAD9////AAACAAIAAAD9//7/AAACAAIAAAD9//3/AAACAAIAAAD9//z/AAACAAIAAAD9//v/AAACAAIAAAAFAAEAAAACABQAAAAFAAAAAAACABMAAAAFAP//AAADAAkAAAAGAP//AAADABIAAAAGAAAAAAADABMAAAAGAAEAAAADABQAAAAHAP//AAAEABIAAAAHAAAAAAAEABMAAAAHAAEAAAAEABQAAAAFAPz/AAACABIAAAAFAP3/AAACABMAAAAFAP7/AAADAAcAAAAGAPz/AAADABIAAAAGAP3/AAADABMAAAAGAP7/AAADABQAAAAHAPz/AAAEABIAAAAHAP3/AAAEABMAAAAHAP7/AAAEABQAAAAFAAIAAAACABIAAAAFAAMAAAACABMAAAAFAAQAAAACABQAAAAGAAIAAAADABIAAAAGAAMAAAADABMAAAAGAAQAAAADABQAAAAHAAIAAAAEABIAAAAHAAMAAAAEABMAAAAHAAQAAAAEABQAAAAEAAIAAAABABIAAAAEAAMAAAABABMAAAAEAAQAAAABABQAAAAEAP//AAACAAkAAAAEAAAAAAABABMAAAAEAAEAAAABABQAAAAEAPz/AAABABIAAAAEAP3/AAABABMAAAAEAP7/AAACAAcAAAA=")
 tile_set = SubResource("TileSet_epypp")
 
-[node name="objetos" type="Node2D" parent="nivel_base" unique_id=1676974917]
+[node name="objetos" type="Node2D" parent="." unique_id=257582123]
 
-[node name="obstaculos" type="Node2D" parent="nivel_base" unique_id=1339384447]
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=14160988]
-zoom = Vector2(2.5, 2.5)
+[node name="obstaculos" type="Node2D" parent="." unique_id=1061424472]
