@@ -1,6 +1,6 @@
 extends CharacterBody2D
 @export var mapa: Node2D
-@export var mapa_decorativo: Node2D
+@export var mapa_obstaculos: Node2D
 
 
 var direcciones = {
@@ -41,8 +41,9 @@ func apuntar():
 		mover()
 
 func mover():
-	if mapa.es_transitable(Global.posicion_jugador + direccion_jugador):
+	if mapa.es_transitable(Global.posicion_jugador + direccion_jugador) and Global.hambre>0:
 		Global.posicion_jugador += direccion_jugador
+		Global.hambre -= 1
 
 	
 	

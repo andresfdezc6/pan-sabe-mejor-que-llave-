@@ -5,7 +5,6 @@
 [ext_resource type="Script" uid="uid://c061j87gv5mpt" path="res://nivel_base.gd" id="3_0hol4"]
 [ext_resource type="Texture2D" uid="uid://dloju11v2hydf" path="res://assets/DinoBase.png" id="3_q6r6c"]
 [ext_resource type="Texture2D" uid="uid://dlbw84wrg4a80" path="res://assets/tiles/walls_floor.png" id="4_0hol4"]
-[ext_resource type="Script" uid="uid://bmxg1rg0ppy5c" path="res://mapa_decorativo.gd" id="6_kdubu"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_urvta"]
 animations = [{
@@ -137,8 +136,11 @@ texture = ExtResource("4_0hol4")
 6:9/0 = 0
 7:9/0 = 0
 1:10/0 = 0
+1:10/0/custom_data_0 = true
 2:10/0 = 0
+2:10/0/custom_data_0 = true
 3:10/0 = 0
+3:10/0/custom_data_0 = true
 5:10/0 = 0
 6:10/0 = 0
 8:10/0 = 0
@@ -178,7 +180,9 @@ texture = ExtResource("4_0hol4")
 15:13/0 = 0
 1:14/0 = 0
 7:14/0 = 0
+7:14/0/custom_data_0 = true
 8:14/0 = 0
+8:14/0/custom_data_0 = true
 9:14/0 = 0
 10:14/0 = 0
 11:14/0 = 0
@@ -190,8 +194,11 @@ texture = ExtResource("4_0hol4")
 2:15/0 = 0
 3:15/0 = 0
 5:15/0 = 0
+5:15/0/custom_data_0 = true
 6:15/0 = 0
+6:15/0/custom_data_0 = true
 8:15/0 = 0
+8:15/0/custom_data_0 = true
 11:15/0 = 0
 12:15/0 = 0
 13:15/0 = 0
@@ -201,85 +208,136 @@ texture = ExtResource("4_0hol4")
 2:16/0 = 0
 3:16/0 = 0
 5:16/0 = 0
+5:16/0/custom_data_0 = true
 6:16/0 = 0
+6:16/0/custom_data_0 = true
 8:16/0 = 0
+8:16/0/custom_data_0 = true
 10:16/0 = 0
+10:16/0/custom_data_0 = true
 11:16/0 = 0
+11:16/0/custom_data_0 = true
 12:16/0 = 0
 1:17/0 = 0
 2:17/0 = 0
 3:17/0 = 0
 5:17/0 = 0
+5:17/0/custom_data_0 = true
 6:17/0 = 0
+6:17/0/custom_data_0 = true
 8:17/0 = 0
+8:17/0/custom_data_0 = true
 10:17/0 = 0
+10:17/0/custom_data_0 = true
 11:17/0 = 0
+11:17/0/custom_data_0 = true
 12:17/0 = 0
+12:17/0/custom_data_0 = true
 14:17/0 = 0
+14:17/0/custom_data_0 = true
 15:17/0 = 0
+15:17/0/custom_data_0 = true
 0:18/0 = 0
 1:18/0 = 0
 2:18/0 = 0
 3:18/0 = 0
 4:18/0 = 0
 5:18/0 = 0
+5:18/0/custom_data_0 = true
 6:18/0 = 0
+6:18/0/custom_data_0 = true
 8:18/0 = 0
+8:18/0/custom_data_0 = true
 10:18/0 = 0
+10:18/0/custom_data_0 = true
 11:18/0 = 0
+11:18/0/custom_data_0 = true
 12:18/0 = 0
+12:18/0/custom_data_0 = true
 14:18/0 = 0
+14:18/0/custom_data_0 = true
 15:18/0 = 0
+15:18/0/custom_data_0 = true
 0:19/0 = 0
 1:19/0 = 0
 2:19/0 = 0
 3:19/0 = 0
 4:19/0 = 0
 5:19/0 = 0
+5:19/0/custom_data_0 = true
 6:19/0 = 0
+6:19/0/custom_data_0 = true
 8:19/0 = 0
+8:19/0/custom_data_0 = true
 10:19/0 = 0
+10:19/0/custom_data_0 = true
 11:19/0 = 0
+11:19/0/custom_data_0 = true
 12:19/0 = 0
+12:19/0/custom_data_0 = true
 14:19/0 = 0
+14:19/0/custom_data_0 = true
 15:19/0 = 0
+15:19/0/custom_data_0 = true
 0:20/0 = 0
 1:20/0 = 0
 2:20/0 = 0
 3:20/0 = 0
 4:20/0 = 0
 5:20/0 = 0
+5:20/0/custom_data_0 = true
 6:20/0 = 0
+6:20/0/custom_data_0 = true
 8:20/0 = 0
+8:20/0/custom_data_0 = true
 1:21/0 = 0
 2:21/0 = 0
 3:21/0 = 0
 5:21/0 = 0
+5:21/0/custom_data_0 = true
 6:21/0 = 0
+6:21/0/custom_data_0 = true
 8:21/0 = 0
+8:21/0/custom_data_0 = true
 9:21/0 = 0
+9:21/0/custom_data_0 = true
 11:21/0 = 0
+11:21/0/custom_data_0 = true
 12:21/0 = 0
+12:21/0/custom_data_0 = true
 14:21/0 = 0
+14:21/0/custom_data_0 = true
 15:21/0 = 0
+15:21/0/custom_data_0 = true
 1:22/0 = 0
 2:22/0 = 0
 3:22/0 = 0
 5:22/0 = 0
+5:22/0/custom_data_0 = true
 6:22/0 = 0
+6:22/0/custom_data_0 = true
 8:22/0 = 0
+8:22/0/custom_data_0 = true
 9:22/0 = 0
+9:22/0/custom_data_0 = true
 11:22/0 = 0
+11:22/0/custom_data_0 = true
 12:22/0 = 0
+12:22/0/custom_data_0 = true
 14:22/0 = 0
+14:22/0/custom_data_0 = true
 15:22/0 = 0
+15:22/0/custom_data_0 = true
 1:23/0 = 0
 2:23/0 = 0
 3:23/0 = 0
 5:23/0 = 0
 6:23/0 = 0
+6:23/0/custom_data_0 = true
 8:23/0 = 0
+8:23/0/custom_data_0 = true
 9:23/0 = 0
+9:23/0/custom_data_0 = true
 11:23/0 = 0
 12:23/0 = 0
 14:23/0 = 0
@@ -329,6 +387,20 @@ texture = ExtResource("4_0hol4")
 custom_data_layer_0/name = "intransitable"
 custom_data_layer_0/type = 1
 sources/0 = SubResource("TileSetAtlasSource_kdubu")
+
+[sub_resource type="GDScript" id="GDScript_q6r6c"]
+script/source = "extends Node2D
+@onready var mapa_decorativo: TileMapLayer = $mapa_decorativo
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q6r6c"]
 texture = ExtResource("4_0hol4")
@@ -691,29 +763,33 @@ sources/0 = SubResource("TileSetAtlasSource_q6r6c")
 [node name="Node2D" type="Node2D" unique_id=62261494]
 script = ExtResource("1_epypp")
 
-[node name="jugador" type="CharacterBody2D" parent="." unique_id=1059224120 node_paths=PackedStringArray("mapa")]
-script = ExtResource("1_wtcfe")
-mapa = NodePath("../nivel_base")
+[node name="nivel_base" type="Node2D" parent="." unique_id=473661913]
+y_sort_enabled = true
+script = ExtResource("3_0hol4")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="jugador" unique_id=2133104810]
-z_index = 2
+[node name="jugador" type="CharacterBody2D" parent="nivel_base" unique_id=1059224120 node_paths=PackedStringArray("mapa")]
+y_sort_enabled = true
+script = ExtResource("1_wtcfe")
+mapa = NodePath("..")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="nivel_base/jugador" unique_id=2133104810]
+z_index = 1
 position = Vector2(0.5000001, 1.1920929e-06)
 scale = Vector2(0.72, 0.806)
 sprite_frames = SubResource("SpriteFrames_urvta")
 animation = &"quieto_derecha"
 offset = Vector2(4.5, -7)
 
-[node name="nivel_base" type="Node2D" parent="." unique_id=473661913]
-script = ExtResource("3_0hol4")
-
-[node name="mapa_decorativo" type="TileMapLayer" parent="nivel_base" unique_id=139080138]
+[node name="mapa_obstaculos" type="TileMapLayer" parent="nivel_base" unique_id=139080138]
 z_index = 1
-tile_map_data = PackedByteArray("AAD+//3/AAABAAUAAAD///3/AAACAAUAAAAAAP3/AAACAAUAAAABAP3/AAACAAUAAAACAP3/AAADAAUAAAACAPz/AAADAAQAAAD+//z/AAABAAQAAAD///z/AAACAAQAAAAAAPz/AAACAAQAAAABAPz/AAACAAQAAAD+//v/AAABAAMAAAACAPv/AAADAAMAAAD///v/AAACAAMAAAAAAPv/AAACAAMAAAABAPv/AAACAAMAAAA=")
+y_sort_enabled = true
+tile_map_data = PackedByteArray("AAD+//3/AAABAAUAAAD///3/AAACAAUAAAAAAP3/AAACAAUAAAABAP3/AAACAAUAAAACAP3/AAADAAUAAAACAPz/AAADAAQAAAD+//z/AAABAAQAAAD///z/AAACAAQAAAAAAPz/AAACAAQAAAABAPz/AAACAAQAAAD+//v/AAABAAMAAAACAPv/AAADAAMAAAD///v/AAACAAMAAAAAAPv/AAACAAMAAAABAPv/AAACAAMAAAADAPz/AAAAABIAAAADAP3/AAAAABMAAAAEAPz/AAABABIAAAAEAP3/AAABABMAAAAFAPz/AAACABIAAAAFAP3/AAACABMAAAAGAPz/AAADABIAAAAGAP3/AAADABMAAAAGAP7/AAADABQAAAAHAPz/AAAEABIAAAAHAP3/AAAEABMAAAAHAP7/AAAEABQAAAADAP//AAAAABIAAAADAAAAAAAAABMAAAADAAEAAAAAABQAAAAEAP//AAABABIAAAAEAAAAAAABABMAAAAEAAEAAAABABQAAAAFAP//AAACABIAAAAFAAAAAAACABMAAAAFAAEAAAACABQAAAAGAP//AAADABIAAAAGAAAAAAADABMAAAAGAAEAAAADABQAAAAHAP//AAAEABIAAAAHAAAAAAAEABMAAAAHAAEAAAAEABQAAAAFAP7/AAACABEAAAA=")
 tile_set = SubResource("TileSet_urvta")
-script = ExtResource("6_kdubu")
+script = SubResource("GDScript_q6r6c")
 
 [node name="mapa_base" type="TileMapLayer" parent="nivel_base" unique_id=1693391]
-tile_map_data = PackedByteArray("AAAAAP//AAACAAgAAAABAP//AAACAAgAAAABAAAAAAAIAA0AAAABAAEAAAACAAgAAAAAAAEAAAACAAgAAAAAAAAAAAACAAgAAAD/////AAAHAA0AAAD//wAAAAACAAgAAAD//wEAAAAHAA4AAAACAAIAAAADAAkAAAACAAMAAAADAAoAAAD+/wMAAAABAAoAAAD//wMAAAACAAoAAAAAAAMAAAABAA0AAAABAAMAAAACAAoAAAD+/wIAAAABAAkAAAD//wIAAAACAAkAAAAAAAIAAAABAAwAAAABAAIAAAACAAkAAAACAAEAAAADAAgAAAACAAAAAAADAAgAAAACAP//AAADAAgAAAD+/wEAAAABAAgAAAD+/wAAAAABAAgAAAD+////AAABAAgAAAACAP7/AAADAAgAAAD+//7/AAABAAgAAAD///7/AAACAAgAAAAAAP7/AAACAAgAAAABAP7/AAACAAgAAAD///3/AAACAAcAAAAAAP3/AAACAAcAAAABAP3/AAACAAcAAAACAP3/AAADAAcAAAACAPz/AAADAAQAAAACAPv/AAADAAMAAAABAPv/AAACAAMAAAAAAPv/AAACAAMAAAD///v/AAACAAMAAAABAPz/AAACAAQAAAAAAPz/AAACAAQAAAD///z/AAACAAQAAAD+//z/AAABAAQAAAD+//v/AAABAAMAAAD+//3/AAABAAcAAAD9/wQAAAACAAIAAAD+/wQAAAACAAIAAAD//wQAAAACAAIAAAAAAAQAAAACAAIAAAABAAQAAAACAAIAAAACAAQAAAACAAIAAAADAAQAAAAAABQAAAADAAMAAAAAABMAAAADAAIAAAAAABIAAAADAAEAAAAAABQAAAADAAAAAAAAABMAAAADAP//AAAAABIAAAADAP7/AAAAABQAAAADAP3/AAAAABMAAAADAPz/AAAAABIAAAADAPv/AAACAAIAAAADAPr/AAACAAIAAAACAPr/AAACAAIAAAABAPr/AAACAAIAAAAAAPr/AAACAAIAAAD///r/AAACAAIAAAD+//r/AAACAAIAAAD9//r/AAACAAIAAAD9/wMAAAACAAIAAAD9/wIAAAACAAIAAAD9/wEAAAACAAIAAAD9/wAAAAACAAIAAAD9////AAACAAIAAAD9//7/AAACAAIAAAD9//3/AAACAAIAAAD9//z/AAACAAIAAAD9//v/AAACAAIAAAAFAAEAAAACABQAAAAFAAAAAAACABMAAAAFAP//AAACABIAAAAGAP//AAADABIAAAAGAAAAAAADABMAAAAGAAEAAAADABQAAAAHAP//AAAEABIAAAAHAAAAAAAEABMAAAAHAAEAAAAEABQAAAAFAPz/AAACABIAAAAFAP3/AAACABMAAAAFAP7/AAACABQAAAAGAPz/AAADABIAAAAGAP3/AAADABMAAAAGAP7/AAADABQAAAAHAPz/AAAEABIAAAAHAP3/AAAEABMAAAAHAP7/AAAEABQAAAAFAAIAAAACABIAAAAFAAMAAAACABMAAAAFAAQAAAACABQAAAAGAAIAAAADABIAAAAGAAMAAAADABMAAAAGAAQAAAADABQAAAAHAAIAAAAEABIAAAAHAAMAAAAEABMAAAAHAAQAAAAEABQAAAAEAAIAAAABABIAAAAEAAMAAAABABMAAAAEAAQAAAABABQAAAAEAP//AAABABIAAAAEAAAAAAABABMAAAAEAAEAAAABABQAAAAEAPz/AAABABIAAAAEAP3/AAABABMAAAAEAP7/AAABABQAAAA=")
+z_index = -3
+tile_map_data = PackedByteArray("AAAAAP//AAACAAgAAAABAP//AAACAAgAAAABAAAAAAAIAA0AAAABAAEAAAACAAgAAAAAAAEAAAACAAgAAAAAAAAAAAACAAgAAAD/////AAAHAA0AAAD//wAAAAACAAgAAAD//wEAAAAHAA4AAAACAAIAAAADAAkAAAACAAMAAAADAAoAAAD+/wMAAAABAAoAAAD//wMAAAACAAoAAAAAAAMAAAABAA0AAAABAAMAAAACAAoAAAD+/wIAAAABAAkAAAD//wIAAAACAAkAAAAAAAIAAAABAAwAAAABAAIAAAACAAkAAAACAAEAAAADAAgAAAACAAAAAAADAAgAAAACAP//AAAFAAcAAAD+/wEAAAABAAgAAAD+/wAAAAABAAgAAAD+////AAABAAgAAAACAP7/AAAFAAkAAAD+//7/AAABAAgAAAD///7/AAACAAgAAAAAAP7/AAACAAgAAAABAP7/AAACAAgAAAD///3/AAACAAcAAAAAAP3/AAACAAcAAAABAP3/AAACAAcAAAACAP3/AAADAAcAAAACAPz/AAADAAQAAAACAPv/AAADAAMAAAABAPv/AAACAAMAAAAAAPv/AAACAAMAAAD///v/AAACAAMAAAABAPz/AAACAAQAAAAAAPz/AAACAAQAAAD///z/AAACAAQAAAD+//z/AAABAAQAAAD+//v/AAABAAMAAAD+//3/AAABAAcAAAD9/wQAAAACAAIAAAD+/wQAAAACAAIAAAD//wQAAAACAAIAAAAAAAQAAAACAAIAAAABAAQAAAACAAIAAAACAAQAAAACAAIAAAADAAQAAAAAABQAAAADAAMAAAAAABMAAAADAAIAAAAAABIAAAADAAEAAAAAABQAAAADAAAAAAAAABMAAAADAP//AAACAAkAAAADAP7/AAACAAcAAAADAP3/AAAAABMAAAADAPz/AAAAABIAAAADAPv/AAACAAIAAAADAPr/AAACAAIAAAACAPr/AAACAAIAAAABAPr/AAACAAIAAAAAAPr/AAACAAIAAAD///r/AAACAAIAAAD+//r/AAACAAIAAAD9//r/AAACAAIAAAD9/wMAAAACAAIAAAD9/wIAAAACAAIAAAD9/wEAAAACAAIAAAD9/wAAAAACAAIAAAD9////AAACAAIAAAD9//7/AAACAAIAAAD9//3/AAACAAIAAAD9//z/AAACAAIAAAD9//v/AAACAAIAAAAFAAEAAAACABQAAAAFAAAAAAACABMAAAAFAP//AAADAAkAAAAGAP//AAADABIAAAAGAAAAAAADABMAAAAGAAEAAAADABQAAAAHAP//AAAEABIAAAAHAAAAAAAEABMAAAAHAAEAAAAEABQAAAAFAPz/AAACABIAAAAFAP3/AAACABMAAAAFAP7/AAADAAcAAAAGAPz/AAADABIAAAAGAP3/AAADABMAAAAGAP7/AAADABQAAAAHAPz/AAAEABIAAAAHAP3/AAAEABMAAAAHAP7/AAAEABQAAAAFAAIAAAACABIAAAAFAAMAAAACABMAAAAFAAQAAAACABQAAAAGAAIAAAADABIAAAAGAAMAAAADABMAAAAGAAQAAAADABQAAAAHAAIAAAAEABIAAAAHAAMAAAAEABMAAAAHAAQAAAAEABQAAAAEAAIAAAABABIAAAAEAAMAAAABABMAAAAEAAQAAAABABQAAAAEAP//AAACAAkAAAAEAAAAAAABABMAAAAEAAEAAAABABQAAAAEAPz/AAABABIAAAAEAP3/AAABABMAAAAEAP7/AAACAAcAAAA=")
 tile_set = SubResource("TileSet_epypp")
 
 [node name="objetos" type="Node2D" parent="nivel_base" unique_id=1676974917]
