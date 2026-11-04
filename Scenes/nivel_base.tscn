@@ -357,20 +357,6 @@ custom_data_layer_0/name = "intransitable"
 custom_data_layer_0/type = 1
 sources/0 = SubResource("TileSetAtlasSource_kdubu")
 
-[sub_resource type="GDScript" id="GDScript_q6r6c"]
-script/source = "extends Node2D
-@onready var mapa_decorativo: TileMapLayer = $mapa_decorativo
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-"
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q6r6c"]
 texture = ExtResource("4_dfr37")
 1:1/0 = 0
@@ -732,14 +718,13 @@ sources/0 = SubResource("TileSetAtlasSource_q6r6c")
 [node name="nivel_base" type="Node2D" unique_id=275302144]
 y_sort_enabled = true
 script = ExtResource("1_qaap6")
-posicion_inicial = Vector2i(-2, -2)
+lista_objetos = [[Vector2i(-1, -2), 0], [Vector2i(4, -2), 0]]
 
 [node name="mapa_obstaculos" type="TileMapLayer" parent="." unique_id=527440772]
 z_index = 1
 y_sort_enabled = true
 tile_map_data = PackedByteArray("AAD+//3/AAABAAUAAAD///3/AAACAAUAAAAAAP3/AAACAAUAAAABAP3/AAACAAUAAAACAP3/AAADAAUAAAACAPz/AAADAAQAAAD+//z/AAABAAQAAAD///z/AAACAAQAAAAAAPz/AAACAAQAAAABAPz/AAACAAQAAAD+//v/AAABAAMAAAACAPv/AAADAAMAAAD///v/AAACAAMAAAAAAPv/AAACAAMAAAABAPv/AAACAAMAAAADAPz/AAAAABIAAAADAP3/AAAAABMAAAAEAPz/AAABABIAAAAEAP3/AAABABMAAAAFAPz/AAACABIAAAAFAP3/AAACABMAAAAGAPz/AAADABIAAAAGAP3/AAADABMAAAAGAP7/AAADABQAAAAHAPz/AAAEABIAAAAHAP3/AAAEABMAAAAHAP7/AAAEABQAAAADAP//AAAAABIAAAADAAAAAAAAABMAAAADAAEAAAAAABQAAAAEAP//AAABABIAAAAEAAAAAAABABMAAAAEAAEAAAABABQAAAAFAP//AAACABIAAAAFAAAAAAACABMAAAAFAAEAAAACABQAAAAGAP//AAADABIAAAAGAAAAAAADABMAAAAGAAEAAAADABQAAAAHAP//AAAEABIAAAAHAAAAAAAEABMAAAAHAAEAAAAEABQAAAAFAP7/AAACABEAAAA=")
 tile_set = SubResource("TileSet_urvta")
-script = SubResource("GDScript_q6r6c")
 
 [node name="mapa_base" type="TileMapLayer" parent="." unique_id=902094091]
 z_index = -3

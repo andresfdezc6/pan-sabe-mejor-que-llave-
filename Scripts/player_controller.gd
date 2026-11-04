@@ -39,6 +39,7 @@ func mover():
 	if mapa and mapa.es_transitable(Global.posicion_jugador + direccion_jugador) and Global.hambre > 1:
 		Global.posicion_jugador += direccion_jugador
 		Global.hambre -= 1
+		print(Global.hambre)
 	
 	
 	
