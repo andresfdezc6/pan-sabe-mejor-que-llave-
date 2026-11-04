@@ -22,8 +22,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	apuntar()
 	
-	# Mueve la posición actual progresivamente hacia la casilla destino
-	if mapa and mapa.mapa:
+	if mapa and mapa.mapa: #cada vez que se quiera cambiar la posicion del jugador, se mueve con lerp
 		var pos_destino = mapa.mapa.map_to_local(Global.posicion_jugador)
 		position = position.lerp(pos_destino, velocidad_suavizado * delta)
 
