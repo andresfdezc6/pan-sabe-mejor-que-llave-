@@ -1,5 +1,6 @@
 extends Node2D
 @onready var mapa: TileMapLayer = $mapa_base
+@onready var mapa_decorativo: TileMapLayer = $mapa_decorativo
 @export var posicion_inicial = Vector2i(0,0)
 
 # Called when the node enters the scene tree for the first time.
@@ -13,8 +14,11 @@ func _process(delta: float) -> void:
 	pass
 
 func es_transitable(pos: Vector2i) -> bool:
-	var datos: TileData = mapa.get_cell_tile_data(pos)
-	return datos != null and datos.get_custom_data("transitable")
+	var datos_1: TileData = mapa.get_cell_tile_data(pos)
+	var datos_2: TileData = mapa_decorativo.get_cell_tile_data(pos)
+	var suelo_valido = datos_1 != null and datos_1.get_custom_data("transitable")
+	var es_bloqueado = datos_2 != null and datos_2.get_custom_data("intransitable")
+	return suelo_valido and not es_bloqueado
 
 @export var mostrar_cuadricula: bool = true
 @export var color_lineas: Color = Color(1, 1, 1, 0.35) # Blanco semi-transparente

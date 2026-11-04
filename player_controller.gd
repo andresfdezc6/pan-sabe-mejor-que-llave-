@@ -1,5 +1,7 @@
 extends CharacterBody2D
 @export var mapa: Node2D
+@export var mapa_decorativo: Node2D
+
 
 var direcciones = {
 	"derecha": Vector2i(1, 0),
