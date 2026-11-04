@@ -1,7 +1,8 @@
 extends CharacterBody2D
-@export var mapa: Node2D
-@export var mapa_obstaculos: Node2D
 
+var mapa: Node2D 
+
+@export var velocidad_suavizado: float = 15.0
 
 var direcciones = {
 	"derecha": Vector2i(1, 0),
@@ -12,18 +13,12 @@ var direcciones = {
 
 var direccion_jugador: Vector2i
 
-func _ready() -> void:
-	await get_tree().process_frame
-	if mapa:
-		position = mapa.mapa.map_to_local(Global.posicion_jugador)
-
-@export var velocidad_suavizado: float = 15.0 # velocidad de movimiento
-
 func _process(delta: float) -> void:
 	apuntar()
 	
-	if mapa and mapa.mapa: #cada vez que se quiera cambiar la posicion del jugador, se mueve con lerp
-		var pos_destino = mapa.mapa.map_to_local(Global.posicion_jugador)
+	# Interpola la posición física hacia la casilla lógica global actual
+	if mapa:
+		var pos_destino = mapa.celda_a_posicion(Global.posicion_jugador)
 		position = position.lerp(pos_destino, velocidad_suavizado * delta)
 
 func apuntar():
@@ -41,10 +36,9 @@ func apuntar():
 		mover()
 
 func mover():
-	if mapa.es_transitable(Global.posicion_jugador + direccion_jugador) and Global.hambre>0:
+	if mapa and mapa.es_transitable(Global.posicion_jugador + direccion_jugador) and Global.hambre > 1:
 		Global.posicion_jugador += direccion_jugador
 		Global.hambre -= 1
-
 	
 	
 	

@@ -1,35 +1,7 @@
 [gd_scene format=4 uid="uid://cminuue6w0sfq"]
 
 [ext_resource type="Script" uid="uid://c061j87gv5mpt" path="res://Scripts/nivel_base.gd" id="1_qaap6"]
-[ext_resource type="Script" uid="uid://c27dmbtj1yil8" path="res://Scripts/player_controller.gd" id="2_ahwad"]
-[ext_resource type="Texture2D" uid="uid://dloju11v2hydf" path="res://assets/DinoBase.png" id="3_r5g0i"]
 [ext_resource type="Texture2D" uid="uid://dlbw84wrg4a80" path="res://assets/tiles/walls_floor.png" id="4_dfr37"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_urvta"]
-animations = [{
-"frames": [],
-"loop": 1,
-"name": &"quieto_abajo",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": 1,
-"name": &"quieto_arriba",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_r5g0i")
-}],
-"loop": 1,
-"name": &"quieto_derecha",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": 1,
-"name": &"quieto_izquierda",
-"speed": 5.0
-}]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kdubu"]
 texture = ExtResource("4_dfr37")
@@ -179,9 +151,7 @@ texture = ExtResource("4_dfr37")
 15:13/0 = 0
 1:14/0 = 0
 7:14/0 = 0
-7:14/0/custom_data_0 = true
 8:14/0 = 0
-8:14/0/custom_data_0 = true
 9:14/0 = 0
 10:14/0 = 0
 11:14/0 = 0
@@ -762,19 +732,7 @@ sources/0 = SubResource("TileSetAtlasSource_q6r6c")
 [node name="nivel_base" type="Node2D" unique_id=275302144]
 y_sort_enabled = true
 script = ExtResource("1_qaap6")
-
-[node name="jugador" type="CharacterBody2D" parent="." unique_id=25718703 node_paths=PackedStringArray("mapa")]
-y_sort_enabled = true
-script = ExtResource("2_ahwad")
-mapa = NodePath("..")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="jugador" unique_id=1982509324]
-z_index = 1
-position = Vector2(0.5000001, 1.1920929e-06)
-scale = Vector2(0.72, 0.806)
-sprite_frames = SubResource("SpriteFrames_urvta")
-animation = &"quieto_derecha"
-offset = Vector2(4.5, -7)
+posicion_inicial = Vector2i(-2, -2)
 
 [node name="mapa_obstaculos" type="TileMapLayer" parent="." unique_id=527440772]
 z_index = 1
@@ -791,3 +749,6 @@ tile_set = SubResource("TileSet_epypp")
 [node name="objetos" type="Node2D" parent="." unique_id=257582123]
 
 [node name="obstaculos" type="Node2D" parent="." unique_id=1061424472]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=517869831]
+zoom = Vector2(2.5, 2.5)
