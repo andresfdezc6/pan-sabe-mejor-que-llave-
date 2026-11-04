@@ -23,7 +23,7 @@ func es_transitable(pos: Vector2i) -> bool:
 	var intransitable = datos_2 != null and datos_2.get_custom_data("intransitable")
 	return transitable and not intransitable
 
-@export var mostrar_cuadricula: bool = true
+@export var mostrar_cuadricula: bool = false
 @export var color_lineas: Color = Color(1, 1, 1, 0.35) # Blanco semi-transparente
 
 func _draw() -> void: #dibujar cuadrícula

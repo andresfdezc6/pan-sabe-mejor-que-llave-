@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://b7jkc0t5vfmfv"]
+
+[ext_resource type="Script" uid="uid://c27dmbtj1yil8" path="res://Scripts/player_controller.gd" id="1_c1mnh"]
+[ext_resource type="Texture2D" uid="uid://dloju11v2hydf" path="res://assets/DinoBase.png" id="2_tn1hq"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_urvta"]
+animations = [{
+"frames": [],
+"loop": 1,
+"name": &"quieto_abajo",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": 1,
+"name": &"quieto_arriba",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_tn1hq")
+}],
+"loop": 1,
+"name": &"quieto_derecha",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": 1,
+"name": &"quieto_izquierda",
+"speed": 5.0
+}]
+
+[node name="jugador" type="CharacterBody2D" unique_id=91696816 node_paths=PackedStringArray("mapa")]
+y_sort_enabled = true
+script = ExtResource("1_c1mnh")
+mapa = NodePath("")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=226650431]
+z_index = 1
+position = Vector2(0.5000001, 1.1920929e-06)
+scale = Vector2(0.72, 0.806)
+sprite_frames = SubResource("SpriteFrames_urvta")
+animation = &"quieto_derecha"
+offset = Vector2(4.5, -7)
