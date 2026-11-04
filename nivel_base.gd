@@ -15,4 +15,23 @@ func _process(delta: float) -> void:
 func es_transitable(pos: Vector2i) -> bool:
 	var datos: TileData = mapa.get_cell_tile_data(pos)
 	return datos != null and datos.get_custom_data("transitable")
+
+@export var mostrar_cuadricula: bool = true
+@export var color_lineas: Color = Color(1, 1, 1, 0.35) # Blanco semi-transparente
+
+func _draw() -> void: #dibujar cuadrícula
+	if not mostrar_cuadricula or not mapa or not mapa.tile_set:
+		return
+	
+	var tamano_celda = Vector2(mapa.tile_set.tile_size)
+	var area_usada = mapa.get_used_rect() # Obtiene los límites pintados del mapa
+
+	# Recorre todas las casillas pintadas y dibuja su contorno
+	for x in range(area_usada.position.x, area_usada.end.x):
+		for y in range(area_usada.position.y, area_usada.end.y):
+			var centro_celda = mapa.map_to_local(Vector2i(x, y))
+			var esquina_superior_izq = centro_celda - (tamano_celda / 2.0)
+			
+			# Dibuja un rectángulo sin relleno de 1 píxel de grosor
+			draw_rect(Rect2(esquina_superior_izq, tamano_celda), color_lineas, false, 1.0)
 	
