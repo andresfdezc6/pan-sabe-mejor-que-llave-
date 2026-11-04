@@ -16,9 +16,9 @@ func _process(delta: float) -> void:
 func es_transitable(pos: Vector2i) -> bool:
 	var datos_1: TileData = mapa.get_cell_tile_data(pos)
 	var datos_2: TileData = mapa_decorativo.get_cell_tile_data(pos)
-	var suelo_valido = datos_1 != null and datos_1.get_custom_data("transitable")
-	var es_bloqueado = datos_2 != null and datos_2.get_custom_data("intransitable")
-	return suelo_valido and not es_bloqueado
+	var transitable = datos_1 != null and datos_1.get_custom_data("transitable")
+	var intransitable = datos_2 != null and datos_2.get_custom_data("intransitable")
+	return transitable and not intransitable
 
 @export var mostrar_cuadricula: bool = true
 @export var color_lineas: Color = Color(1, 1, 1, 0.35) # Blanco semi-transparente

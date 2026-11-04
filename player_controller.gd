@@ -17,8 +17,15 @@ func _ready() -> void:
 	if mapa:
 		position = mapa.mapa.map_to_local(Global.posicion_jugador)
 
+@export var velocidad_suavizado: float = 15.0 # velocidad de movimiento
+
 func _process(delta: float) -> void:
 	apuntar()
+	
+	# Mueve la posición actual progresivamente hacia la casilla destino
+	if mapa and mapa.mapa:
+		var pos_destino = mapa.mapa.map_to_local(Global.posicion_jugador)
+		position = position.lerp(pos_destino, velocidad_suavizado * delta)
 
 func apuntar():
 	if Input.is_action_just_pressed("right"):
@@ -37,7 +44,7 @@ func apuntar():
 func mover():
 	if mapa.es_transitable(Global.posicion_jugador + direccion_jugador):
 		Global.posicion_jugador += direccion_jugador
-		position = mapa.mapa.map_to_local(Global.posicion_jugador)
+
 	
 	
 	
