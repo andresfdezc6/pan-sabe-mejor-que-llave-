@@ -81,4 +81,13 @@ func es_transitable(pos: Vector2i) -> bool: #comprueba los dos tilemaps
 	var es_bloqueado = datos_2 != null and datos_2.get_custom_data("intransitable")
 	
 	return suelo_valido and not es_bloqueado
+
+func es_meta(pos: Vector2i) -> bool:
+	var datos: TileData = mapa_obstaculos.get_cell_tile_data(pos)
+	var meta = datos != null and  datos.get_custom_data("meta")
+	return meta
+
+func terminar_nivel() -> void:
+	if es_meta(Global.posicion_jugador):
+		ControlGlobal.cargar_siguiente_nivel()
 	

@@ -20,6 +20,7 @@ func _process(delta: float) -> void:
 	if mapa:
 		var pos_destino = mapa.celda_a_posicion(Global.posicion_jugador)
 		position = position.lerp(pos_destino, velocidad_suavizado * delta)
+		mapa.terminar_nivel()
 
 func apuntar():
 	if Input.is_action_just_pressed("right"):
