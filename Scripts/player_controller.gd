@@ -5,7 +5,6 @@ var mapa: Node2D
 @export var velocidad_suavizado: float = 15.0
 @export var velocidad_desliz: float = 150.0
 
-
 var direcciones = {
 	"derecha": Vector2i(1, 0),
 	"arriba": Vector2i(0, -1),
@@ -47,7 +46,6 @@ func apuntar():
 		elif Input.is_action_just_pressed("down"):
 			direccion_jugador = direcciones.abajo
 			mover()
-
 
 func mover():
 	if mapa and mapa.es_transitable(Global.posicion_jugador + direccion_jugador) and Global.hambre > 1:

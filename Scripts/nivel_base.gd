@@ -1,26 +1,26 @@
 extends Node2D
 
+#importado de escenas para instanciar objetos
 @export var escena_jugador: PackedScene = preload("res://Scenes/jugador.tscn")
 @export var escena_pan: PackedScene = preload("res://Scenes/pan_base.tscn")
 @export var escena_mantequilla: PackedScene = preload("res://Scenes/pan_mantequilla.tscn")
 
+#importado de escenas ya existentes
 @onready var objetos = $"objetos"
 @onready var mapa: TileMapLayer = $mapa_base
 @onready var mapa_obstaculos: TileMapLayer = $mapa_obstaculos
-@export var posicion_inicial: Vector2i = Vector2i(0, 0)
 @onready var camara: Camera2D = $Camera2D
+@onready var jugador_instancia: CharacterBody2D
+
+#declarado de cosas específicas de cada nivel (editar en el inspector)
+@export var posicion_inicial: Vector2i = Vector2i(0, 0)
 @export var hambre_inicial = 15
-
-var jugador_instancia: CharacterBody2D
-
-
-
-var objetos_en_celda: Dictionary = {}
 @export var lista_objetos: Array = []
-#Al hacer un nivel desde el editor, la segunda celda que hay que rellenar es el índice del objeto en el enum
-#sigo escribiendo aquí que no me da, en el enum del global
 
-#FUNCIONES PARA EL READY
+#para la lógica de recoger objetos
+var objetos_en_celda: Dictionary = {}
+
+#funciones para el ready
 func generar_objeto(vector: Vector2i, tipo):
 	var objeto_instancia = null
 	var script_especifico = null
@@ -42,7 +42,6 @@ func generar_objeto(vector: Vector2i, tipo):
 			objeto_instancia.set_script(script_especifico)  #le carga el script de su funcion especifica
 		objetos_en_celda[vector] = objeto_instancia
 
-
 func generar_objetos(list: Array):#Esto es el parsing de FP con otras palabras
 	for array in list:
 		generar_objeto(array[0], array[1])
@@ -52,7 +51,8 @@ func generar_jugador(pos):
 	jugador_instancia.mapa = self
 	add_child(jugador_instancia)
 	jugador_instancia.position = celda_a_posicion(pos)
-	
+
+#establece las variables globales a las específicas del nivel y genera al jugador y objetos
 func _ready() -> void:
 	Global.posicion_jugador = posicion_inicial
 	Global.hambre = hambre_inicial
@@ -60,8 +60,8 @@ func _ready() -> void:
 	generar_jugador(posicion_inicial)
 	generar_objetos(lista_objetos)
 
-	
-func centrar_camara_en_puzle() -> void: #CAMARA, no sé muy bien lo que hace porque es chatgpetazo
+#CAMARA, no sé muy bien lo que hace porque es chatgpetazo
+func centrar_camara_en_puzle() -> void: 
 	if not mapa or not camara:
 		return
 
@@ -75,16 +75,19 @@ func centrar_camara_en_puzle() -> void: #CAMARA, no sé muy bien lo que hace por
 
 	camara.position = Vector2(centro_x, centro_y)
 
-func celda_a_posicion(pos: Vector2i) -> Vector2: #transforma los datos de casilla a posición exacta
+#transforma los datos de casilla a posición exacta
+func celda_a_posicion(pos: Vector2i) -> Vector2:
 	if mapa:
 		return mapa.map_to_local(pos)
 	return Vector2 (0,0)
-	
-func posicion_a_celda(pos: Vector2) -> Vector2i: #la contraria
+
+#la contraria
+func posicion_a_celda(pos: Vector2) -> Vector2i:
 	if mapa:
 		return mapa.local_to_map(pos)  
 	return Vector2i(0,0)
 
+#comprueba si hay un objeto en la celda y aplica su efecto
 func recoger_en(celda: Vector2i) -> void:
 	if objetos_en_celda.has(celda):
 		var objeto = objetos_en_celda[celda]
@@ -92,7 +95,8 @@ func recoger_en(celda: Vector2i) -> void:
 		objeto.aplicar_efecto()
 		objeto.queue_free()
 
-func es_transitable(pos: Vector2i) -> bool: #comprueba los dos tilemaps
+#comprueba los dos tilemaps y devuelve si la casilla es transitable
+func es_transitable(pos: Vector2i) -> bool: 
 	var datos_1: TileData = mapa.get_cell_tile_data(pos)
 	var datos_2: TileData = mapa_obstaculos.get_cell_tile_data(pos)
 	
@@ -101,20 +105,20 @@ func es_transitable(pos: Vector2i) -> bool: #comprueba los dos tilemaps
 	
 	return suelo_valido and not es_bloqueado
 
+#calcula hasta donde se puede deslizar y lo devuelve como vector
 func calcular_desliz(pos: Vector2i, apuntado: Vector2i) -> Vector2i:
 	var res: Vector2i = pos
 	while es_transitable(res + apuntado):
 		res += apuntado
 	return res
-	
-	
 
+#comprueba si una casilla es la meta
 func es_meta(pos: Vector2i) -> bool:
 	var datos: TileData = mapa_obstaculos.get_cell_tile_data(pos)
 	var meta = datos != null and  datos.get_custom_data("meta")
 	return meta
 
+#si la casilla es meta, invoca a control para cambiar de nivel
 func terminar_nivel() -> void:
 	if es_meta(Global.posicion_jugador):
 		ControlGlobal.cargar_siguiente_nivel()
-	
