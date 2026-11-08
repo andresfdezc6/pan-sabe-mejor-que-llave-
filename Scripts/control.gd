@@ -3,8 +3,8 @@ extends Node
 
 # Lista ordenada de niveles
 const NIVELES: Array[String] = [
-	"res://Scenes/nivel_base.tscn", # Índice 0 -> Tecla 1
-	"res://Scenes/nivel_1.tscn",    # Índice 1 -> Tecla 2
+	"res://Scenes/nivel_1.tscn", # Índice 0 -> Tecla 1
+	"res://Scenes/nivel_2.tscn",    # Índice 1 -> Tecla 2
 ]
 
 # Mapa de teclas para depuración

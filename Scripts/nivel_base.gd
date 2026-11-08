@@ -16,12 +16,7 @@ var jugador_instancia: CharacterBody2D
 
 
 var objetos_en_celda: Dictionary = {}
-@export var lista_objetos: Array = [
-[Vector2i(3, 2), Global.TipoObjeto.PAN],
-[Vector2i(4, 2), Global.TipoObjeto.PAN],
-[Vector2i(5, 4), Global.TipoObjeto.PAN],
-[Vector2i(8, 2), Global.TipoObjeto.PAN]
-]
+@export var lista_objetos: Array = []
 #Al hacer un nivel desde el editor, la segunda celda que hay que rellenar es el índice del objeto en el enum
 #sigo escribiendo aquí que no me da, en el enum del global
 
