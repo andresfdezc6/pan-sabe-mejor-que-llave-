@@ -11,9 +11,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if pos_celda == Global.posicion_jugador:
-		aplicar_efecto()
-		queue_free()
+	pass
 
 func aplicar_efecto():
 	pass

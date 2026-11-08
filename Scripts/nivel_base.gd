@@ -15,7 +15,7 @@ var jugador_instancia: CharacterBody2D
 
 
 
-	
+var objetos_en_celda: Dictionary = {}
 @export var lista_objetos: Array = [
 [Vector2i(3, 2), Global.TipoObjeto.PAN],
 [Vector2i(4, 2), Global.TipoObjeto.PAN],
@@ -45,6 +45,7 @@ func generar_objeto(vector: Vector2i, tipo):
 		
 		if script_especifico:
 			objeto_instancia.set_script(script_especifico)  #le carga el script de su funcion especifica
+		objetos_en_celda[vector] = objeto_instancia
 
 
 func generar_objetos(list: Array):#Esto es el parsing de FP con otras palabras
@@ -60,6 +61,7 @@ func generar_jugador(pos):
 func _ready() -> void:
 	Global.posicion_jugador = posicion_inicial
 	Global.hambre = hambre_inicial
+	Global.efecto = Global.Efectos.BASE
 	generar_jugador(posicion_inicial)
 	generar_objetos(lista_objetos)
 
@@ -82,6 +84,18 @@ func celda_a_posicion(pos: Vector2i) -> Vector2: #transforma los datos de casill
 	if mapa:
 		return mapa.map_to_local(pos)
 	return Vector2 (0,0)
+	
+func posicion_a_celda(pos: Vector2) -> Vector2i: #la contraria
+	if mapa:
+		return mapa.local_to_map(pos)  
+	return Vector2i(0,0)
+
+func recoger_en(celda: Vector2i) -> void:
+	if objetos_en_celda.has(celda):
+		var objeto = objetos_en_celda[celda]
+		objetos_en_celda.erase(celda)
+		objeto.aplicar_efecto()
+		objeto.queue_free()
 
 func es_transitable(pos: Vector2i) -> bool: #comprueba los dos tilemaps
 	var datos_1: TileData = mapa.get_cell_tile_data(pos)

@@ -29,10 +29,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="jugador" type="CharacterBody2D" unique_id=91696816 node_paths=PackedStringArray("mapa")]
+[node name="jugador" type="CharacterBody2D" unique_id=91696816]
 y_sort_enabled = true
 script = ExtResource("1_c1mnh")
-mapa = NodePath("")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=226650431]
 z_index = 1
