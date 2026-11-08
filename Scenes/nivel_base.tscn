@@ -722,7 +722,7 @@ sources/0 = SubResource("TileSetAtlasSource_q6r6c")
 [node name="nivel_base" type="Node2D" unique_id=275302144]
 y_sort_enabled = true
 script = ExtResource("1_qaap6")
-lista_objetos = [[Vector2i(-1, -2), 0], [Vector2i(4, -2), 0], [Vector2i(2, 1), 0]]
+lista_objetos = [[Vector2i(-1, -2), 1], [Vector2i(4, -2), 0], [Vector2i(2, 1), 0]]
 
 [node name="mapa_obstaculos" type="TileMapLayer" parent="." unique_id=527440772]
 z_index = 1

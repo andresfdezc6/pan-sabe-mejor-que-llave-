@@ -2,6 +2,7 @@ extends Node2D
 
 @export var escena_jugador: PackedScene = preload("res://Scenes/jugador.tscn")
 @export var escena_pan: PackedScene = preload("res://Scenes/pan_base.tscn")
+@export var escena_mantequilla: PackedScene = preload("res://Scenes/pan_mantequilla.tscn")
 
 @onready var objetos = $"objetos"
 @onready var mapa: TileMapLayer = $mapa_base
@@ -11,6 +12,8 @@ extends Node2D
 @export var hambre_inicial = 15
 
 var jugador_instancia: CharacterBody2D
+
+
 
 	
 @export var lista_objetos: Array = [
@@ -29,17 +32,24 @@ func generar_objeto(vector: Vector2i, tipo):
 	if tipo == Global.TipoObjeto.PAN:
 		objeto_instancia = escena_pan.instantiate()#rellenar con cada tipo de objeto que se haga después
 		script_especifico = preload("res://Scripts/pan_base.gd") #obtener la funcion que hace el objeto
+		
+	if tipo == Global.TipoObjeto.MANTEQUILLA:
+		objeto_instancia = escena_mantequilla.instantiate()
+		script_especifico = preload("res://Scripts/pan_mantequilla.gd") 
+		
 	if objeto_instancia:
 		objeto_instancia.mapa = self
 		objeto_instancia.pos_celda = vector #pasa las variables mapa y posición
 		objetos.add_child(objeto_instancia)
 		objeto_instancia.position = celda_a_posicion(vector) #Mueve el objeto a donde toca
+		
 		if script_especifico:
 			objeto_instancia.set_script(script_especifico)  #le carga el script de su funcion especifica
 
+
 func generar_objetos(list: Array):#Esto es el parsing de FP con otras palabras
-	for vector in list:
-		generar_objeto(vector[0], vector[1])
+	for array in list:
+		generar_objeto(array[0], array[1])
 
 func generar_jugador(pos):
 	jugador_instancia = escena_jugador.instantiate()
@@ -81,6 +91,14 @@ func es_transitable(pos: Vector2i) -> bool: #comprueba los dos tilemaps
 	var es_bloqueado = datos_2 != null and datos_2.get_custom_data("intransitable")
 	
 	return suelo_valido and not es_bloqueado
+
+func calcular_desliz(pos: Vector2i, apuntado: Vector2i) -> Vector2i:
+	var res: Vector2i = pos
+	while es_transitable(res + apuntado):
+		res += apuntado
+	return res
+	
+	
 
 func es_meta(pos: Vector2i) -> bool:
 	var datos: TileData = mapa_obstaculos.get_cell_tile_data(pos)

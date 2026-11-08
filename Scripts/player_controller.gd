@@ -10,7 +10,7 @@ var direcciones = {
 	"izquierda": Vector2i(-1, 0),
 	"abajo": Vector2i(0, 1)
 }
-
+var distancia_movimiento: int
 var direccion_jugador: Vector2i
 
 func _process(delta: float) -> void:
@@ -19,6 +19,7 @@ func _process(delta: float) -> void:
 	# Interpola la posición física hacia la casilla lógica global actual
 	if mapa:
 		var pos_destino = mapa.celda_a_posicion(Global.posicion_jugador)
+		velocidad_suavizado = 15.0 / distancia_movimiento
 		position = position.lerp(pos_destino, velocidad_suavizado * delta)
 		mapa.terminar_nivel()
 
@@ -36,9 +37,17 @@ func apuntar():
 		direccion_jugador = direcciones.abajo
 		mover()
 
+
 func mover():
 	if mapa and mapa.es_transitable(Global.posicion_jugador + direccion_jugador) and Global.hambre > 1:
-		Global.posicion_jugador += direccion_jugador
+		if Global.efecto == Global.Efectos.BASE:
+			Global.posicion_jugador += direccion_jugador
+			distancia_movimiento = 1
+		elif  Global.efecto == Global.Efectos.MANTEQUILLA:
+			var pos = Global.posicion_jugador
+			var final = mapa.calcular_desliz(pos, direccion_jugador)
+			distancia_movimiento = abs(final.x - pos.x) + abs(final.y - pos.y)
+			Global.posicion_jugador = final
 		Global.hambre -= 1
 		print(Global.hambre)
 	
