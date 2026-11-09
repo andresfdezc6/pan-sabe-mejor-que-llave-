@@ -4,6 +4,8 @@ extends Node2D
 @export var escena_jugador: PackedScene = preload("res://Scenes/jugador.tscn")
 @export var escena_pan: PackedScene = preload("res://Scenes/pan_base.tscn")
 @export var escena_mantequilla: PackedScene = preload("res://Scenes/pan_mantequilla.tscn")
+@export var escena_federico: PackedScene = preload("res://Scenes/pan_federico.tscn")
+
 
 #importado de escenas ya existentes
 @onready var objetos = $"objetos"
@@ -15,6 +17,7 @@ extends Node2D
 #declarado de cosas específicas de cada nivel (editar en el inspector)
 @export var posicion_inicial: Vector2i = Vector2i(0, 0)
 @export var hambre_inicial = 15
+@export var zoom: float
 @export var lista_objetos: Array = []
 
 #para la lógica de recoger objetos
@@ -24,6 +27,7 @@ var objetos_en_celda: Dictionary = {}
 func generar_objeto(vector: Vector2i, tipo):
 	var objeto_instancia = null
 	var script_especifico = null
+	
 	if tipo == Global.TipoObjeto.PAN:
 		objeto_instancia = escena_pan.instantiate()#rellenar con cada tipo de objeto que se haga después
 		script_especifico = preload("res://Scripts/pan_base.gd") #obtener la funcion que hace el objeto
@@ -31,6 +35,10 @@ func generar_objeto(vector: Vector2i, tipo):
 	if tipo == Global.TipoObjeto.MANTEQUILLA:
 		objeto_instancia = escena_mantequilla.instantiate()
 		script_especifico = preload("res://Scripts/pan_mantequilla.gd") 
+
+	if tipo == Global.TipoObjeto.FEDERICO:
+		objeto_instancia = escena_federico.instantiate()
+		script_especifico = preload("res://Scripts/pan_federico.gd") 
 		
 	if objeto_instancia:
 		objeto_instancia.mapa = self
@@ -54,6 +62,7 @@ func generar_jugador(pos):
 
 #establece las variables globales a las específicas del nivel y genera al jugador y objetos
 func _ready() -> void:
+	centrar_camara_en_puzle(zoom)
 	Global.posicion_jugador = posicion_inicial
 	Global.hambre = hambre_inicial
 	Global.efecto = Global.Efectos.BASE
@@ -61,12 +70,13 @@ func _ready() -> void:
 	generar_objetos(lista_objetos)
 
 #CAMARA, no sé muy bien lo que hace porque es chatgpetazo
-func centrar_camara_en_puzle() -> void: 
-	if not mapa or not camara:
+func centrar_camara_en_puzle(zoom:float) -> void: 
+	if not mapa_obstaculos or not camara:
 		return
 
 	# Obtiene el área que ocupan las baldosas en el mapa
 	var rect_celdas: Rect2i = mapa.get_used_rect()
+	rect_celdas = rect_celdas.merge(mapa_obstaculos.get_used_rect())
 	var tamano_tile: Vector2i = mapa.tile_set.tile_size
 
 	# Calcula las coordenadas del centro en píxeles del mundo
@@ -74,6 +84,7 @@ func centrar_camara_en_puzle() -> void:
 	var centro_y = (rect_celdas.position.y + (rect_celdas.size.y / 2.0)) * tamano_tile.y
 
 	camara.position = Vector2(centro_x, centro_y)
+	camara.zoom = Vector2(zoom, zoom)
 
 #transforma los datos de casilla a posición exacta
 func celda_a_posicion(pos: Vector2i) -> Vector2:
