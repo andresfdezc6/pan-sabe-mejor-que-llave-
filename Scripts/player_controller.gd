@@ -13,6 +13,7 @@ var direcciones = {
 }
 var direccion_jugador: Vector2i
 var deslizando: bool = false
+var saltando: bool = false
 
 func _process(delta: float) -> void:
 	apuntar()
@@ -24,6 +25,9 @@ func _process(delta: float) -> void:
 			
 		elif Global.efecto == Global.Efectos.MANTEQUILLA:
 			position = position.move_toward(pos_destino, velocidad_desliz * delta)
+			
+		elif Global.efecto == Global.Efectos.FEDERICO:
+			position = pos_destino
 		
 		mapa.recoger_en(mapa.posicion_a_celda(position))
 		
@@ -33,7 +37,7 @@ func _process(delta: float) -> void:
 			mapa.terminar_nivel()
 
 func apuntar():
-	if not deslizando:
+	if not deslizando and not saltando:
 		if Input.is_action_just_pressed("right"):
 			direccion_jugador = direcciones.derecha
 			mover()
@@ -48,11 +52,22 @@ func apuntar():
 			mover()
 
 func mover():
-	if mapa and mapa.es_transitable(Global.posicion_jugador + direccion_jugador) and Global.hambre > 1:
+	if mapa and Global.hambre > 1:
+		mapa.es_saltable(Global.posicion_jugador, direccion_jugador)
 		if Global.efecto == Global.Efectos.BASE:
-			Global.posicion_jugador += direccion_jugador
+			if mapa.es_transitable(Global.posicion_jugador + direccion_jugador):
+				Global.posicion_jugador += direccion_jugador
+				Global.hambre -= 1
+				print(Global.hambre)
 		elif Global.efecto == Global.Efectos.MANTEQUILLA:
-			Global.posicion_jugador = mapa.calcular_desliz(Global.posicion_jugador, direccion_jugador)
-			deslizando = true
-		Global.hambre -= 1
-		print(Global.hambre)
+			if mapa.es_transitable(Global.posicion_jugador + direccion_jugador):
+				Global.posicion_jugador = mapa.calcular_desliz(Global.posicion_jugador, direccion_jugador)
+				deslizando = true
+				Global.hambre -= 1
+				print(Global.hambre)
+		elif Global.efecto == Global.Efectos.FEDERICO:
+			Global.posicion_jugador = saltar(Global.posicion_jugador, direccion_jugador)
+
+func saltar(pos:Vector2i, dir: Vector2i):
+	if mapa.es_saltable(pos, dir):
+		return (pos + 4*dir)
