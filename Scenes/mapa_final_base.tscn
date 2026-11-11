@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://be1oktm1vm0nv"]
+[gd_scene format=4 uid="uid://be1oktm1vm0nv"]
 
 [ext_resource type="Texture2D" uid="uid://vp1u00s1vj77" path="res://assets/tiles/blanca1.png" id="1_by1t2"]
 [ext_resource type="Texture2D" uid="uid://c7e8xffeg7eih" path="res://assets/tiles/blanca2.png" id="2_vsqtl"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://5kmv62dja2uu" path="res://assets/tiles/oscura1.png" id="4_7the0"]
 [ext_resource type="Texture2D" uid="uid://bku4w18b6b1y" path="res://assets/tiles/oscura2.png" id="5_4nw55"]
 [ext_resource type="Texture2D" uid="uid://b5rhnqnr4rt2o" path="res://assets/tiles/oscura3.png" id="6_fudip"]
+[ext_resource type="Texture2D" uid="uid://dk8ubxg8uj81l" path="res://assets/tiles/oscura4.png" id="7_vsqtl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_85bpo"]
 texture = ExtResource("1_by1t2")
@@ -416,6 +417,11 @@ texture_region_size = Vector2i(128, 128)
 7:7/0 = 0
 0:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vybnr"]
+texture = ExtResource("7_vsqtl")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_urvta"]
 tile_size = Vector2i(128, 128)
 sources/0 = SubResource("TileSetAtlasSource_85bpo")
@@ -424,7 +430,8 @@ sources/2 = SubResource("TileSetAtlasSource_vq4m4")
 sources/3 = SubResource("TileSetAtlasSource_qvpuo")
 sources/4 = SubResource("TileSetAtlasSource_k7b5c")
 sources/5 = SubResource("TileSetAtlasSource_7pfe3")
+sources/7 = SubResource("TileSetAtlasSource_vybnr")
 
 [node name="TileMapLayer" type="TileMapLayer" unique_id=1381160461]
-tile_map_data = PackedByteArray(0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0)
+tile_map_data = PackedByteArray("AAD/////AAAAAAAAAAAAAAAAAAAAAAAAAAABAAEAAAAAAAAAAAD+//7/AAAAAAAAAAD//wAABwAAAAAAAAD+////BwAAAAAAAAD9//7/BwAAAAAAAAAAAAEABwAAAAAAAAD+//3/AwAAAAAAAAD///7/AwAAAAAAAAAAAP//AwAAAAAAAAABAAAAAwAAAAAAAAD///3/AQAAAAAAAAAAAP7/AQAAAAAAAAABAP//AQAAAAAAAAACAAAAAQAAAAAAAAD9////AgAAAAAAAAD+/wAAAgAAAAAAAAD//wEAAgAAAAAAAAD9//3/AAAAAAAAAAACAAEAAwAAAAAAAAD9/wAABAAAAAAAAAD+/wEABAAAAAAAAAACAP//BAAAAAAAAAABAP7/BAAAAAAAAAAAAP3/BAAAAAAAAAABAP3/AgAAAAAAAAACAP7/AgAAAAAAAAACAP3/BwAAAAAAAAD9/wEAAQAAAAAAAAA=")
 tile_set = SubResource("TileSet_urvta")
