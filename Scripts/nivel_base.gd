@@ -117,17 +117,30 @@ func es_transitable(pos: Vector2i) -> bool:
 	return suelo_valido and not es_bloqueado
 
 func es_saltable(pos:Vector2i, dir:Vector2i):
-	if not(es_transitable(pos + 4*dir) and es_transitable(pos + 2*dir)):
-		print("no se puede saltar, no hay suelo")
-		return false
-	for x in range(0, 5):
-		var datos_2: TileData = mapa_obstaculos.get_cell_tile_data(pos + x*dir)
+	if Global.federico == Global.Federico.GOKU:
+		if not(es_transitable(pos + 4*dir) and es_transitable(pos + 2*dir)):
+			print("no se puede saltar, no hay suelo")
+			return false
+		for x in range(0, 5):
+			var datos_2: TileData = mapa_obstaculos.get_cell_tile_data(pos + x*dir)
+			var es_bloqueado = datos_2 != null and datos_2.get_custom_data("intransitable")
+			if es_bloqueado:
+				print("no se puede saltar, está bloqueado")
+				return false
+		print("se puede saltar")
+	elif Global.federico == Global.Federico.ON:
+		var datos_2: TileData = mapa_obstaculos.get_cell_tile_data(pos + dir)
 		var es_bloqueado = datos_2 != null and datos_2.get_custom_data("intransitable")
+		if not(es_transitable(pos + 2*dir)):
+			print("no se puede saltar, no hay suelo")
+			return false
 		if es_bloqueado:
 			print("no se puede saltar, está bloqueado")
 			return false
-	print("se puede saltar")
+	elif Global.federico == Global.Federico.OFF:
+		return es_transitable(pos + dir)
 	return true
+		
 		
 #calcula hasta donde se puede deslizar y lo devuelve como vector
 func calcular_desliz(pos: Vector2i, apuntado: Vector2i) -> Vector2i:

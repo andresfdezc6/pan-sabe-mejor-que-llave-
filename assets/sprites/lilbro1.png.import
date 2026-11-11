@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://g26awa6d5jgo"
-path="res://.godot/imported/panyfederico3.png-b7d7947b4219ca2b5b2f4d1c562ebe8d.ctex"
+uid="uid://cwhyckngrlv26"
+path="res://.godot/imported/lilbro1.png-ac86f9c8364445a5fe5b88d1f47f7987.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/panyfederico3.png"
-dest_files=["res://.godot/imported/panyfederico3.png-b7d7947b4219ca2b5b2f4d1c562ebe8d.ctex"]
+source_file="res://assets/sprites/lilbro1.png"
+dest_files=["res://.godot/imported/lilbro1.png-ac86f9c8364445a5fe5b88d1f47f7987.ctex"]
 
 [params]
 

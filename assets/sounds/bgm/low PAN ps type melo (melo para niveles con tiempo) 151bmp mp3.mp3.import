@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bb0ihf2kux2k4"
+path="res://.godot/imported/low PAN ps type melo (melo para niveles con tiempo) 151bmp mp3.mp3-d77ae378230d2b1b97faaf6f3fd32dfa.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/bgm/low PAN ps type melo (melo para niveles con tiempo) 151bmp mp3.mp3"
+dest_files=["res://.godot/imported/low PAN ps type melo (melo para niveles con tiempo) 151bmp mp3.mp3-d77ae378230d2b1b97faaf6f3fd32dfa.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

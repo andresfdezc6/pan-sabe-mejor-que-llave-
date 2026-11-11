@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b7jkc0t5vfmfv"]
 
 [ext_resource type="Script" uid="uid://c27dmbtj1yil8" path="res://Scripts/player_controller.gd" id="1_c1mnh"]
-[ext_resource type="Texture2D" uid="uid://dloju11v2hydf" path="res://assets/DinoBase.png" id="2_tn1hq"]
+[ext_resource type="Texture2D" uid="uid://cwhyckngrlv26" path="res://assets/sprites/lilbro1.png" id="2_c1mnh"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_urvta"]
 animations = [{
@@ -17,7 +17,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_tn1hq")
+"texture": ExtResource("2_c1mnh")
 }],
 "loop": 1,
 "name": &"quieto_derecha",
@@ -35,8 +35,8 @@ script = ExtResource("1_c1mnh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=226650431]
 z_index = 1
-position = Vector2(0.5000001, 1.1920929e-06)
-scale = Vector2(0.72, 0.806)
+position = Vector2(-1.9073486e-06, 0)
+scale = Vector2(0.19015627, 0.17503904)
 sprite_frames = SubResource("SpriteFrames_urvta")
 animation = &"quieto_derecha"
-offset = Vector2(4.5, -7)
+offset = Vector2(4.5, -80)

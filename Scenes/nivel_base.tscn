@@ -739,3 +739,6 @@ tile_set = SubResource("TileSet_epypp")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=517869831]
 zoom = Vector2(2.5, 2.5)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=2016185387]
+autoplay = true
