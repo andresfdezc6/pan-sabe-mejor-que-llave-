@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cminuue6w0sfq"]
 
 [ext_resource type="Script" uid="uid://c061j87gv5mpt" path="res://Scripts/nivel_base.gd" id="1_qaap6"]
+[ext_resource type="PackedScene" uid="uid://cw62rclc42132" path="res://Scenes/rich_text_label.tscn" id="3_esr58"]
 [ext_resource type="Texture2D" uid="uid://dlbw84wrg4a80" path="res://assets/tiles/walls_floor.png" id="4_dfr37"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kdubu"]
@@ -742,3 +743,5 @@ zoom = Vector2(2.5, 2.5)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=2016185387]
 autoplay = true
+
+[node name="RichTextLabel" parent="." unique_id=1793518552 instance=ExtResource("3_esr58")]

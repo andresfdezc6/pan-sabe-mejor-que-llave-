@@ -68,7 +68,7 @@ func interactuar():
 				print("OFF")
 
 func mover():
-	if mapa and Global.hambre > 1:
+	if mapa and Global.hambre > 0:
 		if Global.efecto == Global.Efectos.BASE:
 			if mapa.es_transitable(Global.posicion_jugador + direccion_jugador):
 				Global.posicion_jugador += direccion_jugador

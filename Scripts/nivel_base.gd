@@ -12,6 +12,7 @@ extends Node2D
 @onready var mapa: TileMapLayer = $mapa_base
 @onready var mapa_obstaculos: TileMapLayer = $mapa_obstaculos
 @onready var camara: Camera2D = $Camera2D
+@onready var texto: RichTextLabel = $RichTextLabel
 @onready var jugador_instancia: CharacterBody2D
 
 #declarado de cosas específicas de cada nivel (editar en el inspector)
@@ -68,6 +69,9 @@ func _ready() -> void:
 	Global.efecto = Global.Efectos.BASE
 	generar_jugador(posicion_inicial)
 	generar_objetos(lista_objetos)
+
+func _process(float) ->void:
+	texto.text = "Hambre: " + str(Global.hambre)
 
 #CAMARA, no sé muy bien lo que hace porque es chatgpetazo
 func centrar_camara_en_puzle(zoom:float) -> void: 

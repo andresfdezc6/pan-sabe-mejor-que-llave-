@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://mu67o72p0wml"]
 
 [ext_resource type="Script" uid="uid://bjwtrpd6ol1wh" path="res://Scripts/control.gd" id="1_iu5es"]
+[ext_resource type="PackedScene" uid="uid://be1oktm1vm0nv" path="res://Scenes/mapa_final_base.tscn" id="2_c863g"]
 
 [node name="Node2D" type="Node2D" unique_id=62261494]
 script = ExtResource("1_iu5es")
+
+[node name="TileMapLayer" parent="." unique_id=1381160461 instance=ExtResource("2_c863g")]

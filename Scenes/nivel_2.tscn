@@ -5,7 +5,7 @@
 
 [node name="nivel_base" unique_id=275302144 instance=ExtResource("1_cfwl0")]
 posicion_inicial = Vector2i(-4, 0)
-zoom = 7.5
+zoom = 5.5
 lista_objetos = [[Vector2i(2, 1), 0], [Vector2i(0, 1), 0], [Vector2i(2, -1), 2]]
 
 [node name="mapa_obstaculos" parent="." index="0" unique_id=527440772]
@@ -16,4 +16,9 @@ tile_map_data = PackedByteArray("AAAAAP//AAACAAgAAAABAP//AAACAAgAAAABAAAAAAACAAg
 
 [node name="AudioStreamPlayer2D" parent="." index="5" unique_id=2016185387]
 stream = ExtResource("2_804co")
-autoplay = true
+
+[node name="RichTextLabel" parent="." index="6" unique_id=1793518552]
+offset_left = -5.0
+offset_top = -71.0
+offset_right = 93.0
+offset_bottom = -31.0
