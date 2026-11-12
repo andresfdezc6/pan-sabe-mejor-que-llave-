@@ -3,8 +3,8 @@ extends CharacterBody2D
 var mapa: Node2D 
 
 @export var velocidad_suavizado: float = 15.0
-@export var velocidad_desliz: float = 150.0
-@export var altura_salto: float = 20.0
+@export var velocidad_desliz: float = 625.0
+@export var altura_salto: float = 200.0
 @export var duracion_salto: float = 0.8
 
 var direcciones = {
@@ -23,7 +23,7 @@ func _process(delta: float) -> void:
 	if mapa:
 		var pos_destino = mapa.celda_a_posicion(Global.posicion_jugador)
 		
-		if Global.efecto == Global.Efectos.BASE or (Global.efecto == Global.Efectos.FEDERICO and Global.federico == Global.Federico.OFF):
+		if Global.efecto == Global.Efectos.BASE or (Global.efecto == Global.Efectos.FEDERICO and Global.federico == Global.Federico.OFF) and not deslizando:
 			position = position.lerp(pos_destino, velocidad_suavizado * delta)
 			
 		elif Global.efecto == Global.Efectos.MANTEQUILLA:

@@ -36,7 +36,7 @@ script = ExtResource("1_c1mnh")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=226650431]
 z_index = 1
 position = Vector2(-1.9073486e-06, 0)
-scale = Vector2(0.19015627, 0.17503904)
+scale = Vector2(1.2, 1.105)
 sprite_frames = SubResource("SpriteFrames_urvta")
 animation = &"quieto_derecha"
 offset = Vector2(4.5, -80)

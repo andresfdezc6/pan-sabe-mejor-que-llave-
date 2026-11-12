@@ -5,7 +5,7 @@ extends Node2D
 @export var escena_pan: PackedScene = preload("res://Scenes/pan_base.tscn")
 @export var escena_mantequilla: PackedScene = preload("res://Scenes/pan_mantequilla.tscn")
 @export var escena_federico: PackedScene = preload("res://Scenes/pan_federico.tscn")
-
+@export var escena_boton: PackedScene = preload("res://Scenes/boton.tscn")
 
 #importado de escenas ya existentes
 @onready var objetos = $"objetos"
@@ -40,6 +40,10 @@ func generar_objeto(vector: Vector2i, tipo):
 	if tipo == Global.TipoObjeto.FEDERICO:
 		objeto_instancia = escena_federico.instantiate()
 		script_especifico = preload("res://Scripts/pan_federico.gd") 
+		
+	if tipo == Global.TipoObjeto.BOTON:
+		objeto_instancia = escena_boton.instantiate()
+		script_especifico = preload("res://Scripts/boton.gd")
 		
 	if objeto_instancia:
 		objeto_instancia.mapa = self
@@ -108,7 +112,8 @@ func recoger_en(celda: Vector2i) -> void:
 		var objeto = objetos_en_celda[celda]
 		objetos_en_celda.erase(celda)
 		objeto.aplicar_efecto()
-		objeto.queue_free()
+		if not objeto.tipo == Global.TipoObjeto.BOTON:
+			objeto.queue_free()
 
 #comprueba los dos tilemaps y devuelve si la casilla es transitable
 func es_transitable(pos: Vector2i) -> bool: 

@@ -6,6 +6,6 @@
 
 [node name="objeto_base" unique_id=904753448 instance=ExtResource("1_o1mxg")]
 position = Vector2(0, 1.4305115e-06)
-scale = Vector2(0.203125, 0.21484375)
+scale = Vector2(1, 1.059)
 texture = ExtResource("2_21tum")
 script = ExtResource("2_2bigp")
