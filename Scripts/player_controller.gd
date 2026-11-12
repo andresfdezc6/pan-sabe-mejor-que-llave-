@@ -19,6 +19,7 @@ var direcciones = {
 var direccion_jugador: Vector2i
 var deslizando: bool = false
 var saltando: bool = false
+var muriendo: bool = false
 
 func _process(delta: float) -> void:
 	interactuar()
@@ -47,7 +48,7 @@ func _process(delta: float) -> void:
 			morir(Global.hambre)
 
 func apuntar():
-	if not deslizando and not saltando:
+	if not deslizando and not saltando and not muriendo:
 		if Input.is_action_just_pressed("right"):
 			direccion_jugador = direcciones.derecha
 			$AnimatedSprite2D.play("quieto_derecha")
@@ -184,6 +185,7 @@ func animar_federico_goku(inicio: Vector2, destino: Vector2) -> void:
 	tween.tween_callback(fede.queue_free)
 func morir(hambre:int):
 	if hambre == 0:
+		muriendo = true
 		var angulo_caida: float = -90.0 if direccion_jugador.x < 0 else 90.0
 		var tween := create_tween()
 		tween.tween_property($AnimatedSprite2D, "rotation_degrees", angulo_caida, 0.6).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
@@ -192,4 +194,5 @@ func morir(hambre:int):
 		await tween.finished
 		# Si quieres que el nivel se reinicie automáticamente medio segundo después:
 		await get_tree().create_timer(1.5).timeout
+		muriendo = false
 		Global.muerto = true
