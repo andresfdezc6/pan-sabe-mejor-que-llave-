@@ -12,7 +12,7 @@ extends Node2D
 @onready var mapa: TileMapLayer = $mapa_base
 @onready var mapa_obstaculos: TileMapLayer = $mapa_obstaculos
 @onready var camara: Camera2D = $Camera2D
-@onready var texto: RichTextLabel = $RichTextLabel
+@onready var texto: RichTextLabel = $CanvasLayer/RichTextLabel
 @onready var indicador: Sprite2D = $indicador_objeto
 @onready var jugador_instancia: CharacterBody2D
 
