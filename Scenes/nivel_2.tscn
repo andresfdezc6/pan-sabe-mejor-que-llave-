@@ -18,9 +18,8 @@ tile_map_data = PackedByteArray("AAAEAAQAAQAAAAAAAAAEAAIAAgAAAAAAAAAEAAAAAwAAAAA
 [node name="AudioStreamPlayer2D" parent="." index="4" unique_id=2016185387]
 stream = ExtResource("2_804co")
 
-[node name="RichTextLabel" parent="." index="5" unique_id=1793518552]
-offset_left = 1183.0
-offset_top = -471.0
-offset_right = 1749.0
-offset_bottom = -264.0
-theme_override_font_sizes/normal_font_size = 64
+[node name="RichTextLabel" parent="CanvasLayer" parent_id_path=PackedInt32Array(992728299) index="0" unique_id=1793518552]
+offset_left = -608.0
+offset_top = 10.0
+offset_right = -42.0
+offset_bottom = 217.0
