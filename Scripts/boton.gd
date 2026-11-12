@@ -7,6 +7,7 @@ func _ready() -> void:
 
 func aplicar_efecto() -> void:
 	texture = textura_pulsado
+	cambiar_casillas_cerradas()
 
 func cambiar_casillas_cerradas() -> void:
 	var capa: TileMapLayer = mapa.mapa_obstaculos
