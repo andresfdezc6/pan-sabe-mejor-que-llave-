@@ -1,13 +1,18 @@
-[gd_scene format=3 uid="uid://do8mvl26lltkv"]
+[gd_scene format=4 uid="uid://do8mvl26lltkv"]
 
 [ext_resource type="PackedScene" uid="uid://cminuue6w0sfq" path="res://Scenes/nivel_base.tscn" id="1_l8krh"]
 
 [node name="nivel_base" unique_id=275302144 instance=ExtResource("1_l8krh")]
 posicion_inicial = Vector2i(0, 3)
-zoom = 200.0
+hambre_inicial = 3
+zoom = 0.5
+lista_objetos = [[Vector2i(1, 1), 0]]
+
+[node name="mapa_obstaculos" parent="." index="0" unique_id=527440772]
+tile_map_data = PackedByteArray("AAD+//z/BwAAAAAAAAD+//3/BwAAAAEAAAD+//7/BwAAAAIAAAD///z/BwABAAAAAAD///3/BwABAAEAAAD///7/BwABAAIAAAAAAPz/BwACAAAAAAAAAP3/BwACAAEAAAAAAP7/BwACAAIAAAABAPz/BwADAAAAAAABAP3/BwADAAEAAAABAP7/BwADAAIAAAACAPz/BwAEAAAAAAACAP3/BwAEAAEAAAACAP7/BwAEAAIAAAA=")
 
 [node name="mapa_base" parent="." index="1" unique_id=902094091]
-tile_map_data = PackedByteArray(0, 0, 0, 0, 3, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 0)
+tile_map_data = PackedByteArray("AAAAAAMAAQAAAAAAAAAAAAEAAgAAAAAAAAAAAAIABAAAAAAAAAAAAAAABgAAAAAAAAAAAP//AwAAAAAAAAABAAEABAAAAAAAAAAAAP7/AQAAAAAAAAA=")
 
 [node name="RichTextLabel" parent="CanvasLayer" parent_id_path=PackedInt32Array(992728299) index="0" unique_id=1793518552]
 offset_left = -542.0
