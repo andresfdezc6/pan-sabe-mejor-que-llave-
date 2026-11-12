@@ -1,5 +1,15 @@
-[gd_scene format=3 uid="uid://b3ukl5bqupgtj"]
+[gd_scene format=4 uid="uid://b3ukl5bqupgtj"]
 
 [ext_resource type="PackedScene" uid="uid://cminuue6w0sfq" path="res://Scenes/nivel_base.tscn" id="1_5a4it"]
 
 [node name="nivel_base2" unique_id=275302144 instance=ExtResource("1_5a4it")]
+posicion_inicial = Vector2i(3, 4)
+hambre_inicial = 5
+zoom = 0.5
+lista_objetos = [[Vector2i(3, 1)], [Vector2i(2, 1), 0]]
+
+[node name="mapa_obstaculos" parent="." index="0" unique_id=527440772]
+tile_map_data = PackedByteArray("AAADAAIABAAAAAAAAAABAP3/BwAAAAAAAAABAP7/BwAAAAEAAAABAP//BwAAAAIAAAACAP3/BwABAAAAAAACAP7/BwABAAEAAAACAP//BwABAAIAAAADAP3/BwACAAAAAAADAP7/BwACAAEAAAADAP//BwACAAIAAAAEAP3/BwADAAAAAAAEAP7/BwADAAEAAAAEAP//BwADAAIAAAAFAP3/BwAEAAAAAAAFAP7/BwAEAAEAAAAFAP//BwAEAAIAAAA=")
+
+[node name="mapa_base" parent="." index="1" unique_id=902094091]
+tile_map_data = PackedByteArray("AAACAAQAAQAAAAAAAAADAAMAAQAAAAAAAAAEAAIAAQAAAAAAAAACAAIAAgAAAAAAAAADAAEAAgAAAAAAAAAEAAAAAgAAAAAAAAACAAAAAwAAAAAAAAAEAAQAAwAAAAAAAAADAAQABAAAAAAAAAAEAAMABAAAAAAAAAACAAMABgAAAAAAAAADAAIABgAAAAAAAAAEAAEABgAAAAAAAAACAAEACAAAAAAAAAADAAAACAAAAAAAAAADAP//AQAAAAAAAAA=")

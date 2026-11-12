@@ -4,6 +4,7 @@ const NIVELES: Array[String] = [
 	"res://Scenes/nivel_1.tscn",
 	"res://Scenes/nivel_2.tscn",
 	"res://Scenes/nivel_3.tscn",
+	"res://Scenes/nivel_4.tscn",
 ]
 
 var indice_nivel_actual: int = 0
