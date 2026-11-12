@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dtf8fjt4q3sqf" path="res://assets/tiles/estanteria2.png" id="6_o1847"]
 [ext_resource type="Texture2D" uid="uid://ofrph65ce65" path="res://assets/tiles/blanca3.png" id="7_18jte"]
 [ext_resource type="Texture2D" uid="uid://bp45khx4p8820" path="res://assets/tiles/puerta_abierta.png" id="7_wur6i"]
+[ext_resource type="Texture2D" uid="uid://qgn68d80nym8" path="res://assets/tiles/lava.png" id="8_dsuom"]
 [ext_resource type="Texture2D" uid="uid://5kmv62dja2uu" path="res://assets/tiles/oscura1.png" id="8_sxmdj"]
 [ext_resource type="Texture2D" uid="uid://bku4w18b6b1y" path="res://assets/tiles/oscura2.png" id="9_qd610"]
 [ext_resource type="Texture2D" uid="uid://dk8ubxg8uj81l" path="res://assets/tiles/oscura4.png" id="10_qs36o"]
@@ -164,6 +165,13 @@ sources/0 = SubResource("TileSetAtlasSource_sxmdj")
 sources/6 = SubResource("TileSetAtlasSource_wur6i")
 sources/7 = SubResource("TileSetAtlasSource_18jte")
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qd610"]
+texture = ExtResource("8_dsuom")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+0:0/0/custom_data_0 = true
+0:0/0/custom_data_1 = true
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3tt6x"]
 texture = ExtResource("5_wur6i")
 texture_region_size = Vector2i(128, 128)
@@ -204,12 +212,15 @@ texture_region_size = Vector2i(128, 128)
 tile_size = Vector2i(128, 128)
 custom_data_layer_0/name = "transitable"
 custom_data_layer_0/type = 1
+custom_data_layer_1/name = "lava"
+custom_data_layer_1/type = 1
 sources/1 = SubResource("TileSetAtlasSource_3tt6x")
 sources/2 = SubResource("TileSetAtlasSource_okhuf")
 sources/3 = SubResource("TileSetAtlasSource_1to0x")
 sources/4 = SubResource("TileSetAtlasSource_lyqtg")
 sources/6 = SubResource("TileSetAtlasSource_ckf0e")
 sources/8 = SubResource("TileSetAtlasSource_jlk78")
+sources/0 = SubResource("TileSetAtlasSource_qd610")
 
 [node name="nivel_base2" type="Node2D" unique_id=275302144]
 y_sort_enabled = true
