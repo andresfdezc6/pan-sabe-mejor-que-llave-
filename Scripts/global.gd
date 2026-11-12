@@ -8,3 +8,5 @@ enum Federico {OFF, ON, GOKU}
 var federico: Federico
 var efecto: Efectos
 var muerto: bool
+var locura_on: bool
+var locura: bool

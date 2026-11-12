@@ -19,6 +19,7 @@ extends Node2D
 #declarado de cosas específicas de cada nivel (editar en el inspector)
 @export var posicion_inicial: Vector2i = Vector2i(0, 0)
 @export var hambre_inicial = 15
+@export var locura_maxima = 12
 @export var zoom: float
 @export var lista_objetos: Array = []
 
@@ -77,7 +78,10 @@ func _ready() -> void:
 	generar_objetos(lista_objetos)
 
 func _process(float) ->void:
-	texto.text = "Hambre: " + str(Global.hambre)
+	if not Global.locura_on:
+		texto.text = "Hambre: " + str(Global.hambre)
+	else:
+		texto.text = "Hambre: 99999999999 \nLocura: " + str(Global.locura) + "/" + str(locura_maxima)
 	cambiar_indicador(Global.efecto)
 
 func cambiar_indicador(efecto: Global.Efectos):
@@ -182,7 +186,10 @@ func es_meta(pos: Vector2i) -> bool:
 	var datos: TileData = mapa_obstaculos.get_cell_tile_data(pos)
 	var meta = datos != null and  datos.get_custom_data("meta")
 	return meta
-
+func es_lava(pos: Vector2i) -> bool:
+	var datos: TileData = mapa.get_cell_tile_data(pos)
+	var lava = datos != null and  datos.get_custom_data("lava")
+	return lava
 #si la casilla es meta, invoca a control para cambiar de nivel
 func terminar_nivel() -> void:
 	if es_meta(Global.posicion_jugador):

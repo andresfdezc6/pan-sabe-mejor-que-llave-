@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://ch4eg08n70br1"]
+
+[ext_resource type="PackedScene" uid="uid://cvlcce2n34n0j" path="res://Scenes/objeto_base.tscn" id="1_u28yy"]
+[ext_resource type="Script" uid="uid://dboawabtni8dd" path="res://Scripts/pan_con_pan.gd" id="2_6pjed"]
+[ext_resource type="Texture2D" uid="uid://cbxe4643forb2" path="res://assets/sprites/panconpanpng1.png" id="2_211by"]
+
+[node name="objeto_base" unique_id=904753448 instance=ExtResource("1_u28yy")]
+scale = Vector2(1, 1.085)
+texture = ExtResource("2_211by")
+script = ExtResource("2_6pjed")
