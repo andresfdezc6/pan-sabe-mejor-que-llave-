@@ -10,6 +10,10 @@ var indice_nivel_actual: int = 0
 
 func _ready() -> void:
 	cargar_nivel_por_indice(0)
+func _process(float) ->void:
+	if Global.muerto:
+		get_tree().change_scene_to_file(NIVELES[indice_nivel_actual])
+		
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not event is InputEventKey or not event.pressed or event.echo:

@@ -69,6 +69,7 @@ func generar_jugador(pos):
 #establece las variables globales a las específicas del nivel y genera al jugador y objetos
 func _ready() -> void:
 	centrar_camara_en_puzle(zoom)
+	Global.muerto = false
 	Global.posicion_jugador = posicion_inicial
 	Global.hambre = hambre_inicial
 	Global.efecto = Global.Efectos.BASE
