@@ -5,8 +5,8 @@
 [node name="nivel_base2" unique_id=275302144 instance=ExtResource("1_5a4it")]
 posicion_inicial = Vector2i(3, 4)
 hambre_inicial = 5
-zoom = 0.5
-lista_objetos = [[Vector2i(3, 1)], [Vector2i(2, 1), 0]]
+zoom = 0.62
+lista_objetos = [[Vector2i(3, 1), 0]]
 
 [node name="mapa_obstaculos" parent="." index="0" unique_id=527440772]
 tile_map_data = PackedByteArray("AAADAAIABAAAAAAAAAABAP3/BwAAAAAAAAABAP7/BwAAAAEAAAABAP//BwAAAAIAAAACAP3/BwABAAAAAAACAP7/BwABAAEAAAACAP//BwABAAIAAAADAP3/BwACAAAAAAADAP7/BwACAAEAAAADAP//BwACAAIAAAAEAP3/BwADAAAAAAAEAP7/BwADAAEAAAAEAP//BwADAAIAAAAFAP3/BwAEAAAAAAAFAP7/BwAEAAEAAAAFAP//BwAEAAIAAAA=")
