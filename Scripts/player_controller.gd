@@ -51,8 +51,7 @@ func _process(delta: float) -> void:
 			deslizando = false
 			z_index = 0
 			mapa.terminar_nivel()
-			if Global.efecto != Global.Efectos.PANCONPAN:
-				morir(Global.hambre, celda_actual)
+			morir(Global.hambre, celda_actual, Global.locura, mapa.locura_maxima)
 
 func apuntar():
 	if not deslizando and not saltando and not muriendo:
@@ -181,10 +180,10 @@ func animar_federico_goku(inicio: Vector2, destino: Vector2) -> void:
 	tween.parallel().tween_property(fede, "modulate:a", 0.0, duracion_salto * 0.35)
 	tween.tween_callback(fede.queue_free)
 
-func morir(hambre:int, pos: Vector2i):
+func morir(hambre:int, pos: Vector2i, locura: int, locura_max):
 	if muriendo:
-		return
-	if hambre == 0 or mapa.es_lava(pos):
+		return 
+	if hambre == 0 and locura == 0 or mapa.es_lava(pos) or locura >= locura_max:
 		var lilbro = $AnimatedSprite2D
 		muriendo = true
 		if not derecha:
