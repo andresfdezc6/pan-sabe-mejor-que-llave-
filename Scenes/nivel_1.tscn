@@ -24,8 +24,7 @@ position = Vector2(675, -618)
 texture = ExtResource("3_ecx5m")
 
 [node name="RichTextLabel" parent="CanvasLayer" parent_id_path=PackedInt32Array(992728299) index="0" unique_id=1793518552]
-offset_left = 452.0
-offset_top = -739.0
-offset_right = 768.0
-offset_bottom = -570.0
-theme_override_font_sizes/normal_font_size = 64
+offset_left = -362.0
+offset_top = 13.0
+offset_right = -46.0
+offset_bottom = 182.0
