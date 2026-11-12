@@ -33,7 +33,6 @@ func _process(delta: float) -> void:
 			position = position.move_toward(pos_destino, 0.6*velocidad_desliz * delta)
 		if not saltando:
 			mapa.recoger_en(mapa.posicion_a_celda(position))
-		
 		if position.distance_to(pos_destino) < 0.5:
 			position = pos_destino
 			deslizando = false
@@ -97,6 +96,8 @@ func mover():
 					print(Global.hambre)
 
 func animar_salto(destino: Vector2) -> void:
+	y_sort_enabled = false
+	z_index += 1
 	saltando = true
 	var tween := create_tween()
 	tween.tween_method(_arco.bind(position, destino), 0.0, 1.0, duracion_salto)
@@ -104,6 +105,8 @@ func animar_salto(destino: Vector2) -> void:
 	$AnimatedSprite2D.position.y = 0.0
 	position = destino
 	saltando = false
+	y_sort_enabled = true
+	z_index -= 1
 
 func _arco(t: float, inicio: Vector2, destino: Vector2) -> void:
 	position = inicio.lerp(destino, t)
