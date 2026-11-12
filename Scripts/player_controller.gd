@@ -7,6 +7,9 @@ var mapa: Node2D
 @export var altura_salto: float = 200.0
 @export var duracion_salto: float = 0.8
 
+const TEX_FEDERICO_ON: Texture2D = preload("res://assets/sprites/federico_cargado.png")
+const TEX_FEDERICO_GOKU: Texture2D = preload("res://assets/sprites/federico_cargado_ssj.png")
+
 var direcciones = {
 	"derecha": Vector2i(1, 0),
 	"arriba": Vector2i(0, -1),
@@ -87,19 +90,25 @@ func mover():
 				print(Global.hambre)
 		elif Global.efecto == Global.Efectos.FEDERICO and mapa.es_saltable(Global.posicion_jugador, direccion_jugador):
 			if Global.federico == Global.Federico.GOKU:
-				Global.posicion_jugador = Global.posicion_jugador + 4 * direccion_jugador
-				animar_salto(mapa.celda_a_posicion(Global.posicion_jugador))
+				var inicio: Vector2 = mapa.celda_a_posicion(Global.posicion_jugador)
+				Global.posicion_jugador += 4 * direccion_jugador
+				var destino: Vector2 = mapa.celda_a_posicion(Global.posicion_jugador)
+				animar_federico_goku(inicio, destino)
+				animar_salto(destino)
 				Global.hambre -= 1
 				print(Global.hambre)
+				
 			elif Global.federico == Global.Federico.OFF:
 				Global.posicion_jugador += direccion_jugador
 				Global.hambre -= 1
 				print(Global.hambre)
+				
 			elif Global.federico == Global.Federico.ON:
-				y_sort_enabled = false
-				z_index = 2
-				if mapa.es_transitable(Global.posicion_jugador + 2*direccion_jugador):
+				if mapa.es_transitable(Global.posicion_jugador + 2 * direccion_jugador):
+					y_sort_enabled = false
+					z_index = 2
 					Global.posicion_jugador += 2 * direccion_jugador
+					animar_federico_on(mapa.celda_a_posicion(Global.posicion_jugador))
 					Global.hambre -= 1
 					print(Global.hambre)
 
@@ -119,3 +128,56 @@ func animar_salto(destino: Vector2) -> void:
 func _arco(t: float, inicio: Vector2, destino: Vector2) -> void:
 	position = inicio.lerp(destino, t)
 	$AnimatedSprite2D.position.y = -4.0 * altura_salto * t * (1.0 - t)
+
+func _crear_sprite_federico(textura: Texture2D, pos: Vector2, prioridad_z: int) -> Sprite2D:
+	var fede := Sprite2D.new()
+	fede.texture = textura
+	fede.position = pos
+	fede.z_index = prioridad_z
+	# Voltea el sprite si miras a la izquierda (invierte el '<' a '>' si tu dibujo base mira a la izquierda)
+	if direccion_jugador.x != 0:
+		fede.flip_h = direccion_jugador.x > 0
+	# Empieza invisible y pequeño para el lerp de entrada
+	fede.scale = Vector2.ZERO
+	fede.modulate.a = 0.0
+	mapa.add_child(fede)
+	return fede
+
+func animar_federico_on(destino: Vector2) -> void:
+	var dir := Vector2(direccion_jugador)
+	var pos_tiron: Vector2 = destino + dir * 10.0
+	var pos_final_tiron: Vector2 = pos_tiron + dir * 8.0
+	var fede := _crear_sprite_federico(TEX_FEDERICO_ON, pos_tiron, 4)
+	
+	var tween := create_tween()
+	# 1. Aparición
+	tween.tween_property(fede, "scale", Vector2.ONE, 0.12).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tween.parallel().tween_property(fede, "modulate:a", 1.0, 0.1)
+	
+	# 2. Gesto de tirar de ti hacia la casilla destino
+	tween.tween_property(fede, "position", pos_final_tiron, 0.12).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	tween.parallel().tween_property(fede, "scale", Vector2(1.15, 0.88), 0.12)
+	
+	# 3. Salida y autodestrucción
+	tween.tween_property(fede, "scale", Vector2.ZERO, 0.15).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+	tween.parallel().tween_property(fede, "modulate:a", 0.0, 0.15)
+	tween.parallel().tween_property(fede, "position:y", pos_final_tiron.y - 8.0, 0.15)
+	tween.tween_callback(fede.queue_free)
+
+func animar_federico_goku(inicio: Vector2, destino: Vector2) -> void:
+	var punto_medio: Vector2 = (inicio + destino) / 2.0
+	var fede := _crear_sprite_federico(TEX_FEDERICO_GOKU, punto_medio, 1)
+	var tween := create_tween()
+	# 1. Aparición antes de que llegues a la mitad del salto
+	tween.tween_property(fede, "scale", Vector2.ONE, duracion_salto * 0.25).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tween.parallel().tween_property(fede, "modulate:a", 1.0, duracion_salto * 0.2)
+	
+	# 2. Se hunde ligeramente como trampolín en la mitad del salto
+	tween.tween_property(fede, "position:y", punto_medio.y + 10.0, duracion_salto * 0.15).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	tween.parallel().tween_property(fede, "scale", Vector2(1.22, 0.78), duracion_salto * 0.15)
+	
+	# 3. Salida mientras aterrizas
+	tween.tween_property(fede, "position:y", punto_medio.y - 6.0, duracion_salto * 0.35).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	tween.parallel().tween_property(fede, "scale", Vector2.ZERO, duracion_salto * 0.35).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+	tween.parallel().tween_property(fede, "modulate:a", 0.0, duracion_salto * 0.35)
+	tween.tween_callback(fede.queue_free)
