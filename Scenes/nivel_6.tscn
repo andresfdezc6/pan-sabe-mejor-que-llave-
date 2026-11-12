@@ -5,7 +5,7 @@
 [node name="nivel_base2" unique_id=275302144 instance=ExtResource("1_ekovx")]
 posicion_inicial = Vector2i(1, 3)
 hambre_inicial = 8
-zoom = 0.4
+zoom = 0.38
 lista_objetos = [[Vector2i(-3, 2), 0], [Vector2i(-1, -1), 0], [Vector2i(-3, -4), 0], [Vector2i(6, -1), 0], [Vector2i(7, -5), 0], [Vector2i(4, -4), 0], [Vector2i(5, 1), 0], [Vector2i(-1, 1), 0]]
 
 [node name="mapa_obstaculos" parent="." index="0" unique_id=527440772]

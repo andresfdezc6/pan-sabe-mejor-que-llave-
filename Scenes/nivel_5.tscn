@@ -5,7 +5,7 @@
 [node name="nivel_base2" unique_id=275302144 instance=ExtResource("1_02hqd")]
 posicion_inicial = Vector2i(4, 4)
 hambre_inicial = 10
-zoom = 0.6
+zoom = 0.55
 lista_objetos = [[Vector2i(-1, 1), 0]]
 
 [node name="mapa_obstaculos" parent="." index="0" unique_id=527440772]
