@@ -25,7 +25,6 @@ var derecha: bool = true
 
 func _ready() -> void:
 	$AnimatedSprite2D.play("quieto_derecha")
-	Global.locura_on = false
 	Global.locura = 0
 
 func _process(delta: float) -> void:
@@ -87,7 +86,7 @@ func interactuar():
 				print("OFF")
 
 func mover():
-	if mapa and (Global.hambre > 0 or Global.locura):
+	if mapa and (Global.hambre > 0 or Global.efecto == Global.Efectos.PANCONPAN):
 		if Global.efecto == Global.Efectos.BASE:
 			if mapa.es_transitable(Global.posicion_jugador + direccion_jugador):
 				Global.posicion_jugador += direccion_jugador

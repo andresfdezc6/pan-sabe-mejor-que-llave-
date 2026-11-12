@@ -6,6 +6,7 @@ extends Node2D
 @export var escena_mantequilla: PackedScene = preload("res://Scenes/pan_mantequilla.tscn")
 @export var escena_federico: PackedScene = preload("res://Scenes/pan_federico.tscn")
 @export var escena_boton: PackedScene = preload("res://Scenes/boton.tscn")
+@export var escena_panconpan: PackedScene = preload("res://Scenes/pan_con_pan.tscn")
 
 #importado de escenas ya existentes
 @onready var objetos = $"objetos"
@@ -25,6 +26,7 @@ extends Node2D
 
 #para la lógica de recoger objetos
 var objetos_en_celda: Dictionary = {}
+var contador_locura = 0
 
 #funciones para el ready
 func generar_objeto(vector: Vector2i, tipo):
@@ -46,15 +48,18 @@ func generar_objeto(vector: Vector2i, tipo):
 	if tipo == Global.TipoObjeto.BOTON:
 		objeto_instancia = escena_boton.instantiate()
 		script_especifico = preload("res://Scripts/boton.gd")
+	
+	if tipo == Global.TipoObjeto.PANCONPAN:
+		objeto_instancia = escena_panconpan.instantiate()
+		script_especifico = preload("res://Scripts/pan_con_pan.gd")
 		
 	if objeto_instancia:
-		objeto_instancia.mapa = self
-		objeto_instancia.pos_celda = vector #pasa las variables mapa y posición
-		objetos.add_child(objeto_instancia)
-		objeto_instancia.position = celda_a_posicion(vector) #Mueve el objeto a donde toca
-		
 		if script_especifico:
-			objeto_instancia.set_script(script_especifico)  #le carga el script de su funcion especifica
+			objeto_instancia.set_script(script_especifico)
+		objeto_instancia.mapa = self
+		objeto_instancia.pos_celda = vector
+		objetos.add_child(objeto_instancia)
+		objeto_instancia.position = celda_a_posicion(vector)
 		objetos_en_celda[vector] = objeto_instancia
 
 func generar_objetos(list: Array):#Esto es el parsing de FP con otras palabras
@@ -77,10 +82,12 @@ func _ready() -> void:
 	generar_jugador(posicion_inicial)
 	generar_objetos(lista_objetos)
 
-func _process(float) ->void:
-	if not Global.locura_on:
+func _process(delta:float) ->void:
+	if not Global.efecto == Global.Efectos.PANCONPAN:
 		texto.text = "Hambre: " + str(Global.hambre)
 	else:
+		contador_locura += delta
+		Global.locura = floori(contador_locura)
 		texto.text = "Hambre: 99999999999 \nLocura: " + str(Global.locura) + "/" + str(locura_maxima)
 	cambiar_indicador(Global.efecto)
 
@@ -89,8 +96,11 @@ func cambiar_indicador(efecto: Global.Efectos):
 	var fede_off: Texture2D = preload("res://assets/sprites/federico.png")
 	var fede_on: Texture2D = preload("res://assets/sprites/federico_cargado.png")
 	var fede_goku: Texture2D = preload("res://assets/sprites/federico_cargado_ssj.png")
+	var pan_con_pan: Texture2D = preload("res://assets/sprites/panconpanpng1.png")
 	if efecto == Global.Efectos.MANTEQUILLA:
 		indicador.texture = mantequilla
+	elif efecto == Global.Efectos.PANCONPAN:
+			indicador.texture = pan_con_pan
 	elif efecto == Global.Efectos.FEDERICO:
 		if Global.federico == Global.Federico.OFF:
 			indicador.texture = fede_off
