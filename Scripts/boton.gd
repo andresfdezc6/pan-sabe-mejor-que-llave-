@@ -1,5 +1,5 @@
 extends "res://Scripts/recogible.gd"
-@onready var textura_pulsado: Texture2D = preload("res://assets/sprites/key.png")
+@onready var textura_pulsado: Texture2D = preload("res://assets/tiles/boton_pulsado.png")
 
 func _ready() -> void:
 	super() 

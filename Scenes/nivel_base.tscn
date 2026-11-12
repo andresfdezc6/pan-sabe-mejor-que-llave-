@@ -2,17 +2,30 @@
 
 [ext_resource type="Script" uid="uid://c061j87gv5mpt" path="res://Scripts/nivel_base.gd" id="1_qaap6"]
 [ext_resource type="Texture2D" uid="uid://cefqygchjv7uu" path="res://assets/tiles/puertadef.png" id="2_i8nxx"]
+[ext_resource type="Texture2D" uid="uid://cd3lyxaawh2o4" path="res://assets/tiles/vacio2.png" id="2_wur6i"]
 [ext_resource type="PackedScene" uid="uid://cw62rclc42132" path="res://Scenes/rich_text_label.tscn" id="3_esr58"]
-[ext_resource type="Texture2D" uid="uid://j1t7xgqc3bae" path="res://assets/tiles/vacio.png" id="3_oq8p6"]
 [ext_resource type="Texture2D" uid="uid://c7e4vc41ahuwc" path="res://assets/tiles/puertaespecial.png" id="4_o1847"]
 [ext_resource type="Texture2D" uid="uid://kro8q5g7ucgp" path="res://assets/sprites/mesa1.png" id="5_o1847"]
 [ext_resource type="Texture2D" uid="uid://vp1u00s1vj77" path="res://assets/tiles/blanca1.png" id="5_wur6i"]
 [ext_resource type="Texture2D" uid="uid://c7e8xffeg7eih" path="res://assets/tiles/blanca2.png" id="6_dsuom"]
-[ext_resource type="Texture2D" uid="uid://ck01rkjpj3g6p" path="res://assets/sprites/estanteria.png" id="6_wur6i"]
+[ext_resource type="Texture2D" uid="uid://dtf8fjt4q3sqf" path="res://assets/tiles/estanteria2.png" id="6_o1847"]
 [ext_resource type="Texture2D" uid="uid://ofrph65ce65" path="res://assets/tiles/blanca3.png" id="7_18jte"]
 [ext_resource type="Texture2D" uid="uid://5kmv62dja2uu" path="res://assets/tiles/oscura1.png" id="8_sxmdj"]
 [ext_resource type="Texture2D" uid="uid://bku4w18b6b1y" path="res://assets/tiles/oscura2.png" id="9_qd610"]
 [ext_resource type="Texture2D" uid="uid://dk8ubxg8uj81l" path="res://assets/tiles/oscura4.png" id="10_qs36o"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sxmdj"]
+texture = ExtResource("2_wur6i")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wqpql"]
 texture = ExtResource("2_i8nxx")
@@ -50,19 +63,6 @@ texture_region_size = Vector2i(128, 128)
 3:2/0/custom_data_0 = true
 4:2/0 = 0
 4:2/0/custom_data_0 = true
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6vsnq"]
-texture = ExtResource("3_oq8p6")
-texture_region_size = Vector2i(128, 128)
-0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
-2:1/0 = 0
-0:2/0 = 0
-1:2/0 = 0
-2:2/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yj3lt"]
 texture = ExtResource("4_o1847")
@@ -104,10 +104,11 @@ texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
 0:0/0/custom_data_0 = true
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_18jte"]
-texture = ExtResource("6_wur6i")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wur6i"]
+texture = ExtResource("6_o1847")
 texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
+0:0/0/custom_data_0 = true
 0:1/0 = 0
 0:1/0/custom_data_0 = true
 
@@ -122,10 +123,10 @@ custom_data_layer_2/type = 1
 custom_data_layer_3/name = "abajo"
 custom_data_layer_3/type = 1
 sources/1 = SubResource("TileSetAtlasSource_wqpql")
-sources/2 = SubResource("TileSetAtlasSource_6vsnq")
 sources/3 = SubResource("TileSetAtlasSource_yj3lt")
 sources/4 = SubResource("TileSetAtlasSource_dsuom")
-sources/5 = SubResource("TileSetAtlasSource_18jte")
+sources/0 = SubResource("TileSetAtlasSource_sxmdj")
+sources/6 = SubResource("TileSetAtlasSource_wur6i")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3tt6x"]
 texture = ExtResource("5_wur6i")
@@ -178,6 +179,7 @@ sources/8 = SubResource("TileSetAtlasSource_jlk78")
 y_sort_enabled = true
 script = ExtResource("1_qaap6")
 lista_objetos = [[Vector2i(-1, -2), 0], [Vector2i(4, -2), 0], [Vector2i(2, 1), 0]]
+metadata/_edit_horizontal_guides_ = [-513.0]
 
 [node name="mapa_obstaculos" type="TileMapLayer" parent="." unique_id=527440772]
 z_index = 1
