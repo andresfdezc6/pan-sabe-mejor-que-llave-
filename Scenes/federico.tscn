@@ -1,8 +1,21 @@
 [gd_scene format=3 uid="uid://ba18lloc0xhvo"]
 
 [ext_resource type="Texture2D" uid="uid://byxuxvr2wo77a" path="res://assets/sprites/federico.png" id="1_2uxmh"]
-[ext_resource type="Script" uid="uid://dfd7u0r62edrd" path="res://Scripts/federico.gd" id="2_krhv5"]
+
+[sub_resource type="GDScript" id="GDScript_kgysk"]
+script/source = "extends Sprite2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
 
 [node name="federico" type="Sprite2D" unique_id=1716733400]
 texture = ExtResource("1_2uxmh")
-script = ExtResource("2_krhv5")
+script = SubResource("GDScript_kgysk")

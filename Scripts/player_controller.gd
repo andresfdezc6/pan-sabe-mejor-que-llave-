@@ -22,8 +22,11 @@ var saltando: bool = false
 var muriendo: bool = false
 var derecha: bool = true
 
+
 func _ready() -> void:
 	$AnimatedSprite2D.play("quieto_derecha")
+	Global.locura_on = false
+	Global.locura = 0
 
 func _process(delta: float) -> void:
 	interactuar()
@@ -31,6 +34,7 @@ func _process(delta: float) -> void:
 	if mapa and not saltando:
 		var celda_actual: Vector2i = mapa.posicion_a_celda(position)
 		mapa.recoger_en(celda_actual)
+		morir(Global.hambre, celda_actual)
 		
 		if deslizando and Global.efecto != Global.Efectos.MANTEQUILLA:
 			Global.posicion_jugador = celda_actual
@@ -49,7 +53,6 @@ func _process(delta: float) -> void:
 			deslizando = false
 			z_index = 0
 			mapa.terminar_nivel()
-			morir(Global.hambre)
 
 func apuntar():
 	if not deslizando and not saltando and not muriendo:
@@ -84,7 +87,7 @@ func interactuar():
 				print("OFF")
 
 func mover():
-	if mapa and Global.hambre > 0:
+	if mapa and (Global.hambre > 0 or Global.locura):
 		if Global.efecto == Global.Efectos.BASE:
 			if mapa.es_transitable(Global.posicion_jugador + direccion_jugador):
 				Global.posicion_jugador += direccion_jugador
@@ -177,8 +180,8 @@ func animar_federico_goku(inicio: Vector2, destino: Vector2) -> void:
 	tween.parallel().tween_property(fede, "scale", Vector2.ZERO, duracion_salto * 0.35).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
 	tween.parallel().tween_property(fede, "modulate:a", 0.0, duracion_salto * 0.35)
 	tween.tween_callback(fede.queue_free)
-func morir(hambre:int):
-	if hambre == 0:
+func morir(hambre:int, pos: Vector2i):
+	if hambre == 0 or mapa.es_lava(pos):
 		var lilbro = $AnimatedSprite2D
 		muriendo = true
 		if not derecha:
@@ -190,7 +193,6 @@ func morir(hambre:int):
 		tween.parallel().tween_property(lilbro, "position:y", 16.0, 0.6).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
 		
 		await tween.finished
-		# Si quieres que el nivel se reinicie automáticamente medio segundo después:
 		await get_tree().create_timer(1.5).timeout
 		muriendo = false
 		Global.muerto = true
