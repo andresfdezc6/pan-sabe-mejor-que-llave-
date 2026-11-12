@@ -20,6 +20,10 @@ var direccion_jugador: Vector2i
 var deslizando: bool = false
 var saltando: bool = false
 var muriendo: bool = false
+var derecha: bool = true
+
+func _ready() -> void:
+	$AnimatedSprite2D.play("quieto_derecha")
 
 func _process(delta: float) -> void:
 	interactuar()
@@ -52,10 +56,12 @@ func apuntar():
 		if Input.is_action_just_pressed("right"):
 			direccion_jugador = direcciones.derecha
 			$AnimatedSprite2D.play("quieto_derecha")
+			derecha = true
 			mover()
 		elif Input.is_action_just_pressed("left"):
 			direccion_jugador = direcciones.izquierda
 			$AnimatedSprite2D.play("quieto_izquierda")
+			derecha = false
 			mover()
 		elif Input.is_action_just_pressed("up"):
 			direccion_jugador = direcciones.arriba
@@ -185,11 +191,15 @@ func animar_federico_goku(inicio: Vector2, destino: Vector2) -> void:
 	tween.tween_callback(fede.queue_free)
 func morir(hambre:int):
 	if hambre == 0:
+		var lilbro = $AnimatedSprite2D
 		muriendo = true
+		if not derecha:
+			lilbro.flip_h = true
+		lilbro.play("muerto")
 		var angulo_caida: float = -90.0 if direccion_jugador.x < 0 else 90.0
 		var tween := create_tween()
-		tween.tween_property($AnimatedSprite2D, "rotation_degrees", angulo_caida, 0.6).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
-		tween.parallel().tween_property($AnimatedSprite2D, "position:y", 16.0, 0.6).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+		tween.tween_property(lilbro, "rotation_degrees", angulo_caida, 0.6).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+		tween.parallel().tween_property(lilbro, "position:y", 16.0, 0.6).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
 		
 		await tween.finished
 		# Si quieres que el nivel se reinicie automáticamente medio segundo después:
