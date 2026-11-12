@@ -41,7 +41,7 @@ func _process(delta: float) -> void:
 		
 		if deslizando or Global.efecto == Global.Efectos.MANTEQUILLA:
 			position = position.move_toward(pos_destino, velocidad_desliz * delta)
-		elif Global.efecto == Global.Efectos.BASE or (Global.efecto == Global.Efectos.FEDERICO and Global.federico == Global.Federico.OFF):
+		elif Global.efecto == Global.Efectos.BASE or Global.efecto == Global.Efectos.PANCONPAN or (Global.efecto == Global.Efectos.FEDERICO and Global.federico == Global.Federico.OFF):
 			position = position.lerp(pos_destino, velocidad_suavizado * delta)
 		elif Global.efecto == Global.Efectos.FEDERICO:
 			position = position.move_toward(pos_destino, 0.6 * velocidad_desliz * delta)
@@ -51,7 +51,8 @@ func _process(delta: float) -> void:
 			deslizando = false
 			z_index = 0
 			mapa.terminar_nivel()
-			morir(Global.hambre, celda_actual)
+			if Global.efecto != Global.Efectos.PANCONPAN:
+				morir(Global.hambre, celda_actual)
 
 func apuntar():
 	if not deslizando and not saltando and not muriendo:
@@ -87,7 +88,7 @@ func interactuar():
 
 func mover():
 	if mapa and (Global.hambre > 0 or Global.efecto == Global.Efectos.PANCONPAN):
-		if Global.efecto == Global.Efectos.BASE:
+		if Global.efecto == Global.Efectos.BASE or Global.efecto == Global.Efectos.PANCONPAN:
 			if mapa.es_transitable(Global.posicion_jugador + direccion_jugador):
 				Global.posicion_jugador += direccion_jugador
 				Global.hambre -= 1
