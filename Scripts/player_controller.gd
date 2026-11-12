@@ -44,6 +44,7 @@ func _process(delta: float) -> void:
 			deslizando = false
 			z_index = 0
 			mapa.terminar_nivel()
+			morir(Global.hambre)
 
 func apuntar():
 	if not deslizando and not saltando:
@@ -181,3 +182,14 @@ func animar_federico_goku(inicio: Vector2, destino: Vector2) -> void:
 	tween.parallel().tween_property(fede, "scale", Vector2.ZERO, duracion_salto * 0.35).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
 	tween.parallel().tween_property(fede, "modulate:a", 0.0, duracion_salto * 0.35)
 	tween.tween_callback(fede.queue_free)
+func morir(hambre:int):
+	if hambre == 0:
+		var angulo_caida: float = -90.0 if direccion_jugador.x < 0 else 90.0
+		var tween := create_tween()
+		tween.tween_property($AnimatedSprite2D, "rotation_degrees", angulo_caida, 0.6).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+		tween.parallel().tween_property($AnimatedSprite2D, "position:y", 16.0, 0.6).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+		
+		await tween.finished
+		# Si quieres que el nivel se reinicie automáticamente medio segundo después:
+		await get_tree().create_timer(1.5).timeout
+		Global.muerto = true

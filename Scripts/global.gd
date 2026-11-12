@@ -7,3 +7,4 @@ enum Efectos {BASE, MANTEQUILLA, FEDERICO}
 enum Federico {OFF, ON, GOKU}
 var federico: Federico
 var efecto: Efectos
+var muerto: bool
