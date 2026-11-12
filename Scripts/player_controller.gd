@@ -20,31 +20,37 @@ var saltando: bool = false
 func _process(delta: float) -> void:
 	interactuar()
 	apuntar()
-	if mapa:
-		var pos_destino = mapa.celda_a_posicion(Global.posicion_jugador)
+	if mapa and not saltando:
+		var celda_actual: Vector2i = mapa.posicion_a_celda(position)
+		mapa.recoger_en(celda_actual)
 		
-		if Global.efecto == Global.Efectos.BASE or (Global.efecto == Global.Efectos.FEDERICO and Global.federico == Global.Federico.OFF) and not deslizando:
-			position = position.lerp(pos_destino, velocidad_suavizado * delta)
-			
-		elif Global.efecto == Global.Efectos.MANTEQUILLA:
+		if deslizando and Global.efecto != Global.Efectos.MANTEQUILLA:
+			Global.posicion_jugador = celda_actual
+		
+		var pos_destino: Vector2 = mapa.celda_a_posicion(Global.posicion_jugador)
+		
+		if deslizando or Global.efecto == Global.Efectos.MANTEQUILLA:
 			position = position.move_toward(pos_destino, velocidad_desliz * delta)
-			
+		elif Global.efecto == Global.Efectos.BASE or (Global.efecto == Global.Efectos.FEDERICO and Global.federico == Global.Federico.OFF):
+			position = position.lerp(pos_destino, velocidad_suavizado * delta)
 		elif Global.efecto == Global.Efectos.FEDERICO:
-			position = position.move_toward(pos_destino, 0.6*velocidad_desliz * delta)
-		if not saltando:
-			mapa.recoger_en(mapa.posicion_a_celda(position))
+			position = position.move_toward(pos_destino, 0.6 * velocidad_desliz * delta)
+		
 		if position.distance_to(pos_destino) < 0.5:
 			position = pos_destino
 			deslizando = false
+			z_index = 0
 			mapa.terminar_nivel()
 
 func apuntar():
 	if not deslizando and not saltando:
 		if Input.is_action_just_pressed("right"):
 			direccion_jugador = direcciones.derecha
+			$AnimatedSprite2D.play("quieto_derecha")
 			mover()
 		elif Input.is_action_just_pressed("left"):
 			direccion_jugador = direcciones.izquierda
+			$AnimatedSprite2D.play("quieto_izquierda")
 			mover()
 		elif Input.is_action_just_pressed("up"):
 			direccion_jugador = direcciones.arriba
@@ -90,6 +96,8 @@ func mover():
 				Global.hambre -= 1
 				print(Global.hambre)
 			elif Global.federico == Global.Federico.ON:
+				y_sort_enabled = false
+				z_index = 2
 				if mapa.es_transitable(Global.posicion_jugador + 2*direccion_jugador):
 					Global.posicion_jugador += 2 * direccion_jugador
 					Global.hambre -= 1
@@ -97,7 +105,7 @@ func mover():
 
 func animar_salto(destino: Vector2) -> void:
 	y_sort_enabled = false
-	z_index += 1
+	z_index = 2
 	saltando = true
 	var tween := create_tween()
 	tween.tween_method(_arco.bind(position, destino), 0.0, 1.0, duracion_salto)
@@ -106,7 +114,7 @@ func animar_salto(destino: Vector2) -> void:
 	position = destino
 	saltando = false
 	y_sort_enabled = true
-	z_index -= 1
+	z_index = 1
 
 func _arco(t: float, inicio: Vector2, destino: Vector2) -> void:
 	position = inicio.lerp(destino, t)
