@@ -14,7 +14,7 @@ func cambiar_casillas_cerradas() -> void:
 	for coords: Vector2i in capa.get_used_cells():
 		var datos: TileData = capa.get_cell_tile_data(coords)
 		if datos != null and datos.get_custom_data("cerrado"):
-			if datos.get_custom_data("cerrado"):
+			if datos.get_custom_data("abajo"):
 				capa.set_cell(coords, 3, Vector2i(2, 2))
 			else:
 				capa.set_cell(coords, 3, Vector2i(2, 1))
