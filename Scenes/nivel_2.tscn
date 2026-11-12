@@ -4,17 +4,21 @@
 [ext_resource type="AudioStream" uid="uid://bb0ihf2kux2k4" path="res://assets/sounds/bgm/low PAN ps type melo (melo para niveles con tiempo) 151bmp mp3.mp3" id="2_804co"]
 
 [node name="nivel_base" unique_id=275302144 instance=ExtResource("1_cfwl0")]
-posicion_inicial = Vector2i(-4, 0)
-zoom = 5.5
+posicion_inicial = Vector2i(4, 4)
+hambre_inicial = 6
+zoom = 0.5
 lista_objetos = [[Vector2i(2, 1), 0], [Vector2i(0, 1), 0], [Vector2i(2, -1), 2]]
 
 [node name="mapa_obstaculos" parent="." index="0" unique_id=527440772]
-tile_map_data = PackedByteArray("AAD+//3/AAACAAQAAAD///3/AAACAAQAAAAAAP3/AAACAAQAAAABAP3/AAAGAAQAAAACAP3/AAACAAQAAAACAPz/AAACAAMAAAD+//z/AAACAAMAAAD///z/AAACAAMAAAAAAPz/AAACAAMAAAABAPz/AAACAAMAAAADAPz/AAADAAMAAAADAP3/AAADAAQAAAD7//7/AAABAAUAAAD8//7/AAACAAUAAAD9//7/AAACAAUAAAD+//7/AAACAAUAAAD///7/AAACAAUAAAAAAP7/AAACAAUAAAABAP7/AAACAAIAAAACAP7/AAACAAUAAAADAP7/AAADAAUAAAD8//3/AAACAAQAAAD9//3/AAACAAQAAAD7//3/AAABAAQAAAD7//z/AAABAAMAAAD8//z/AAACAAMAAAD9//z/AAACAAMAAAA=")
+tile_map_data = PackedByteArray("AAAEAP3/AwACAAEAAAAEAP7/AwACAAIAAAACAP3/AQAAAAEAAAACAP7/AQAAAAIAAAADAP3/AQABAAEAAAADAP7/AQABAAIAAAAFAP3/AQADAAEAAAAFAP7/AQADAAIAAAAGAP3/AQAEAAEAAAAGAP7/AQAEAAIAAAACAPz/AQAAAAAAAAADAPz/AQABAAAAAAAEAPz/AQACAAAAAAAFAPz/AQADAAAAAAAGAPz/AQAEAAAAAAA=")
 
-[node name="AudioStreamPlayer2D" parent="." index="5" unique_id=2016185387]
+[node name="mapa_base" parent="." index="1" unique_id=902094091]
+tile_map_data = PackedByteArray("AAAEAAQAAQAAAAAAAAAEAAIAAgAAAAAAAAAEAAAAAwAAAAAAAAAEAAMABAAAAAAAAAAEAAEABgAAAAAAAAAEAP//CAAAAAAAAAAEAP7/CAAAAAAAAAA=")
+
+[node name="AudioStreamPlayer2D" parent="." index="4" unique_id=2016185387]
 stream = ExtResource("2_804co")
 
-[node name="RichTextLabel" parent="." index="6" unique_id=1793518552]
+[node name="RichTextLabel" parent="." index="5" unique_id=1793518552]
 offset_left = 295.0
 offset_top = -379.0
 offset_right = 393.0
