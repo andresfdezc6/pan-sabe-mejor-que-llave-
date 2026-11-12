@@ -4,7 +4,7 @@
 [ext_resource type="AudioStream" uid="uid://ctggb861s2ed0" path="res://assets/sounds/bgm/rosesblue PAN town (melo niveles normales) 133bmp mp3.mp3" id="2_3givb"]
 
 [node name="nivel_base" unique_id=275302144 instance=ExtResource("1_cfwl0")]
-hambre_inicial = 5
+hambre_inicial = 3
 zoom = 0.7
 lista_objetos = [[Vector2i(0, -2), 1], [Vector2i(1, 0), 2], [Vector2i(-2, -1), 0], [Vector2i(4, -1), 3]]
 

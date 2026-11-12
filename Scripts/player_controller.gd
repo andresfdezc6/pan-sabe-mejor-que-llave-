@@ -31,8 +31,8 @@ func _process(delta: float) -> void:
 			
 		elif Global.efecto == Global.Efectos.FEDERICO:
 			position = position.move_toward(pos_destino, 0.6*velocidad_desliz * delta)
-		
-		mapa.recoger_en(mapa.posicion_a_celda(position))
+		if not saltando:
+			mapa.recoger_en(mapa.posicion_a_celda(position))
 		
 		if position.distance_to(pos_destino) < 0.5:
 			position = pos_destino
