@@ -6,7 +6,7 @@
 [node name="nivel_base" unique_id=275302144 instance=ExtResource("1_cfwl0")]
 posicion_inicial = Vector2i(4, 4)
 hambre_inicial = 6
-zoom = 0.7
+zoom = 0.55
 lista_objetos = []
 
 [node name="mapa_obstaculos" parent="." index="0" unique_id=527440772]
@@ -19,8 +19,8 @@ tile_map_data = PackedByteArray("AAAEAAQAAQAAAAAAAAAEAAIAAgAAAAAAAAAEAAAAAwAAAAA
 stream = ExtResource("2_804co")
 
 [node name="RichTextLabel" parent="." index="5" unique_id=1793518552]
-offset_left = 694.0
-offset_top = -103.0
-offset_right = 1260.0
-offset_bottom = 104.0
+offset_left = 1183.0
+offset_top = -471.0
+offset_right = 1749.0
+offset_bottom = -264.0
 theme_override_font_sizes/normal_font_size = 64
