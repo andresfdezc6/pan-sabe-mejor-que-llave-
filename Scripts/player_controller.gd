@@ -41,7 +41,7 @@ func _process(delta: float) -> void:
 		
 		if deslizando or Global.efecto == Global.Efectos.MANTEQUILLA:
 			position = position.move_toward(pos_destino, velocidad_desliz * delta)
-		elif Global.efecto == Global.Efectos.BASE or Global.efecto == Global.Efectos.PANCONPAN or (Global.efecto == Global.Efectos.FEDERICO and Global.federico == Global.Federico.OFF):
+		elif Global.efecto == Global.Efectos.BASE or (Global.efecto == Global.Efectos.FEDERICO and Global.federico == Global.Federico.OFF):
 			position = position.lerp(pos_destino, velocidad_suavizado * delta)
 		elif Global.efecto == Global.Efectos.FEDERICO:
 			position = position.move_toward(pos_destino, 0.6 * velocidad_desliz * delta)
@@ -86,8 +86,8 @@ func interactuar():
 				print("OFF")
 
 func mover():
-	if mapa and (Global.hambre > 0 or Global.efecto == Global.Efectos.PANCONPAN):
-		if Global.efecto == Global.Efectos.BASE or Global.efecto == Global.Efectos.PANCONPAN:
+	if mapa and (Global.hambre > 0 or Global.locura_on):
+		if Global.efecto == Global.Efectos.BASE:
 			if mapa.es_transitable(Global.posicion_jugador + direccion_jugador):
 				Global.posicion_jugador += direccion_jugador
 				Global.hambre -= 1
@@ -183,7 +183,7 @@ func animar_federico_goku(inicio: Vector2, destino: Vector2) -> void:
 func morir(hambre:int, pos: Vector2i, locura: int, locura_max):
 	if muriendo:
 		return 
-	if hambre == 0 and locura == 0 or mapa.es_lava(pos) or locura >= locura_max:
+	if hambre == 0 and not Global.locura_on or mapa.es_lava(pos) or locura >= locura_max:
 		var lilbro = $AnimatedSprite2D
 		muriendo = true
 		if not derecha:

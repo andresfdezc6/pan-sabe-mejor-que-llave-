@@ -76,6 +76,7 @@ func generar_jugador(pos):
 func _ready() -> void:
 	centrar_camara_en_puzle(zoom)
 	Global.muerto = false
+	Global.locura_on = false
 	Global.posicion_jugador = posicion_inicial
 	Global.hambre = hambre_inicial
 	Global.efecto = Global.Efectos.BASE
@@ -83,12 +84,13 @@ func _ready() -> void:
 	generar_objetos(lista_objetos)
 
 func _process(delta:float) ->void:
-	if not Global.efecto == Global.Efectos.PANCONPAN:
+	if not Global.locura_on:
 		texto.text = "Hambre: " + str(Global.hambre)
 	else:
-		contador_locura += delta
-		Global.locura = floori(contador_locura)
-		texto.text = "Hambre: 99999999999 \nLocura: " + str(Global.locura) + "/" + str(locura_maxima)
+		if Global.locura < locura_maxima:
+			contador_locura += delta
+			Global.locura = floori(contador_locura)
+			texto.text = "Hambre: 99999999999 \nLocura: " + str(Global.locura) + "/" + str(locura_maxima)
 	cambiar_indicador(Global.efecto)
 
 func cambiar_indicador(efecto: Global.Efectos):
@@ -96,11 +98,8 @@ func cambiar_indicador(efecto: Global.Efectos):
 	var fede_off: Texture2D = preload("res://assets/sprites/federico.png")
 	var fede_on: Texture2D = preload("res://assets/sprites/federico_cargado.png")
 	var fede_goku: Texture2D = preload("res://assets/sprites/federico_cargado_ssj.png")
-	var pan_con_pan: Texture2D = preload("res://assets/sprites/panconpanpng1.png")
 	if efecto == Global.Efectos.MANTEQUILLA:
 		indicador.texture = mantequilla
-	elif efecto == Global.Efectos.PANCONPAN:
-			indicador.texture = pan_con_pan
 	elif efecto == Global.Efectos.FEDERICO:
 		if Global.federico == Global.Federico.OFF:
 			indicador.texture = fede_off
