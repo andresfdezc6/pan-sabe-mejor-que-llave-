@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://5kmv62dja2uu" path="res://assets/tiles/oscura1.png" id="8_sxmdj"]
 [ext_resource type="Texture2D" uid="uid://bku4w18b6b1y" path="res://assets/tiles/oscura2.png" id="9_qd610"]
 [ext_resource type="Texture2D" uid="uid://dk8ubxg8uj81l" path="res://assets/tiles/oscura4.png" id="10_qs36o"]
+[ext_resource type="Texture2D" uid="uid://dloju11v2hydf" path="res://assets/sprites/DinoBase.png" id="15_18jte"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sxmdj"]
 texture = ExtResource("2_wur6i")
@@ -222,7 +223,7 @@ sources/6 = SubResource("TileSetAtlasSource_ckf0e")
 sources/8 = SubResource("TileSetAtlasSource_jlk78")
 sources/0 = SubResource("TileSetAtlasSource_qd610")
 
-[node name="nivel_base2" type="Node2D" unique_id=275302144]
+[node name="nivel_base3" type="Node2D" unique_id=275302144]
 y_sort_enabled = true
 script = ExtResource("1_qaap6")
 lista_objetos = [[Vector2i(-1, -2), 0], [Vector2i(4, -2), 0], [Vector2i(2, 1), 0]]
@@ -245,8 +246,6 @@ zoom = Vector2(2.5, 2.5)
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=2016185387]
 autoplay = true
 
-[node name="indicador_objeto" type="Sprite2D" parent="." unique_id=274572565]
-
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=992728299]
 
 [node name="RichTextLabel" parent="CanvasLayer" unique_id=1793518552 instance=ExtResource("3_esr58")]
@@ -260,3 +259,7 @@ offset_bottom = 219.0
 grow_horizontal = 0
 theme_override_font_sizes/normal_font_size = 64
 horizontal_alignment = 2
+
+[node name="indicador_objeto" type="Sprite2D" parent="CanvasLayer" unique_id=274572565]
+position = Vector2(1068, 147)
+texture = ExtResource("15_18jte")

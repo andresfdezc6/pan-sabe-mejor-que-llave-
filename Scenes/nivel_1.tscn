@@ -18,13 +18,13 @@ tile_map_data = PackedByteArray("AAD+//3/AQAAAAAAAAAAAP//AQAAAAAAAAABAAAAAQAAAAA
 [node name="AudioStreamPlayer2D" parent="." index="4" unique_id=2016185387]
 stream = ExtResource("2_3givb")
 
-[node name="indicador_objeto" parent="." index="5" unique_id=274572565]
-z_index = 5
-position = Vector2(675, -618)
-texture = ExtResource("3_ecx5m")
-
 [node name="RichTextLabel" parent="CanvasLayer" parent_id_path=PackedInt32Array(992728299) index="0" unique_id=1793518552]
 offset_left = -362.0
 offset_top = 13.0
 offset_right = -46.0
 offset_bottom = 182.0
+
+[node name="indicador_objeto" parent="CanvasLayer" parent_id_path=PackedInt32Array(992728299) index="1" unique_id=274572565]
+z_index = 5
+position = Vector2(1061, 172)
+texture = ExtResource("3_ecx5m")
