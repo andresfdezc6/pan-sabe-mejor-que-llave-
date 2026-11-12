@@ -10,3 +10,4 @@ var federico: Federico
 var efecto: Efectos
 var muerto: bool
 var locura: int
+var tuto_federico_visto: bool = false

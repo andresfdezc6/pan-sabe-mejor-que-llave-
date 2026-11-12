@@ -9,23 +9,37 @@ const NIVELES: Array[String] = [
 	"res://Scenes/nivel_6.tscn",
 	"res://Scenes/nivel_7.tscn",
 	"res://Scenes/nivel_8.tscn",
+	"res://Scenes/nivel_67.tscn",
 ]
 
 var indice_nivel_actual: int = 0
 
 func _ready() -> void:
-	cargar_nivel_por_indice(0)
-func _process(float) ->void:
+	_sincronizar_nivel_inicial.call_deferred()
+
+func _sincronizar_nivel_inicial() -> void:
+	if not is_inside_tree():
+		return
+	var tree := get_tree()
+	if not tree:
+		return
+	var escena_actual := tree.current_scene
+	if escena_actual and escena_actual.scene_file_path in NIVELES:
+		indice_nivel_actual = NIVELES.find(escena_actual.scene_file_path)
+	else:
+		cargar_nivel_por_indice(0)
+
+func _process(_delta: float) -> void:
 	if Global.muerto:
+		Global.muerto = false
 		get_tree().change_scene_to_file(NIVELES[indice_nivel_actual])
-		
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not event is InputEventKey or not event.pressed or event.echo:
 		return
 	if event.physical_keycode == KEY_ESCAPE:
 		get_tree().quit()
-	else:
+	elif event.physical_keycode >= KEY_1 and event.physical_keycode <= KEY_9:
 		cargar_nivel_por_indice(event.physical_keycode - KEY_1)
 
 func cargar_nivel_por_indice(idx: int) -> void:
