@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://b7jkc0t5vfmfv"]
 
 [ext_resource type="Script" uid="uid://c27dmbtj1yil8" path="res://Scripts/player_controller.gd" id="1_c1mnh"]
-[ext_resource type="Texture2D" uid="uid://cwhyckngrlv26" path="res://assets/sprites/lilbro1.png" id="2_c1mnh"]
+[ext_resource type="Texture2D" uid="uid://c1oxmb4qji1kb" path="res://assets/sprites/mainchar.png" id="2_tn1hq"]
+[ext_resource type="Texture2D" uid="uid://raqsemm72ptn" path="res://assets/sprites/mainchar2.png" id="3_tn1hq"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_urvta"]
 animations = [{
@@ -17,13 +18,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_c1mnh")
+"texture": ExtResource("2_tn1hq")
 }],
 "loop": 1,
 "name": &"quieto_derecha",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_tn1hq")
+}],
 "loop": 1,
 "name": &"quieto_izquierda",
 "speed": 5.0
