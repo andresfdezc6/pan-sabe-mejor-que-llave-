@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://c7e8xffeg7eih" path="res://assets/tiles/blanca2.png" id="6_dsuom"]
 [ext_resource type="Texture2D" uid="uid://dtf8fjt4q3sqf" path="res://assets/tiles/estanteria2.png" id="6_o1847"]
 [ext_resource type="Texture2D" uid="uid://ofrph65ce65" path="res://assets/tiles/blanca3.png" id="7_18jte"]
-[ext_resource type="Texture2D" uid="uid://dqh8s8g06whhv" path="res://assets/tiles/puerta_abierta.png" id="7_wur6i"]
+[ext_resource type="Texture2D" uid="uid://bp45khx4p8820" path="res://assets/tiles/puerta_abierta.png" id="7_wur6i"]
 [ext_resource type="Texture2D" uid="uid://5kmv62dja2uu" path="res://assets/tiles/oscura1.png" id="8_sxmdj"]
 [ext_resource type="Texture2D" uid="uid://bku4w18b6b1y" path="res://assets/tiles/oscura2.png" id="9_qd610"]
 [ext_resource type="Texture2D" uid="uid://dk8ubxg8uj81l" path="res://assets/tiles/oscura4.png" id="10_qs36o"]
@@ -240,3 +240,5 @@ offset_top = -435.0
 offset_right = 747.0
 offset_bottom = -287.0
 theme_override_font_sizes/normal_font_size = 128
+
+[node name="indicador_objeto" type="Sprite2D" parent="." unique_id=274572565]
