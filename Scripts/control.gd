@@ -11,6 +11,7 @@ const NIVELES: Array[String] = [
 	"res://Scenes/nivel_8.tscn",
 	"res://Scenes/nivel_9.tscn",
 	"res://Scenes/nivel_10.tscn",
+	"res://Scenes/nivel_11.tscn",
 	"res://Scenes/nivel_67.tscn",
 ]
 
