@@ -4,9 +4,9 @@
 
 [node name="nivel_base3" unique_id=275302144 instance=ExtResource("1_1vjni")]
 posicion_inicial = Vector2i(0, -2)
-hambre_inicial = 24
+hambre_inicial = 25
 zoom = 0.15
-lista_objetos = [[Vector2i(0, -3), 1], [Vector2i(52, -2), 1], [Vector2i(29, -2), 1]]
+lista_objetos = [[Vector2i(0, -4), 1], [Vector2i(52, -2), 1], [Vector2i(29, -2), 1]]
 
 [node name="mapa_obstaculos" parent="." index="0" unique_id=527440772]
 tile_map_data = PackedByteArray("AAAzAO//BwAAAAAAAAAzAPD/BwAAAAEAAAAzAPH/BwAAAAIAAAA2AO//BwADAAAAAAA2APD/BwADAAEAAAA2APH/BwADAAIAAAA3AO//BwACAAAAAAA3APD/BwACAAEAAAA3APH/BwACAAIAAAA0AO//BwABAAAAAAA0APD/BwABAAEAAAA0APH/BwABAAIAAAA1AO//BwABAAAAAAA1APD/BwABAAEAAAA1APH/BwABAAIAAAA4AO//BwAEAAAAAAA4APD/BwAEAAEAAAA4APH/BwAEAAIAAAA4APL/BAAAAAAAAAA=")
