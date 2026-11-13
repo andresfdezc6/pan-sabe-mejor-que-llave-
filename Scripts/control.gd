@@ -43,6 +43,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		cargar_nivel_por_indice(indice_nivel_actual - 1)
 	elif event.physical_keycode == KEY_2:
 		cargar_siguiente_nivel()
+	elif event.physical_keycode == KEY_R:
+		cargar_nivel_por_indice(indice_nivel_actual)
 
 func cargar_nivel_por_indice(idx: int) -> void:
 	if idx >= 0 and idx < NIVELES.size():
