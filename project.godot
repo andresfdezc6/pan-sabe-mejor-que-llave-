@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="PanSabeMejorQueLlave?"
-run/main_scene="uid://mu67o72p0wml"
+run/main_scene="uid://dmxs1slkcrvad"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://assets/sprites/icon.svg"
 

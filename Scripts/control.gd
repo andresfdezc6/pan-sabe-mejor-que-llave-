@@ -26,8 +26,6 @@ func _sincronizar_nivel_inicial() -> void:
 	var escena_actual := tree.current_scene
 	if escena_actual and escena_actual.scene_file_path in NIVELES:
 		indice_nivel_actual = NIVELES.find(escena_actual.scene_file_path)
-	else:
-		cargar_nivel_por_indice(0)
 
 func _process(_delta: float) -> void:
 	if Global.muerto:

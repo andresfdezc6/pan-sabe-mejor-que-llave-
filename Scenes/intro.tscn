@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://dmxs1slkcrvad"]
+
+[ext_resource type="Script" uid="uid://bt8ix3lbq3pfi" path="res://Scenes/intro.gd" id="1_alxvg"]
+[ext_resource type="Texture2D" uid="uid://dg4q0xqc0f6rd" path="res://assets/images/iniciodef.png" id="2_geirw"]
+[ext_resource type="Texture2D" uid="uid://4i8hu3acnf40" path="res://assets/images/Nudo.png" id="3_hwjxs"]
+
+[node name="intro" type="Control" unique_id=542282079]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_alxvg")
+imagenes = Array[Texture2D]([ExtResource("2_geirw"), ExtResource("3_hwjxs")])
+textos = Array[String](["El pequeño Joven timmy salió un día a estudiar a la etsi cuando blablablablabla", "luego fue a la biblioteca y lorem ipsum amet sit dolor"])
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=574349919]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 6
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=448956525]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1537210259]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/MarginContainer" unique_id=1184358753]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 28
