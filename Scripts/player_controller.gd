@@ -21,6 +21,7 @@ var deslizando: bool = false
 var saltando: bool = false
 var muriendo: bool = false
 var derecha: bool = true
+var lava: bool = false
 
 
 func _ready() -> void:
@@ -33,6 +34,9 @@ func _process(delta: float) -> void:
 	if mapa and not saltando:
 		var celda_actual: Vector2i = mapa.posicion_a_celda(position)
 		mapa.recoger_en(celda_actual)
+		
+		if mapa.es_lava(celda_actual) and z_index != 2:
+			lava = true
 		
 		if deslizando and Global.efecto != Global.Efectos.MANTEQUILLA:
 			Global.posicion_jugador = celda_actual
@@ -54,7 +58,7 @@ func _process(delta: float) -> void:
 			morir(Global.hambre, celda_actual, Global.locura, mapa.locura_maxima)
 
 func apuntar():
-	if not deslizando and not saltando and not muriendo:
+	if not deslizando and not saltando and not muriendo and not lava:
 		if Input.is_action_just_pressed("right"):
 			direccion_jugador = direcciones.derecha
 			$AnimatedSprite2D.play("quieto_derecha")
