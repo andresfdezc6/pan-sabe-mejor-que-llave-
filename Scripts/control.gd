@@ -12,7 +12,8 @@ const NIVELES: Array[String] = [
 	"res://Scenes/nivel_9.tscn",
 	"res://Scenes/nivel_10.tscn",
 	"res://Scenes/nivel_11.tscn",
-	"res://Scenes/nivel_67.tscn",
+	"res://Scenes/nivel_12.tscn",
+	"res://Scenes/nivel_13.tscn",
 ]
 
 var indice_nivel_actual: int = 0
