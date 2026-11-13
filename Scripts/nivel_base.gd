@@ -186,7 +186,7 @@ func es_saltable(pos:Vector2i, dir:Vector2i):
 #calcula hasta donde se puede deslizar y lo devuelve como vector
 func calcular_desliz(pos: Vector2i, apuntado: Vector2i) -> Vector2i:
 	var res: Vector2i = pos
-	while es_transitable(res + apuntado):
+	while es_transitable(res + apuntado) and not es_lava(res):
 		res += apuntado
 	return res
 

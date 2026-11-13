@@ -19,6 +19,7 @@ var direcciones = {
 var direccion_jugador: Vector2i
 var deslizando: bool = false
 var saltando: bool = false
+var tirando: bool = false
 var muriendo: bool = false
 var derecha: bool = true
 var lava: bool = false
@@ -53,12 +54,14 @@ func _process(delta: float) -> void:
 		if position.distance_to(pos_destino) < 0.5:
 			position = pos_destino
 			deslizando = false
+			tirando = false
 			z_index = 0
 			mapa.terminar_nivel()
-			morir(Global.hambre, celda_actual, Global.locura, mapa.locura_maxima)
+			morir(Global.hambre, Global.posicion_jugador, Global.locura, mapa.locura_maxima)
+			
 
 func apuntar():
-	if not deslizando and not saltando and not muriendo and not lava:
+	if not deslizando and not saltando and not muriendo and not lava and not tirando:
 		if Input.is_action_just_pressed("right"):
 			direccion_jugador = direcciones.derecha
 			$AnimatedSprite2D.play("quieto_derecha")
@@ -119,6 +122,7 @@ func mover():
 				
 			elif Global.federico == Global.Federico.ON:
 				if mapa.es_transitable(Global.posicion_jugador + 2 * direccion_jugador):
+					tirando = true
 					y_sort_enabled = false
 					z_index = 2
 					Global.posicion_jugador += 2 * direccion_jugador
@@ -188,6 +192,7 @@ func morir(hambre:int, pos: Vector2i, locura: int, locura_max):
 	if muriendo:
 		return 
 	if hambre == 0 and not Global.locura_on or mapa.es_lava(pos) or locura >= locura_max:
+		lava = false
 		var lilbro = $AnimatedSprite2D
 		muriendo = true
 		if not derecha:
