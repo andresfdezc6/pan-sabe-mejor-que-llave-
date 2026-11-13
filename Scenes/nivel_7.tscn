@@ -1,10 +1,10 @@
-[gd_scene format=4 uid="uid://621jvdealw3"]
+[gd_scene format=4 uid="uid://dmdf1q7ynk6hn"]
 
 [ext_resource type="PackedScene" uid="uid://cminuue6w0sfq" path="res://Scenes/nivel_base.tscn" id="1_d1gu4"]
 
-[node name="nivel_base3" unique_id=275302144 instance=ExtResource("1_d1gu4")]
+[node name="nivel_base4" unique_id=275302144 instance=ExtResource("1_d1gu4")]
 posicion_inicial = Vector2i(3, 2)
-hambre_inicial = 11
+hambre_inicial = 10
 zoom = 0.5
 lista_objetos = [[Vector2i(6, -1), 3], [Vector2i(3, -3), 0], [Vector2i(3, -4), 0]]
 
@@ -13,3 +13,6 @@ tile_map_data = PackedByteArray("AAACAPn/BwAAAAAAAAACAPr/BwAAAAEAAAACAPv/BwAAAAI
 
 [node name="mapa_base" parent="." index="1" unique_id=902094091]
 tile_map_data = PackedByteArray("AAACAAIABAAAAAAAAAADAAIAAwAAAAAAAAAEAAIABAAAAAAAAAAEAAEAAwAAAAAAAAADAAEABAAAAAAAAAACAAEAAwAAAAAAAAACAAAABAAAAAAAAAADAAAAAwAAAAAAAAAEAAAABAAAAAAAAAAEAP//AwAAAAAAAAADAP//BAAAAAAAAAACAP//AwAAAAAAAAACAP7/BAAAAAAAAAADAP7/AwAAAAAAAAAEAP7/BAAAAAAAAAAEAP3/AwAAAAAAAAADAP3/BAAAAAAAAAACAP3/AwAAAAAAAAACAPz/BAAAAAAAAAADAPz/AwAAAAAAAAAEAPz/BAAAAAAAAAAFAP//BAAAAAAAAAAFAAAAAwAAAAAAAAAGAAAABAAAAAAAAAAGAP//AwAAAAAAAAAFAP7/AwAAAAAAAAAGAP7/BAAAAAAAAAAHAP7/AwAAAAAAAAAHAP//BAAAAAAAAAAHAAAAAwAAAAAAAAADAPv/BAAAAAAAAAA=")
+
+[node name="indicador_objeto" parent="CanvasLayer" parent_id_path=PackedInt32Array(992728299) index="1" unique_id=274572565]
+texture = null
