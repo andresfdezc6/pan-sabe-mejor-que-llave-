@@ -30,4 +30,5 @@ func _input(event: InputEvent) -> void:
 		Global.muerto = false
 		Global.locura = 0
 		Global.locura_on = false
+		Global.secreto = true
 		get_tree().change_scene_to_file("res://Scenes/intro.tscn")
