@@ -135,7 +135,7 @@ func animar_salto(destino: Vector2) -> void:
 	z_index = 2
 	saltando = true
 	var tween := create_tween()
-	tween.tween_method(_arco.bind(position, destino), 0.0, 1.0, duracion_salto)
+	tween.tween_method(arco.bind(position, destino), 0.0, 1.0, duracion_salto)
 	await tween.finished
 	$AnimatedSprite2D.position.y = 0.0
 	position = destino
@@ -143,11 +143,11 @@ func animar_salto(destino: Vector2) -> void:
 	y_sort_enabled = true
 	z_index = 1
 
-func _arco(t: float, inicio: Vector2, destino: Vector2) -> void:
+func arco(t: float, inicio: Vector2, destino: Vector2) -> void:
 	position = inicio.lerp(destino, t)
 	$AnimatedSprite2D.position.y = -4.0 * altura_salto * t * (1.0 - t)
 
-func _crear_sprite_federico(textura: Texture2D, pos: Vector2, prioridad_z: int) -> Sprite2D:
+func crear_sprite_federico(textura: Texture2D, pos: Vector2, prioridad_z: int) -> Sprite2D:
 	var fede := Sprite2D.new()
 	fede.texture = textura
 	fede.position = pos
@@ -163,7 +163,7 @@ func animar_federico_on(destino: Vector2) -> void:
 	var dir := Vector2(direccion_jugador)
 	var pos_tiron: Vector2 = destino + dir * 10.0
 	var pos_final_tiron: Vector2 = pos_tiron + dir * 8.0
-	var fede := _crear_sprite_federico(federico_on, pos_tiron, 4)
+	var fede := crear_sprite_federico(federico_on, pos_tiron, 4)
 	
 	var tween := create_tween()
 	tween.tween_property(fede, "scale", Vector2.ONE, 0.12).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
@@ -177,7 +177,7 @@ func animar_federico_on(destino: Vector2) -> void:
 
 func animar_federico_goku(inicio: Vector2, destino: Vector2) -> void:
 	var punto_medio: Vector2 = (inicio + destino) / 2.0
-	var fede := _crear_sprite_federico(federico_goku, punto_medio, 1)
+	var fede := crear_sprite_federico(federico_goku, punto_medio, 1)
 	var tween := create_tween()
 	tween.tween_property(fede, "scale", Vector2.ONE, duracion_salto * 0.25).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	tween.parallel().tween_property(fede, "modulate:a", 1.0, duracion_salto * 0.2)

@@ -14,9 +14,9 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_alxvg")
 imagenes = Array[Texture2D]([ExtResource("2_geirw"), ExtResource("3_hwjxs"), ExtResource("4_geirw")])
-textos = Array[String](["El  Joven timmy salió un día a estudiar a la ETSII como haría normalmente", "Luego fue a la biblioteca  de la ETSII porque es un hater del CRAI y estaba cansado del bullicio de las juventudes habituales del Búnker. Con  ganas de probar algo nuevo, nuestro protagonista se aventuró hacia una nueva biblioteca, sin saber lo que le esperaba...
-
-Tras merodear por incontables pasillos en busca del mítico \"módulo b\", Timmy se perdió y acabó desfalleciendo delante de un cartel que decía \"BIBLIOTECA EN OBRAS, VUELVA EN 2037\"", "Tras merodear por incontables pasillos "])
+textos = Array[String](["El  Joven Timmy, un estudiante de TI había ido un día, como de costumbre, a su querida ETSII a estudiar para los parciales", "Fue entonces cuando decidió  ir a la biblioteca  de la ETSII porque es un hater del CRAI y estaba cansado de los demasiado jóvenes usuarios del Búnker y de sus vapers sabor maracuyá. Con  ganas de probar algo nuevo, nuestro protagonista se aventuró hacia una nueva biblioteca, sin saber lo que le esperaba...
+                     
+Tras merodear por incontables pasillos en busca del misterioso \"Módulo B\", Timmy se perdió y acabó desfalleciendo delante de un cartel que decía \"BIBLIOTECA EN OBRAS, VUELVA EN 2037\"", "Al despertar en una sala oscura y en obras, Timmy supo que tendría que tomar difíciles decisiones si quería salir de ahí y llegar a cenar a la residencia."])
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=574349919]
 layout_mode = 1
@@ -49,3 +49,5 @@ theme_override_constants/margin_bottom = 20
 [node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/MarginContainer" unique_id=1184358753]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 28
+scroll_following = true
+scroll_following_visible_characters = true
