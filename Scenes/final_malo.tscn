@@ -7,5 +7,6 @@
 [node name="intro" unique_id=542282079 instance=ExtResource("1_74ou8")]
 activar_portada = false
 imagenes = Array[Texture2D]([ExtResource("2_y8g43"), ExtResource("3_nf40n")])
-textos = Array[String](["Al final, te has visto tentado por la suculenta llave, que para alguien tan famélico como tú, parece todo un manjar", "En efecto, pan sabía mejor que llave
+textos = Array[String](["Al final, te has visto tentado por la suculenta llave, que para alguien tan famélico como tú, parecia todo un manjar", "En efecto, pan sabía mejor que llave
 "])
+escena_siguiente = "uid://dvj0ua4ry2ds8"
