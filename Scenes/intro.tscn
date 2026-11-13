@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://dmxs1slkcrvad"]
 
-[ext_resource type="Script" uid="uid://bt8ix3lbq3pfi" path="res://Scenes/intro.gd" id="1_alxvg"]
+[ext_resource type="Script" uid="uid://bt8ix3lbq3pfi" path="res://Scripts/intro.gd" id="1_alxvg"]
 [ext_resource type="Texture2D" uid="uid://dg4q0xqc0f6rd" path="res://assets/images/iniciodef.png" id="2_geirw"]
 [ext_resource type="Texture2D" uid="uid://4i8hu3acnf40" path="res://assets/images/Nudo.png" id="3_hwjxs"]
+[ext_resource type="Texture2D" uid="uid://c7mk6qkopkosl" path="res://assets/images/jesucristo.png" id="4_geirw"]
 
 [node name="intro" type="Control" unique_id=542282079]
 layout_mode = 3
@@ -12,8 +13,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_alxvg")
-imagenes = Array[Texture2D]([ExtResource("2_geirw"), ExtResource("3_hwjxs")])
-textos = Array[String](["El pequeño Joven timmy salió un día a estudiar a la etsi cuando blablablablabla", "luego fue a la biblioteca y lorem ipsum amet sit dolor"])
+imagenes = Array[Texture2D]([ExtResource("2_geirw"), ExtResource("3_hwjxs"), ExtResource("4_geirw")])
+textos = Array[String](["El  Joven timmy salió un día a estudiar a la ETSII como haría normalmente", "Luego fue a la biblioteca  de la ETSII porque es un hater del CRAI y estaba cansado del bullicio de las juventudes habituales del Búnker. Con  ganas de probar algo nuevo, nuestro protagonista se aventuró hacia una nueva biblioteca, sin saber lo que le esperaba...
+
+Tras merodear por incontables pasillos en busca del mítico \"módulo b\", Timmy se perdió y acabó desfalleciendo delante de un cartel que decía \"BIBLIOTECA EN OBRAS, VUELVA EN 2037\"", "Tras merodear por incontables pasillos "])
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=574349919]
 layout_mode = 1
