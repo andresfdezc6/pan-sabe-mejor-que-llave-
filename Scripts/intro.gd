@@ -90,12 +90,12 @@ func mostrar_vineta(idx: int) -> void:
 
 func _input(event: InputEvent) -> void:
 	if en_portada:
-		if event.is_action_pressed("ui_accept") or (event is InputEventMouseButton and event.pressed):
+		if event.is_action_pressed("ui_accept"):
 			get_viewport().set_input_as_handled()
 			salir_de_portada()
 		return
 
-	if event.is_action_pressed("interactuar") or event.is_action_pressed("ui_accept") or (event is InputEventMouseButton and event.pressed):
+	if event.is_action_pressed("interactuar") or event.is_action_pressed("ui_accept"):
 		get_viewport().set_input_as_handled()
 		if tween_texto and tween_texto.is_running():
 			tween_texto.kill()

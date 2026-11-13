@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dw5n76vdkvop7"]
+
+[ext_resource type="PackedScene" uid="uid://cvlcce2n34n0j" path="res://Scenes/objeto_base.tscn" id="1_cr5s1"]
+[ext_resource type="Texture2D" uid="uid://cup6h4nr1dcm2" path="res://assets/sprites/key.png" id="2_wwaip"]
+[ext_resource type="Script" uid="uid://flchw0qvtieo" path="res://Scripts/llave.gd" id="3_wwaip"]
+
+[node name="objeto_base" unique_id=904753448 instance=ExtResource("1_cr5s1")]
+scale = Vector2(1, 1.085)
+texture = ExtResource("2_wwaip")
+script = ExtResource("3_wwaip")

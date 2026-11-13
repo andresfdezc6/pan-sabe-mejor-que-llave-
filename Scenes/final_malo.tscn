@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://vuuq4p330xo4"]
+
+[ext_resource type="PackedScene" uid="uid://dmxs1slkcrvad" path="res://Scenes/intro.tscn" id="1_vl81f"]
+
+[node name="intro" unique_id=542282079 instance=ExtResource("1_vl81f")]
+activar_portada = false
+imagenes = Array[Texture2D]([])
+textos = Array[Texture2D]([])

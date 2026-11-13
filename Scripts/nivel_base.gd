@@ -7,6 +7,8 @@ extends Node2D
 @export var escena_federico: PackedScene = preload("res://Scenes/pan_federico.tscn")
 @export var escena_boton: PackedScene = preload("res://Scenes/boton.tscn")
 @export var escena_panconpan: PackedScene = preload("res://Scenes/pan_con_pan.tscn")
+@export var escena_pan_final: PackedScene = preload("res://Scenes/pan_final.tscn")
+@export var escena_llave: PackedScene = preload("res://Scenes/llave.tscn")
 
 #importado de escenas ya existentes
 @onready var objetos = $"objetos"
@@ -52,6 +54,14 @@ func generar_objeto(vector: Vector2i, tipo):
 	if tipo == Global.TipoObjeto.PANCONPAN:
 		objeto_instancia = escena_panconpan.instantiate()
 		script_especifico = preload("res://Scripts/pan_con_pan.gd")
+		
+	if tipo == Global.TipoObjeto.PANFINAL:
+		objeto_instancia = escena_pan_final.instantiate()
+		script_especifico = preload("res://Scripts/pan_final.gd")
+		
+	if tipo == Global.TipoObjeto.LLAVE:
+		objeto_instancia = escena_llave.instantiate()
+		script_especifico = preload("res://Scripts/llave.gd")
 		
 	if objeto_instancia:
 		if script_especifico:
