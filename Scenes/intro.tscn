@@ -4,6 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://dg4q0xqc0f6rd" path="res://assets/images/iniciodef.png" id="2_geirw"]
 [ext_resource type="Texture2D" uid="uid://4i8hu3acnf40" path="res://assets/images/Nudo.png" id="3_hwjxs"]
 [ext_resource type="Texture2D" uid="uid://c7mk6qkopkosl" path="res://assets/images/jesucristo.png" id="4_geirw"]
+[ext_resource type="Texture2D" uid="uid://dvtkvejyg46ln" path="res://assets/images/etsii.jpg" id="5_3bmuq"]
+[ext_resource type="Texture2D" uid="uid://4h41txjt4106" path="res://assets/images/titulo.png" id="5_rsiac"]
+[ext_resource type="FontFile" uid="uid://rgrm48v3jova" path="res://assets/fonts/papyrus.ttf" id="6_3bmuq"]
 
 [node name="intro" type="Control" unique_id=542282079]
 layout_mode = 3
@@ -25,6 +28,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("5_3bmuq")
 expand_mode = 1
 stretch_mode = 6
 
@@ -51,3 +55,38 @@ layout_mode = 2
 theme_override_font_sizes/normal_font_size = 28
 scroll_following = true
 scroll_following_visible_characters = true
+
+[node name="Portada" type="Control" parent="." unique_id=1117435342]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Titulo" type="Sprite2D" parent="Portada" unique_id=2062030126]
+position = Vector2(566, 257)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("5_rsiac")
+offset = Vector2(30, 0)
+
+[node name="TextoEmpezar" type="Label" parent="Portada" unique_id=969333902]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -57.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.78039217)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("6_3bmuq")
+theme_override_font_sizes/font_size = 36
+text = "PULSA ESPACIO PARA EMPEZAR"
+horizontal_alignment = 1
+vertical_alignment = 2
