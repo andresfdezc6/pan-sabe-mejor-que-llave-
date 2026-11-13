@@ -39,8 +39,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	if event.physical_keycode == KEY_ESCAPE:
 		get_tree().quit()
-	elif event.physical_keycode >= KEY_1 and event.physical_keycode <= KEY_9:
-		cargar_nivel_por_indice(event.physical_keycode - KEY_1)
+	elif event.physical_keycode == KEY_1:
+		cargar_nivel_por_indice(indice_nivel_actual - 1)
+	elif event.physical_keycode == KEY_2:
+		cargar_siguiente_nivel()
 
 func cargar_nivel_por_indice(idx: int) -> void:
 	if idx >= 0 and idx < NIVELES.size():
