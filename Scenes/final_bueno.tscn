@@ -1,12 +1,11 @@
 [gd_scene format=3 uid="uid://3i745pjds0fg"]
 
 [ext_resource type="PackedScene" uid="uid://dmxs1slkcrvad" path="res://Scenes/intro.tscn" id="1_7li5a"]
-[ext_resource type="Texture2D" uid="uid://deedcoh7ogav5" path="res://assets/images/finaldefmalo1.png" id="2_cqalg"]
-[ext_resource type="Texture2D" uid="uid://cxpi41mmasxes" path="res://assets/images/finaldefmalo.png" id="3_jqsjr"]
+[ext_resource type="Texture2D" uid="uid://dheb5thaamr45" path="res://assets/images/end1.png" id="2_7li5a"]
+[ext_resource type="Texture2D" uid="uid://dbebktubtvcas" path="res://assets/images/end2.png" id="3_cqalg"]
 
 [node name="intro" unique_id=542282079 instance=ExtResource("1_7li5a")]
 activar_portada = false
-imagenes = Array[Texture2D]([ExtResource("2_cqalg"), ExtResource("3_jqsjr")])
-textos = Array[String](["Al final, te has visto tentado por la suculenta llave, que para alguien tan famélico como tú, parecia todo un manjar", "En efecto, pan sabía mejor que llave
-"])
+imagenes = Array[Texture2D]([ExtResource("2_7li5a"), ExtResource("3_cqalg")])
+textos = Array[String](["Pues has decidido coger el pan, la hora de la verdad se acerca y por fin vas a descubrir cómo sabe el pan", "Pues al final, el pan sabía bien, pero ¿pan sabe mejor que llave? Si sabes la respuesta eres un verdadero filósofo"])
 escena_siguiente = "uid://dvj0ua4ry2ds8"
