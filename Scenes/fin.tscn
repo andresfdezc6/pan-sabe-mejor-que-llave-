@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dvj0ua4ry2ds8"]
 
-[ext_resource type="Script" uid="uid://dadg7bqcdeajk" path="res://Scenes/fin.gd" id="1_8ldow"]
+[ext_resource type="Script" uid="uid://dadg7bqcdeajk" path="res://Scripts/fin.gd" id="1_8ldow"]
 [ext_resource type="FontFile" uid="uid://c55xrrkojf46i" path="res://assets/fonts/Comic Papyrus.ttf" id="3_8cf55"]
 [ext_resource type="Texture2D" uid="uid://4h41txjt4106" path="res://assets/images/titulo.png" id="3_n3hwx"]
 
