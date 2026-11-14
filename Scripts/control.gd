@@ -47,10 +47,17 @@ func _unhandled_input(event: InputEvent) -> void:
 		get_tree().quit()
 	elif event.physical_keycode == KEY_1:
 		cargar_nivel_por_indice(indice_nivel_actual - 1)
-	elif event.physical_keycode == KEY_2 and indice_nivel_actual < Global.nivel_alcanzado:
+	elif event.physical_keycode == KEY_2 and (indice_nivel_actual < Global.nivel_alcanzado or Global.modo_dev):
 		cargar_siguiente_nivel()
 	elif event.physical_keycode == KEY_R:
 		cargar_nivel_por_indice(indice_nivel_actual)
+	elif event.physical_keycode == KEY_F:
+		if Global.modo_dev:
+			print ("modo dev off")
+			Global.modo_dev = false
+		else:
+			print("modo dev on")
+			Global.modo_dev = true
 
 func cargar_nivel_por_indice(idx: int) -> void:
 	if idx >= 0 and idx < NIVELES.size():
