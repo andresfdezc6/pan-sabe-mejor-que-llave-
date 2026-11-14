@@ -1,0 +1,12 @@
+{
+  version: 2,
+  mediaFileName: 'victoria .m4a',
+  cutSegments: [
+    {
+      start: 0.765196,
+      end: 1.792,
+      name: '',
+      selected: true,
+    },
+  ],
+}

@@ -1,0 +1,12 @@
+{
+  version: 2,
+  mediaFileName: 'papoi.m4a',
+  cutSegments: [
+    {
+      start: 0.688108,
+      end: 1.365333,
+      name: '',
+      selected: true,
+    },
+  ],
+}

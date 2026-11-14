@@ -1,0 +1,12 @@
+{
+  version: 2,
+  mediaFileName: 'webiwabo.m4a',
+  cutSegments: [
+    {
+      start: 0.486231,
+      end: 1.386667,
+      name: '',
+      selected: true,
+    },
+  ],
+}

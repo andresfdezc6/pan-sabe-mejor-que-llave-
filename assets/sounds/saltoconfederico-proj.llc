@@ -1,0 +1,12 @@
+{
+  version: 2,
+  mediaFileName: 'saltoconfederico.m4a',
+  cutSegments: [
+    {
+      start: 0.603502,
+      end: 2.282667,
+      name: '',
+      selected: true,
+    },
+  ],
+}

@@ -1,0 +1,12 @@
+{
+  version: 2,
+  mediaFileName: 'locura.m4a',
+  cutSegments: [
+    {
+      start: 0.840568,
+      end: 3.2,
+      name: '',
+      selected: true,
+    },
+  ],
+}

@@ -1,0 +1,12 @@
+{
+  version: 2,
+  mediaFileName: 'deslizarse .m4a',
+  cutSegments: [
+    {
+      start: 0.911578,
+      end: 2.261333,
+      name: '',
+      selected: true,
+    },
+  ],
+}

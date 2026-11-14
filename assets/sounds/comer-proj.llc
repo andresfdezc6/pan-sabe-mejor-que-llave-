@@ -1,0 +1,12 @@
+{
+  version: 2,
+  mediaFileName: 'comer.m4a',
+  cutSegments: [
+    {
+      start: 0.55064,
+      end: 1.749333,
+      name: '',
+      selected: true,
+    },
+  ],
+}
