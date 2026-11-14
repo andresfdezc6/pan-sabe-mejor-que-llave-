@@ -7,6 +7,20 @@ var mapa: Node2D
 @export var altura_salto: float = 200.0
 @export var duracion_salto: float = 0.8
 
+@export_group("Sonidos")
+@export var sonido_andar: AudioStream
+@export var sonido_deslizar: AudioStream
+@export var sonido_federico_on: AudioStream
+@export var sonido_federico_goku: AudioStream
+@export var sonidos_aleatorios_normales: Array[AudioStream] = []
+@export var sonido_risa_locura: AudioStream
+@export var intervalo_aleatorio_min: float = 4.0
+@export var intervalo_aleatorio_max: float = 9.0
+
+var reproductor_movimiento: AudioStreamPlayer
+var reproductor_aleatorio: AudioStreamPlayer
+var timer_aleatorio: Timer
+
 const federico_on: Texture2D = preload("res://assets/sprites/federico_cargado.png")
 const federico_goku: Texture2D = preload("res://assets/sprites/federico_cargado_ssj.png")
 
