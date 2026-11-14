@@ -19,6 +19,7 @@ extends Node2D
 @onready var texto: RichTextLabel = $CanvasLayer/RichTextLabel
 @onready var indicador: Sprite2D = $CanvasLayer/indicador_objeto
 @onready var indicador_secreto: Sprite2D = $CanvasLayer/indicador_secreto
+@onready var indicador_pan_con_pan: Sprite2D = $CanvasLayer/indicador_panconpan
 @onready var jugador_instancia: CharacterBody2D
 
 #declarado de cosas específicas de cada nivel (editar en el inspector)
@@ -113,6 +114,7 @@ func _process(delta:float) ->void:
 			texto.text = "Hambre: 99999999999 \nLocura: " + str(Global.locura) + "/" + str(locura_maxima)
 	cambiar_indicador(Global.efecto)
 	_indicador_secreto()
+	_indicador_pan_con_pan()
 
 func cambiar_indicador(efecto: Global.Efectos):
 	var mantequilla: Texture2D = preload("res://assets/sprites/panconmantequilla.png")
@@ -137,6 +139,13 @@ func _indicador_secreto ():
 		indicador_secreto.texture = secreto
 	else:
 		indicador_secreto.texture = null
+
+func _indicador_pan_con_pan ():
+	var secreto: Texture2D = preload("res://assets/sprites/panconpanpng1.png")
+	if Global.locura_on:
+		indicador_pan_con_pan.texture = secreto
+	else:
+		indicador_pan_con_pan.texture = null
 
 #CAMARA, no sé muy bien lo que hace porque es chatgpetazo
 func centrar_camara_en_puzle(zoom:float) -> void: 

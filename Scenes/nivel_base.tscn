@@ -15,7 +15,6 @@
 [ext_resource type="Texture2D" uid="uid://5kmv62dja2uu" path="res://assets/tiles/oscura1.png" id="8_sxmdj"]
 [ext_resource type="Texture2D" uid="uid://bku4w18b6b1y" path="res://assets/tiles/oscura2.png" id="9_qd610"]
 [ext_resource type="Texture2D" uid="uid://dk8ubxg8uj81l" path="res://assets/tiles/oscura4.png" id="10_qs36o"]
-[ext_resource type="Texture2D" uid="uid://cbxe4643forb2" path="res://assets/sprites/panconpanpng1.png" id="16_18jte"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sxmdj"]
 texture = ExtResource("2_wur6i")
@@ -274,5 +273,4 @@ position = Vector2(73, 73)
 
 [node name="indicador_panconpan" type="Sprite2D" parent="CanvasLayer" unique_id=1581062137]
 z_index = 5
-position = Vector2(932, 213)
-texture = ExtResource("16_18jte")
+position = Vector2(930, 212)
