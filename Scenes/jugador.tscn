@@ -2,8 +2,15 @@
 
 [ext_resource type="Script" uid="uid://c27dmbtj1yil8" path="res://Scripts/player_controller.gd" id="1_c1mnh"]
 [ext_resource type="Texture2D" uid="uid://knebto2ckjpl" path="res://assets/sprites/Death.png" id="2_a0p7g"]
+[ext_resource type="AudioStream" uid="uid://dfs2k7rss61vn" path="res://assets/sounds/andar1.wav" id="2_oua2g"]
 [ext_resource type="Texture2D" uid="uid://c1oxmb4qji1kb" path="res://assets/sprites/mainchar.png" id="2_tn1hq"]
+[ext_resource type="AudioStream" uid="uid://ckpnhm1qkf6vh" path="res://assets/sounds/deslizarse 1.wav" id="3_mb44e"]
 [ext_resource type="Texture2D" uid="uid://raqsemm72ptn" path="res://assets/sprites/mainchar2.png" id="3_tn1hq"]
+[ext_resource type="AudioStream" uid="uid://day0klj7qic5m" path="res://assets/sounds/federico1.wav" id="4_aknpy"]
+[ext_resource type="AudioStream" uid="uid://c8rg6fg76dp8t" path="res://assets/sounds/saltoconfederico1.wav" id="5_1bknw"]
+[ext_resource type="AudioStream" uid="uid://dsursn5bwucp6" path="res://assets/sounds/papoi1.wav" id="6_fr03m"]
+[ext_resource type="AudioStream" uid="uid://c37oimern8ajt" path="res://assets/sounds/webiwabo1.wav" id="7_yy7ku"]
+[ext_resource type="AudioStream" uid="uid://catpq0ny5wuuw" path="res://assets/sounds/locura1.wav" id="8_bnm2g"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_urvta"]
 animations = [{
@@ -35,6 +42,12 @@ animations = [{
 [node name="jugador" type="CharacterBody2D" unique_id=91696816]
 y_sort_enabled = true
 script = ExtResource("1_c1mnh")
+sonido_andar = ExtResource("2_oua2g")
+sonido_deslizar = ExtResource("3_mb44e")
+sonido_federico_on = ExtResource("4_aknpy")
+sonido_federico_goku = ExtResource("5_1bknw")
+sonidos_aleatorios_normales = Array[AudioStream]([ExtResource("6_fr03m"), ExtResource("7_yy7ku")])
+sonido_risa_locura = ExtResource("8_bnm2g")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=226650431]
 z_index = 1

@@ -3,8 +3,8 @@
   mediaFileName: 'andar.m4a',
   cutSegments: [
     {
-      start: 0,
-      end: 0.544682,
+      start: 0.10555557291666669,
+      end: 0.831516,
       name: '',
       selected: true,
     },

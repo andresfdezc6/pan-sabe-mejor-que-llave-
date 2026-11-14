@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cminuue6w0sfq"]
 
 [ext_resource type="Script" uid="uid://c061j87gv5mpt" path="res://Scripts/nivel_base.gd" id="1_qaap6"]
+[ext_resource type="AudioStream" uid="uid://b6e4lmo1765o1" path="res://assets/sounds/comer1.wav" id="2_18jte"]
 [ext_resource type="Texture2D" uid="uid://cefqygchjv7uu" path="res://assets/tiles/puertadef.png" id="2_i8nxx"]
 [ext_resource type="Texture2D" uid="uid://cd3lyxaawh2o4" path="res://assets/tiles/vacio2.png" id="2_wur6i"]
 [ext_resource type="PackedScene" uid="uid://cw62rclc42132" path="res://Scenes/rich_text_label.tscn" id="3_esr58"]
@@ -230,6 +231,7 @@ sources/0 = SubResource("TileSetAtlasSource_qd610")
 [node name="nivel_base3" type="Node2D" unique_id=275302144]
 y_sort_enabled = true
 script = ExtResource("1_qaap6")
+sonido_comer = ExtResource("2_18jte")
 lista_objetos = [[Vector2i(-1, -2), 0], [Vector2i(4, -2), 0], [Vector2i(2, 1), 0]]
 metadata/_edit_horizontal_guides_ = [-513.0]
 

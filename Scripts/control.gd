@@ -19,6 +19,18 @@ const NIVELES: Array[String] = [
 	"res://Scenes/nivel_final.tscn"
 ]
 
+
+const SONIDO_VICTORIA: AudioStream = preload("res://assets/sounds/victoria1.wav")
+
+func reproducir_puerta() -> void:
+	if SONIDO_VICTORIA:
+		var player := AudioStreamPlayer.new()
+		player.stream = SONIDO_VICTORIA
+		add_child(player)
+		player.finished.connect(player.queue_free)
+		player.play()
+
+
 const ESCENA_FINAL_VERDADERO: String = "res://Scenes/final_verdadero.tscn"
 
 var indice_nivel_actual: int = 0

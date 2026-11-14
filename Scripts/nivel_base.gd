@@ -11,6 +11,9 @@ extends Node2D
 @export var escena_llave: PackedScene = preload("res://Scenes/llave.tscn")
 @export var escena_secreto: PackedScene = preload("res://Scenes/pan_secreto.tscn")
 
+@export var sonido_comer: AudioStream
+var reproductor_comer: AudioStreamPlayer
+
 #importado de escenas ya existentes
 @onready var objetos = $"objetos"
 @onready var mapa: TileMapLayer = $mapa_base
@@ -101,8 +104,11 @@ func _ready() -> void:
 	Global.posicion_jugador = posicion_inicial
 	Global.hambre = hambre_inicial
 	Global.efecto = Global.Efectos.BASE
+	reproductor_comer = AudioStreamPlayer.new()
+	add_child(reproductor_comer)
 	generar_jugador(posicion_inicial)
 	generar_objetos(lista_objetos)
+	
 
 func _process(delta:float) ->void:
 	if not Global.locura_on:
@@ -182,7 +188,11 @@ func recoger_en(celda: Vector2i) -> void:
 		var objeto = objetos_en_celda[celda]
 		objetos_en_celda.erase(celda)
 		objeto.aplicar_efecto()
-		if not objeto.tipo == Global.TipoObjeto.BOTON:
+		if objeto.tipo != Global.TipoObjeto.BOTON and objeto.tipo != Global.TipoObjeto.LLAVE:
+			if sonido_comer:
+				reproductor_comer.stream = sonido_comer
+				reproductor_comer.play()
+		if objeto.tipo != Global.TipoObjeto.BOTON:
 			objeto.queue_free()
 
 #comprueba los dos tilemaps y devuelve si la casilla es transitable
@@ -243,4 +253,5 @@ func es_lava(pos: Vector2i) -> bool:
 #si la casilla es meta, invoca a control para cambiar de nivel
 func terminar_nivel() -> void:
 	if es_meta(Global.posicion_jugador):
+		ControlGlobal.reproducir_puerta()
 		ControlGlobal.cargar_siguiente_nivel()
