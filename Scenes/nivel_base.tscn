@@ -266,3 +266,7 @@ horizontal_alignment = 2
 
 [node name="indicador_objeto" type="Sprite2D" parent="CanvasLayer" unique_id=274572565]
 position = Vector2(1068, 147)
+
+[node name="indicador_secreto" type="Sprite2D" parent="CanvasLayer" unique_id=700092717]
+z_index = 5
+position = Vector2(73, 73)

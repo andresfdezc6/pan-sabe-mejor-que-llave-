@@ -7,7 +7,7 @@ var tween_parpadeo: Tween
 
 func _ready() -> void:
 	get_tree().paused = false
-
+	Global.secreto = true
 	# Parpadeo suave en el texto inferior
 	tween_parpadeo = create_tween().set_loops()
 	tween_parpadeo.tween_property(texto_reiniciar, "modulate:a", 0.25, 0.8).set_trans(Tween.TRANS_SINE)

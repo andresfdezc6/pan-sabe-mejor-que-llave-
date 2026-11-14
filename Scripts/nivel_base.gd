@@ -27,13 +27,17 @@ extends Node2D
 @export var locura_maxima = 12
 @export var zoom: float
 @export var lista_objetos: Array = []
-
+@export var llave_genera_secreto: bool = false
 #para la lógica de recoger objetos
 var objetos_en_celda: Dictionary = {}
+var celda_puerta_secreta: Vector2i = Vector2i(7, -13)
 var contador_locura = 0
 
 #funciones para el ready
 func generar_objeto(vector: Vector2i, tipo):
+	
+	if tipo == Global.TipoObjeto.LLAVE and scene_file_path == "res://Scenes/nivel_8.tscn" and not Global.secreto:
+		return
 	var objeto_instancia = null
 	var script_especifico = null
 	
@@ -108,6 +112,7 @@ func _process(delta:float) ->void:
 			Global.locura = floori(contador_locura)
 			texto.text = "Hambre: 99999999999 \nLocura: " + str(Global.locura) + "/" + str(locura_maxima)
 	cambiar_indicador(Global.efecto)
+	_indicador_secreto()
 
 func cambiar_indicador(efecto: Global.Efectos):
 	var mantequilla: Texture2D = preload("res://assets/sprites/panconmantequilla.png")
@@ -216,9 +221,12 @@ func calcular_desliz(pos: Vector2i, apuntado: Vector2i) -> Vector2i:
 
 #comprueba si una casilla es la meta
 func es_meta(pos: Vector2i) -> bool:
+	if pos == celda_puerta_secreta:
+		return false
 	var datos: TileData = mapa_obstaculos.get_cell_tile_data(pos)
-	var meta = datos != null and  datos.get_custom_data("meta")
+	var meta = datos != null and datos.get_custom_data("meta")
 	return meta
+	
 func es_lava(pos: Vector2i) -> bool:
 	var datos: TileData = mapa.get_cell_tile_data(pos)
 	var lava = datos != null and  datos.get_custom_data("lava")
