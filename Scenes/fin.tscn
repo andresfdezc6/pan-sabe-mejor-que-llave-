@@ -1,11 +1,8 @@
 [gd_scene format=3 uid="uid://dvj0ua4ry2ds8"]
 
 [ext_resource type="Script" uid="uid://dadg7bqcdeajk" path="res://Scenes/fin.gd" id="1_8ldow"]
-[ext_resource type="FontFile" uid="uid://rgrm48v3jova" path="res://assets/fonts/papyrus.ttf" id="2_nourd"]
 [ext_resource type="FontFile" uid="uid://c55xrrkojf46i" path="res://assets/fonts/Comic Papyrus.ttf" id="3_8cf55"]
-[ext_resource type="Texture2D" uid="uid://byxuxvr2wo77a" path="res://assets/sprites/federico.png" id="4_ltvb8"]
-[ext_resource type="Texture2D" uid="uid://yhurvd0a4j3e" path="res://assets/sprites/federico_cargado.png" id="5_ydj0c"]
-[ext_resource type="Texture2D" uid="uid://bxnr5e5y8x46i" path="res://assets/sprites/federico_cargado_ssj.png" id="6_aqlei"]
+[ext_resource type="Texture2D" uid="uid://4h41txjt4106" path="res://assets/images/titulo.png" id="3_n3hwx"]
 
 [node name="fin" type="PanelContainer" unique_id=465670743]
 offset_right = 1145.0
@@ -16,22 +13,6 @@ script = ExtResource("1_8ldow")
 layout_mode = 2
 color = Color(0.09335035, 0.09335035, 0.09335035, 1)
 
-[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1872056496]
-layout_mode = 2
-theme_override_fonts/normal_font = ExtResource("2_nourd")
-theme_override_font_sizes/normal_font_size = 54
-text = "
-PAN   Y   FEDERICO"
-horizontal_alignment = 1
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="." unique_id=133077081]
-layout_mode = 2
-theme_override_fonts/normal_font = ExtResource("3_8cf55")
-theme_override_font_sizes/normal_font_size = 48
-text = "NUEVO POWER-PAN DESBLOQUEADO
-"
-horizontal_alignment = 1
-
 [node name="RichTextLabel3" type="RichTextLabel" parent="." unique_id=1998281090]
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("3_8cf55")
@@ -40,29 +21,15 @@ text = "
 
 
 
-     CAMBIA ENTRE LOS ESTADOS PULSANDO ESPACIO
+
+
+
+
+
+SECRETO DESBLOQUEADO EN ALGÚN NIVEL
 
 "
-
-[node name="RichTextLabel4" type="RichTextLabel" parent="." unique_id=1346607253]
-layout_mode = 2
-theme_override_fonts/normal_font = ExtResource("3_8cf55")
-theme_override_font_sizes/normal_font_size = 32
-text = "
-
-
-
-
-
-
-¡NO CAMBIA NADA!                                                                   
-             
-FEDERICO TIRA DE TÍ A 2 CASILLAS DE DISTANCIA              
-
-FEDERICO TE LANZA 4 CASILLAS POR ENCIMA SUYA             
-
-"
-horizontal_alignment = 2
+horizontal_alignment = 1
 
 [node name="RichTextLabel5" type="RichTextLabel" parent="." unique_id=274040312]
 layout_mode = 2
@@ -71,17 +38,7 @@ text = "PULSA ESPACIO PARA SALIR"
 horizontal_alignment = 2
 vertical_alignment = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=547457809]
-position = Vector2(80.00001, 330)
-scale = Vector2(0.9375, 0.9453125)
-texture = ExtResource("4_ltvb8")
-
-[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1938837897]
-position = Vector2(78, 428)
-scale = Vector2(0.8359375, 0.8046875)
-texture = ExtResource("5_ydj0c")
-
-[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=765860444]
-position = Vector2(82.25, 524)
-scale = Vector2(0.79296875, 0.7656248)
-texture = ExtResource("6_aqlei")
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2092064323]
+position = Vector2(585, 256)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("3_n3hwx")

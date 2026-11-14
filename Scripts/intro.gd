@@ -42,14 +42,12 @@ func iniciar_portada() -> void:
 	var pos_y_base: float = titulo.position.y
 	var escala_base: Vector2 = titulo.scale
 	
-	# Flotación vertical + ligero pulso de escala en el Sprite2D del título
 	tween_titulo = create_tween().set_loops()
 	tween_titulo.tween_property(titulo, "position:y", pos_y_base - 6.0, 1.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	tween_titulo.parallel().tween_property(titulo, "scale", escala_base * 1.02, 1.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	tween_titulo.tween_property(titulo, "position:y", pos_y_base + 6.0, 1.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	tween_titulo.parallel().tween_property(titulo, "scale", escala_base, 1.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	
-	# Parpadeo suave de "ENTER para empezar"
 	tween_parpadeo = create_tween().set_loops()
 	tween_parpadeo.tween_property(texto_empezar, "modulate:a", 1.0, 1.2).set_trans(Tween.TRANS_SINE)
 	tween_parpadeo.tween_property(texto_empezar, "modulate:a", 0.25, 1.2).set_trans(Tween.TRANS_SINE)
