@@ -47,7 +47,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		get_tree().quit()
 	elif event.physical_keycode == KEY_1:
 		cargar_nivel_por_indice(indice_nivel_actual - 1)
-	elif event.physical_keycode == KEY_2:
+	elif event.physical_keycode == KEY_2 and indice_nivel_actual < Global.nivel_alcanzado:
 		cargar_siguiente_nivel()
 	elif event.physical_keycode == KEY_R:
 		cargar_nivel_por_indice(indice_nivel_actual)
@@ -62,3 +62,5 @@ func cargar_siguiente_nivel() -> void:
 		get_tree().change_scene_to_file(ESCENA_FINAL_VERDADERO)
 		return
 	cargar_nivel_por_indice(indice_nivel_actual + 1)
+	if indice_nivel_actual > Global.nivel_alcanzado or Global.modo_dev:
+		Global.nivel_alcanzado = indice_nivel_actual

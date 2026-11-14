@@ -13,3 +13,5 @@ var locura: int
 var secreto: bool = false
 var secreto_on: bool = false
 var tuto_federico_visto: bool = false
+var modo_dev = false
+var nivel_alcanzado: int = 0
