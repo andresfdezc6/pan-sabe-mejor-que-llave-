@@ -85,7 +85,9 @@ func _process(delta: float) -> void:
 		
 		if deslizando and Global.efecto != Global.Efectos.MANTEQUILLA:
 			Global.posicion_jugador = celda_actual
-		
+		morir_por_locura()      
+		if muriendo:            
+			return
 		var pos_destino: Vector2 = mapa.celda_a_posicion(Global.posicion_jugador)
 		
 		if deslizando or Global.efecto == Global.Efectos.MANTEQUILLA:
@@ -235,18 +237,27 @@ func morir(hambre:int, pos: Vector2i, locura: int, locura_max):
 	if muriendo:
 		return 
 	if hambre == 0 and not Global.locura_on or mapa.es_lava(pos) or locura >= locura_max:
-		lava = false
-		var lilbro = $AnimatedSprite2D
-		muriendo = true
-		if not derecha:
-			lilbro.flip_h = true
-		lilbro.play("muerto")
-		var angulo_caida: float = -90.0 if direccion_jugador.x < 0 else 90.0
-		var tween := create_tween()
-		tween.tween_property(lilbro, "rotation_degrees", angulo_caida, 0.6).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
-		tween.parallel().tween_property(lilbro, "position:y", 16.0, 0.6).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
-		
-		await tween.finished
-		await get_tree().create_timer(1.5).timeout
-		muriendo = false
-		Global.muerto = true
+		iniciar_muerte()
+
+func morir_por_locura() -> void:
+	if muriendo or mapa.es_meta(Global.posicion_jugador):
+		return
+	if Global.locura >= mapa.locura_maxima:
+		iniciar_muerte()
+
+func iniciar_muerte() -> void:
+	lava = false
+	var lilbro = $AnimatedSprite2D
+	muriendo = true
+	if not derecha:
+		lilbro.flip_h = true
+	lilbro.play("muerto")
+	var angulo_caida: float = -90.0 if direccion_jugador.x < 0 else 90.0
+	var tween := create_tween()
+	tween.tween_property(lilbro, "rotation_degrees", angulo_caida, 0.6).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+	tween.parallel().tween_property(lilbro, "position:y", 16.0, 0.6).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+	
+	await tween.finished
+	await get_tree().create_timer(1.5).timeout
+	muriendo = false
+	Global.muerto = true
