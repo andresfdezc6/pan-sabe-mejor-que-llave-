@@ -18,6 +18,8 @@ const NIVELES: Array[String] = [
 	"res://Scenes/nivel_final.tscn"
 ]
 
+const NIVEL_FINAL_SECRETO: String = "res://Scenes/nivel_final_secreto.tscn"
+
 var indice_nivel_actual: int = 0
 
 func _ready() -> void:
@@ -30,13 +32,16 @@ func _sincronizar_nivel_inicial() -> void:
 	if not tree:
 		return
 	var escena_actual := tree.current_scene
-	if escena_actual and escena_actual.scene_file_path in NIVELES:
-		indice_nivel_actual = NIVELES.find(escena_actual.scene_file_path)
+	if escena_actual:
+		if escena_actual.scene_file_path == NIVEL_FINAL_SECRETO:
+			indice_nivel_actual = NIVELES.size() - 1
+		elif escena_actual.scene_file_path in NIVELES:
+			indice_nivel_actual = NIVELES.find(escena_actual.scene_file_path)
 
 func _process(_delta: float) -> void:
 	if Global.muerto:
 		Global.muerto = false
-		get_tree().change_scene_to_file(NIVELES[indice_nivel_actual])
+		cargar_nivel_por_indice(indice_nivel_actual)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not event is InputEventKey or not event.pressed or event.echo:
@@ -53,7 +58,10 @@ func _unhandled_input(event: InputEvent) -> void:
 func cargar_nivel_por_indice(idx: int) -> void:
 	if idx >= 0 and idx < NIVELES.size():
 		indice_nivel_actual = idx
-		get_tree().change_scene_to_file(NIVELES[idx])
+		if idx == NIVELES.size() - 1 and Global.secreto_on:
+			get_tree().change_scene_to_file(NIVEL_FINAL_SECRETO)
+		else:
+			get_tree().change_scene_to_file(NIVELES[idx])
 
 func cargar_siguiente_nivel() -> void:
 	cargar_nivel_por_indice(indice_nivel_actual + 1)

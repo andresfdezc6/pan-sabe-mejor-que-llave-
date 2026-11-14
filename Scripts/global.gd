@@ -11,4 +11,5 @@ var efecto: Efectos
 var muerto: bool
 var locura: int
 var secreto: bool = false
+var secreto_on: bool = false
 var tuto_federico_visto: bool = false

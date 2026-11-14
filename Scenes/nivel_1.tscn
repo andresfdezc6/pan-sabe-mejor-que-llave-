@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cminuue6w0sfq" path="res://Scenes/nivel_base.tscn" id="1_cfwl0"]
 [ext_resource type="AudioStream" uid="uid://ctggb861s2ed0" path="res://assets/sounds/bgm/rosesblue PAN town (melo niveles normales) 133bmp mp3.mp3" id="2_3givb"]
+[ext_resource type="Texture2D" uid="uid://bm21yi3hrs2c" path="res://assets/sprites/pansecreto.png" id="3_ecx5m"]
 
 [node name="nivel_base3" unique_id=275302144 instance=ExtResource("1_cfwl0")]
 hambre_inicial = 3
@@ -26,3 +27,8 @@ offset_bottom = 182.0
 [node name="indicador_objeto" parent="CanvasLayer" parent_id_path=PackedInt32Array(992728299) index="1" unique_id=274572565]
 z_index = 5
 position = Vector2(1061, 217)
+
+[node name="indicador_secreto" type="Sprite2D" parent="CanvasLayer" parent_id_path=PackedInt32Array(992728299) index="2" unique_id=1305719680]
+z_index = 5
+position = Vector2(73, 73)
+texture = ExtResource("3_ecx5m")

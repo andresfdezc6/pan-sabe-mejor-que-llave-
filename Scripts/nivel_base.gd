@@ -9,6 +9,7 @@ extends Node2D
 @export var escena_panconpan: PackedScene = preload("res://Scenes/pan_con_pan.tscn")
 @export var escena_pan_final: PackedScene = preload("res://Scenes/pan_final.tscn")
 @export var escena_llave: PackedScene = preload("res://Scenes/llave.tscn")
+@export var escena_secreto: PackedScene = preload("res://Scenes/pan_secreto.tscn")
 
 #importado de escenas ya existentes
 @onready var objetos = $"objetos"
@@ -17,6 +18,7 @@ extends Node2D
 @onready var camara: Camera2D = $Camera2D
 @onready var texto: RichTextLabel = $CanvasLayer/RichTextLabel
 @onready var indicador: Sprite2D = $CanvasLayer/indicador_objeto
+@onready var indicador_secreto: Sprite2D = $CanvasLayer/indicador_secreto
 @onready var jugador_instancia: CharacterBody2D
 
 #declarado de cosas específicas de cada nivel (editar en el inspector)
@@ -62,6 +64,10 @@ func generar_objeto(vector: Vector2i, tipo):
 	if tipo == Global.TipoObjeto.LLAVE:
 		objeto_instancia = escena_llave.instantiate()
 		script_especifico = preload("res://Scripts/llave.gd")
+		
+	if tipo == Global.TipoObjeto.SECRETO:
+		objeto_instancia = escena_secreto.instantiate()
+		script_especifico = preload("res://Scripts/pan_secreto.gd")
 		
 	if objeto_instancia:
 		if script_especifico:
@@ -119,6 +125,14 @@ func cambiar_indicador(efecto: Global.Efectos):
 			indicador.texture = fede_goku
 	else:
 		indicador.texture = null
+
+func _indicador_secreto ():
+	var secreto: Texture2D = preload("res://assets/sprites/pansecreto.png")
+	if Global.secreto_on:
+		indicador_secreto.texture = secreto
+	else:
+		indicador_secreto.texture = null
+
 #CAMARA, no sé muy bien lo que hace porque es chatgpetazo
 func centrar_camara_en_puzle(zoom:float) -> void: 
 	if not mapa_obstaculos or not camara:
