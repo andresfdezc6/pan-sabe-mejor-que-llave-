@@ -4,7 +4,7 @@ extends Control
 @export var imagen_portada: Texture2D
 @export var imagenes: Array[Texture2D] = []
 @export_multiline var textos: Array[String] = []
-@export_file("*.tscn") var escena_siguiente: String = "res://Scenes/nivel_1.tscn"
+@export_file("*.tscn") var escena_siguiente: String = "res://Scenes/nivel_2.tscn"
 @export var velocidad_caracter: float = 0.03
 
 @onready var fondo: TextureRect = $TextureRect
