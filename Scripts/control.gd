@@ -1,7 +1,6 @@
 extends Node
 
 const NIVELES: Array[String] = [
-	"res://Scenes/nivel_1.tscn",
 	"res://Scenes/nivel_2.tscn",
 	"res://Scenes/nivel_3.tscn",
 	"res://Scenes/nivel_4.tscn",
@@ -15,6 +14,8 @@ const NIVELES: Array[String] = [
 	"res://Scenes/nivel_12.tscn",
 	"res://Scenes/nivel_13.tscn",
 	"res://Scenes/nivel_14.tscn",
+	"res://Scenes/nivel_15.tscn",
+	"res://Scenes/nivel_16.tscn",
 	"res://Scenes/nivel_final.tscn"
 ]
 
