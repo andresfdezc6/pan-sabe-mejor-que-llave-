@@ -236,7 +236,7 @@ func animar_federico_goku(inicio: Vector2, destino: Vector2) -> void:
 func morir(hambre:int, pos: Vector2i, locura: int, locura_max):
 	if muriendo:
 		return 
-	if hambre == 0 and not Global.locura_on or mapa.es_lava(pos) or locura >= locura_max:
+	if hambre == 0 and not Global.locura_on or mapa.es_lava(pos) or locura >= locura_max or lava:
 		iniciar_muerte()
 
 func morir_por_locura() -> void:
