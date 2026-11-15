@@ -4,6 +4,7 @@
 [ext_resource type="AudioStream" uid="uid://ctggb861s2ed0" path="res://assets/sounds/bgm/rosesblue PAN town (melo niveles normales) 133bmp mp3.mp3" id="2_bhr0d"]
 [ext_resource type="PackedScene" uid="uid://cw62rclc42132" path="res://Scenes/rich_text_label.tscn" id="2_w3t1b"]
 [ext_resource type="FontFile" uid="uid://c55xrrkojf46i" path="res://assets/fonts/Comic Papyrus.ttf" id="3_7xi5w"]
+[ext_resource type="Script" uid="uid://df3nibueoiqyq" path="res://Scripts/AvisoSecreto.gd" id="5_rkd1t"]
 
 [node name="nivel_base3" unique_id=275302144 instance=ExtResource("1_jj8k3")]
 posicion_inicial = Vector2i(-2, 0)
@@ -37,3 +38,22 @@ theme_override_fonts/normal_font = ExtResource("3_7xi5w")
 theme_override_font_sizes/normal_font_size = 24
 text = "SALIDA"
 horizontal_alignment = 2
+
+[node name="AvisoSecreto" parent="CanvasLayer" parent_id_path=PackedInt32Array(992728299) index="2" unique_id=1853228500 instance=ExtResource("2_w3t1b")]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -196.5
+offset_top = 0.0
+offset_right = 196.5
+offset_bottom = 54.0
+grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.81960785)
+theme_override_constants/shadow_outline_size = 6
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/normal_font = ExtResource("3_7xi5w")
+theme_override_font_sizes/normal_font_size = 32
+text = "ELIGE: ¿ PAN O LLAVE?"
+horizontal_alignment = 1
+script = ExtResource("5_rkd1t")

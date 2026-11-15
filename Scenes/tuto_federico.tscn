@@ -8,8 +8,11 @@
 [ext_resource type="Texture2D" uid="uid://bxnr5e5y8x46i" path="res://assets/sprites/federico_cargado_ssj.png" id="5_v1tox"]
 
 [node name="tuto_federico" type="PanelContainer" unique_id=465670743]
-offset_right = 1145.0
-offset_bottom = 652.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_u3n2q")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=2041365119]
