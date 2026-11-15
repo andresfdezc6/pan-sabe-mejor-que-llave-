@@ -23,4 +23,4 @@ offset_bottom = 415.0
 position = Vector2(1068, 182.775)
 
 [node name="indicador_panconpan" parent="CanvasLayer" parent_id_path=PackedInt32Array(992728299) index="3" unique_id=1581062137]
-position = Vector2(1068, 294.94)
+position = Vector2(968, 182.775)
