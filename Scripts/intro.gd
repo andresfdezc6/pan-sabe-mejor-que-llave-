@@ -7,6 +7,11 @@ extends Control
 @export_file("*.tscn") var escena_siguiente: String = "res://Scenes/nivel_2.tscn"
 @export var velocidad_caracter: float = 0.03
 
+@export_group("Audio")
+@export var audio_melodia: AudioStream
+@export var audio_vineta: AudioStream
+@export var vineta_con_sonido: int = 2
+
 @onready var fondo: TextureRect = $TextureRect
 @onready var panel_texto: PanelContainer = $PanelContainer
 @onready var caja_texto: RichTextLabel = $PanelContainer/MarginContainer/RichTextLabel
@@ -19,11 +24,23 @@ var en_portada: bool = false
 var tween_texto: Tween
 var tween_titulo: Tween
 var tween_parpadeo: Tween
+var melodia: AudioStreamPlayer
+var sonido_vineta: AudioStreamPlayer
 
 func _ready() -> void:
+	melodia = AudioStreamPlayer.new()
+	melodia.stream = audio_melodia
+	add_child(melodia)
+	melodia.finished.connect(melodia.play)
+	melodia.play()
+
+	sonido_vineta = AudioStreamPlayer.new()
+	sonido_vineta.stream = audio_vineta
+	add_child(sonido_vineta)
+
 	caja_texto.scroll_active = true
 	caja_texto.scroll_following = true
-	
+
 	if activar_portada:
 		iniciar_portada()
 	else:
@@ -37,21 +54,20 @@ func iniciar_portada() -> void:
 	panel_texto.visible = false
 	if imagen_portada:
 		fondo.texture = imagen_portada
-	
+
 	await get_tree().process_frame
 	var pos_y_base: float = titulo.position.y
 	var escala_base: Vector2 = titulo.scale
-	
+
 	tween_titulo = create_tween().set_loops()
 	tween_titulo.tween_property(titulo, "position:y", pos_y_base - 6.0, 1.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	tween_titulo.parallel().tween_property(titulo, "scale", escala_base * 1.02, 1.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	tween_titulo.tween_property(titulo, "position:y", pos_y_base + 6.0, 1.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	tween_titulo.parallel().tween_property(titulo, "scale", escala_base, 1.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-	
+
 	tween_parpadeo = create_tween().set_loops()
 	tween_parpadeo.tween_property(texto_empezar, "modulate:a", 1.0, 1.2).set_trans(Tween.TRANS_SINE)
 	tween_parpadeo.tween_property(texto_empezar, "modulate:a", 0.25, 1.2).set_trans(Tween.TRANS_SINE)
-	
 
 func salir_de_portada() -> void:
 	en_portada = false
@@ -70,18 +86,21 @@ func mostrar_vineta(idx: int) -> void:
 		else:
 			ControlGlobal.cargar_nivel_por_indice(0)
 		return
-	
+
 	indice_actual = idx
+	if idx == vineta_con_sonido:
+		sonido_vineta.play()
+
 	if idx < imagenes.size():
 		fondo.texture = imagenes[idx]
-	
+
 	caja_texto.visible_ratio = 0.0
 	caja_texto.text = textos[idx]
 	caja_texto.get_v_scroll_bar().value = 0.0
-	
+
 	if tween_texto:
 		tween_texto.kill()
-	
+
 	var duracion: float = textos[idx].length() * velocidad_caracter
 	tween_texto = create_tween()
 	tween_texto.tween_property(caja_texto, "visible_ratio", 1.0, duracion)

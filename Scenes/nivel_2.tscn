@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://cuq5w3xk8om3m"]
 
 [ext_resource type="PackedScene" uid="uid://cminuue6w0sfq" path="res://Scenes/nivel_base.tscn" id="1_cfwl0"]
-[ext_resource type="AudioStream" uid="uid://bb0ihf2kux2k4" path="res://assets/sounds/bgm/low PAN ps type melo (melo para niveles con tiempo) 151bmp mp3.mp3" id="2_804co"]
+[ext_resource type="AudioStream" uid="uid://ctggb861s2ed0" path="res://assets/sounds/bgm/rosesblue PAN town (melo niveles normales) 133bmp mp3.mp3" id="2_804co"]
 
 [node name="nivel_base" unique_id=275302144 instance=ExtResource("1_cfwl0")]
 posicion_inicial = Vector2i(4, 4)
@@ -17,6 +17,3 @@ tile_map_data = PackedByteArray("AAAEAAQAAQAAAAAAAAAEAAIAAgAAAAAAAAAEAAAAAwAAAAA
 
 [node name="AudioStreamPlayer2D" parent="." index="4" unique_id=2016185387]
 stream = ExtResource("2_804co")
-
-[node name="indicador_objeto" parent="CanvasLayer" parent_id_path=PackedInt32Array(992728299) index="1" unique_id=274572565]
-texture = null

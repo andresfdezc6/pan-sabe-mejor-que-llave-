@@ -5,8 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://4i8hu3acnf40" path="res://assets/images/Nudo.png" id="3_hwjxs"]
 [ext_resource type="Texture2D" uid="uid://c7mk6qkopkosl" path="res://assets/images/jesucristo.png" id="4_geirw"]
 [ext_resource type="Texture2D" uid="uid://dvtkvejyg46ln" path="res://assets/images/etsii.jpg" id="5_3bmuq"]
+[ext_resource type="AudioStream" uid="uid://dplkmcxxvfykh" path="res://assets/sounds/bgm/new PAN era (home screen-menú melo) 120bmp mp3.mp3" id="5_b26wi"]
 [ext_resource type="Texture2D" uid="uid://4h41txjt4106" path="res://assets/images/titulo.png" id="5_rsiac"]
 [ext_resource type="FontFile" uid="uid://rgrm48v3jova" path="res://assets/fonts/papyrus.ttf" id="6_3bmuq"]
+[ext_resource type="AudioStream" uid="uid://bl2021iut7qj5" path="res://assets/sounds/amongus.wav" id="6_ewknp"]
 
 [node name="intro" type="Control" unique_id=542282079]
 layout_mode = 3
@@ -20,6 +22,8 @@ imagenes = Array[Texture2D]([ExtResource("2_geirw"), ExtResource("3_hwjxs"), Ext
 textos = Array[String](["El  Joven Timmy, un estudiante de TI había ido un día, como de costumbre, a su querida ETSII a estudiar para los parciales", "Fue entonces cuando decidió  ir a la biblioteca  de la ETSII porque es un hater del CRAI y estaba cansado de los demasiado jóvenes usuarios del Búnker y de sus vapers sabor maracuyá. Con  ganas de probar algo nuevo, nuestro protagonista se aventuró hacia una nueva biblioteca, sin saber lo que le esperaba...
                      
 Tras merodear por incontables pasillos en busca del misterioso \"Módulo B\", Timmy se perdió y acabó desfalleciendo delante de un cartel que decía \"BIBLIOTECA EN OBRAS, VUELVA EN 2037\"", "Al despertar en una sala oscura y en obras, Timmy supo que tendría que tomar difíciles decisiones si quería salir de ahí y llegar a cenar a la residencia."])
+audio_melodia = ExtResource("5_b26wi")
+audio_vineta = ExtResource("6_ewknp")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=574349919]
 layout_mode = 1

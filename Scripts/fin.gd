@@ -1,6 +1,6 @@
 extends Control
 
-@onready var sprite_fin: Sprite2D = $Sprite2D
+@onready var sprite_fin: TextureRect = $Sprite2D
 @onready var texto_secreto: RichTextLabel = $RichTextLabel3
 @onready var texto_reiniciar: RichTextLabel = $RichTextLabel5
 
@@ -11,6 +11,7 @@ var tween_parpadeo: Tween
 func _ready() -> void:
 	get_tree().paused = false
 	
+	sprite_fin.pivot_offset_ratio = Vector2(0.5, 0.5)
 	var escala_sprite: Vector2 = sprite_fin.scale
 	sprite_fin.modulate.a = 0.0
 	sprite_fin.scale = escala_sprite * 0.85

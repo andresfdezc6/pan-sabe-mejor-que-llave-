@@ -58,6 +58,13 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	if event.physical_keycode == KEY_ESCAPE:
 		get_tree().quit()
+	elif event.physical_keycode == KEY_F11:
+		var ventana := get_window()
+		if ventana.mode == Window.MODE_FULLSCREEN:
+			ventana.mode = Window.MODE_WINDOWED
+		else:
+			ventana.mode = Window.MODE_FULLSCREEN
+		return
 	elif event.physical_keycode == KEY_1:
 		cargar_nivel_por_indice(indice_nivel_actual - 1)
 	elif event.physical_keycode == KEY_2 and (indice_nivel_actual < Global.nivel_alcanzado or Global.modo_dev):
