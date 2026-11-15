@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://dsursn5bwucp6" path="res://assets/sounds/papoi1.wav" id="6_fr03m"]
 [ext_resource type="AudioStream" uid="uid://c37oimern8ajt" path="res://assets/sounds/webiwabo1.wav" id="7_yy7ku"]
 [ext_resource type="AudioStream" uid="uid://catpq0ny5wuuw" path="res://assets/sounds/locura1.wav" id="8_bnm2g"]
+[ext_resource type="AudioStream" uid="uid://b54bpeh7ryi2o" path="res://assets/sounds/muerte1.wav" id="9_mb44e"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_urvta"]
 animations = [{
@@ -48,6 +49,7 @@ sonido_federico_on = ExtResource("4_aknpy")
 sonido_federico_goku = ExtResource("5_1bknw")
 sonidos_aleatorios_normales = Array[AudioStream]([ExtResource("6_fr03m"), ExtResource("7_yy7ku")])
 sonido_risa_locura = ExtResource("8_bnm2g")
+sonido_muerte = ExtResource("9_mb44e")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=226650431]
 z_index = 1
