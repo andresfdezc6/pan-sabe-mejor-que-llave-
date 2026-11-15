@@ -14,6 +14,7 @@ var mapa: Node2D
 @export var sonido_federico_goku: AudioStream
 @export var sonidos_aleatorios_normales: Array[AudioStream] = []
 @export var sonido_risa_locura: AudioStream
+@export var sonido_muerte: AudioStream
 @export var intervalo_aleatorio_min: float = 4.0
 @export var intervalo_aleatorio_max: float = 9.0
 
@@ -249,6 +250,7 @@ func iniciar_muerte() -> void:
 	lava = false
 	var lilbro = $AnimatedSprite2D
 	muriendo = true
+	reproducir_sonido(sonido_muerte)
 	if not derecha:
 		lilbro.flip_h = true
 	lilbro.play("muerto")

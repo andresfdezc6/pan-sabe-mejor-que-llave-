@@ -1,0 +1,12 @@
+{
+  version: 2,
+  mediaFileName: 'muerte.mp4',
+  cutSegments: [
+    {
+      start: 0.66457,
+      end: 2.112,
+      name: '',
+      selected: true,
+    },
+  ],
+}
