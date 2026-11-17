@@ -1,5 +1,8 @@
 extends Node2D
 
+
+#¿Un nuevo comienzo?
+
 #importado de escenas para instanciar objetos
 @export var escena_jugador: PackedScene = preload("res://Scenes/jugador.tscn")
 @export var escena_pan: PackedScene = preload("res://Scenes/pan_base.tscn")
