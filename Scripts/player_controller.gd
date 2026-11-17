@@ -54,6 +54,8 @@ func reproducir_sonido(sonido: AudioStream, es_aleatorio_normal: bool = false) -
 	if not sonido:
 		return
 	var player := AudioStreamPlayer.new()
+	if sonido == sonido_deslizar:
+		player.volume_db = -15.0
 	player.stream = sonido
 	add_child(player)
 	player.finished.connect(player.queue_free)
