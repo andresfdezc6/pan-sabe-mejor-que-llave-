@@ -25,14 +25,14 @@ var reproductor_comer: AudioStreamPlayer
 @onready var indicador_pan_con_pan: Sprite2D = $CanvasLayer/indicador_panconpan
 @onready var jugador_instancia: CharacterBody2D
 
-#declarado de cosas específicas de cada nivel (editar en el inspector)
+#declarado de cosas específicas de cada nivel 
 @export var posicion_inicial: Vector2i = Vector2i(0, 0)
 @export var hambre_inicial = 15
 @export var locura_maxima = 12
 @export var zoom: float
 @export var lista_objetos: Array = []
 @export var llave_genera_secreto: bool = false
-#para la lógica de recoger objetos
+
 var objetos_en_celda: Dictionary = {}
 var celda_puerta_secreta: Vector2i = Vector2i(7, -13)
 var contador_locura = 0
@@ -96,7 +96,6 @@ func generar_jugador(pos):
 	add_child(jugador_instancia)
 	jugador_instancia.position = celda_a_posicion(pos)
 
-#establece las variables globales a las específicas del nivel y genera al jugador y objetos
 func _ready() -> void:
 	centrar_camara_en_puzle(zoom)
 	Global.muerto = false
@@ -108,7 +107,6 @@ func _ready() -> void:
 	add_child(reproductor_comer)
 	generar_jugador(posicion_inicial)
 	generar_objetos(lista_objetos)
-	
 
 func _process(delta:float) ->void:
 	if not Global.locura_on:
@@ -153,7 +151,7 @@ func _indicador_pan_con_pan ():
 	else:
 		indicador_pan_con_pan.texture = null
 
-#CAMARA, no sé muy bien lo que hace porque es chatgpetazo
+#camara
 func centrar_camara_en_puzle(zoom:float) -> void: 
 	if not mapa_obstaculos or not camara:
 		return
@@ -170,13 +168,11 @@ func centrar_camara_en_puzle(zoom:float) -> void:
 	camara.position = Vector2(centro_x, centro_y)
 	camara.zoom = Vector2(zoom, zoom)
 
-#transforma los datos de casilla a posición exacta
 func celda_a_posicion(pos: Vector2i) -> Vector2:
 	if mapa:
 		return mapa.map_to_local(pos)
 	return Vector2 (0,0)
 
-#la contraria
 func posicion_a_celda(pos: Vector2) -> Vector2i:
 	if mapa:
 		return mapa.local_to_map(pos)  
@@ -229,8 +225,7 @@ func es_saltable(pos:Vector2i, dir:Vector2i):
 	elif Global.federico == Global.Federico.OFF:
 		return es_transitable(pos + dir)
 	return true
-		
-		
+
 #calcula hasta donde se puede deslizar y lo devuelve como vector
 func calcular_desliz(pos: Vector2i, apuntado: Vector2i) -> Vector2i:
 	var res: Vector2i = pos
@@ -238,19 +233,18 @@ func calcular_desliz(pos: Vector2i, apuntado: Vector2i) -> Vector2i:
 		res += apuntado
 	return res
 
-#comprueba si una casilla es la meta
 func es_meta(pos: Vector2i) -> bool:
 	if pos == celda_puerta_secreta:
 		return false
 	var datos: TileData = mapa_obstaculos.get_cell_tile_data(pos)
 	var meta = datos != null and datos.get_custom_data("meta")
 	return meta
-	
+
 func es_lava(pos: Vector2i) -> bool:
 	var datos: TileData = mapa.get_cell_tile_data(pos)
 	var lava = datos != null and  datos.get_custom_data("lava")
 	return lava
-#si la casilla es meta, invoca a control para cambiar de nivel
+
 func terminar_nivel() -> void:
 	if es_meta(Global.posicion_jugador):
 		ControlGlobal.reproducir_puerta()

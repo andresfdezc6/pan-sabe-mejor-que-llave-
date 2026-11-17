@@ -2,7 +2,6 @@ extends "res://Scripts/recogible.gd"
 @onready var textura_pulsado: Texture2D = preload("res://assets/tiles/boton_pulsado.png")
 
 func _ready() -> void:
-	super() 
 	tipo = Global.TipoObjeto.BOTON
 
 func aplicar_efecto() -> void:
