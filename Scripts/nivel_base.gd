@@ -40,6 +40,8 @@ var objetos_en_celda: Dictionary = {}
 var celda_puerta_secreta: Vector2i = Vector2i(7, -13)
 var contador_locura = 0
 
+var camara_on: bool = false
+
 #funciones para el ready
 func generar_objeto(vector: Vector2i, tipo):
 	
@@ -102,6 +104,10 @@ func generar_jugador(pos):
 #establece las variables globales a las específicas del nivel y genera al jugador y objetos
 func _ready() -> void:
 	centrar_camara_en_puzle(zoom)
+	if camara_on:
+		camara.position = celda_a_posicion(posicion_inicial)
+		camara.zoom = Vector2(zoom, zoom)
+
 	Global.muerto = false
 	Global.locura_on = false
 	Global.posicion_jugador = posicion_inicial
@@ -121,6 +127,7 @@ func _process(delta:float) ->void:
 			contador_locura += delta
 			Global.locura = floori(contador_locura)
 			texto.text = "Hambre: 99999999999 \nLocura: " + str(Global.locura) + "/" + str(locura_maxima)
+			
 	cambiar_indicador(Global.efecto)
 	_indicador_secreto()
 	_indicador_pan_con_pan()
@@ -156,7 +163,6 @@ func _indicador_pan_con_pan ():
 	else:
 		indicador_pan_con_pan.texture = null
 
-#CAMARA, no sé muy bien lo que hace porque es chatgpetazo
 func centrar_camara_en_puzle(zoom:float) -> void: 
 	if not mapa_obstaculos or not camara:
 		return
@@ -165,13 +171,16 @@ func centrar_camara_en_puzle(zoom:float) -> void:
 	var rect_celdas: Rect2i = mapa.get_used_rect()
 	rect_celdas = rect_celdas.merge(mapa_obstaculos.get_used_rect())
 	var tamano_tile: Vector2i = mapa.tile_set.tile_size
-
-	# Calcula las coordenadas del centro en píxeles del mundo
-	var centro_x = (rect_celdas.position.x + (rect_celdas.size.x / 2.0)) * tamano_tile.x
-	var centro_y = (rect_celdas.position.y + (rect_celdas.size.y / 2.0)) * tamano_tile.y
-
-	camara.position = Vector2(centro_x, centro_y)
-	camara.zoom = Vector2(zoom, zoom)
+	
+	if rect_celdas.size.x < 20 and rect_celdas.size.y < 20:
+		# Calcula las coordenadas del centro en píxeles del mundo
+		var centro_x = (rect_celdas.position.x + (rect_celdas.size.x / 2.0)) * tamano_tile.x
+		var centro_y = (rect_celdas.position.y + (rect_celdas.size.y / 2.0)) * tamano_tile.y
+		camara.position = Vector2(centro_x, centro_y)
+		camara.zoom = Vector2(zoom, zoom)
+	else:
+		camara_on = true
+		
 
 #transforma los datos de casilla a posición exacta
 func celda_a_posicion(pos: Vector2i) -> Vector2:

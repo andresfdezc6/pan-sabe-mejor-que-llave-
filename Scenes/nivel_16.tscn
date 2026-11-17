@@ -7,7 +7,7 @@
 posicion_inicial = Vector2i(0, -1)
 hambre_inicial = 3
 locura_maxima = 42
-zoom = 0.18
+zoom = 0.6
 lista_objetos = [[Vector2i(1, -1), 4], [Vector2i(2, -1), 2], [Vector2i(10, -4), 3]]
 
 [node name="mapa_obstaculos" parent="." index="0" unique_id=527440772]
