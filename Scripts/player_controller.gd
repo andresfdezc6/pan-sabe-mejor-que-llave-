@@ -6,7 +6,7 @@ var mapa: Node2D
 @export var velocidad_desliz: float = 625.0
 @export var altura_salto: float = 200.0
 @export var duracion_salto: float = 0.8
-
+@export var distancia_buffer: float = 70.0
 @export_group("Sonidos")
 @export var sonido_andar: AudioStream
 @export var sonido_deslizar: AudioStream
@@ -38,6 +38,8 @@ var muriendo: bool = false
 var derecha: bool = true
 var lava: bool = false
 var suave_camara: bool = false
+var buffer: bool = false
+var dir_buffer: Vector2
 
 func _ready() -> void:
 	$AnimatedSprite2D.play("quieto_derecha")
@@ -81,13 +83,12 @@ func _process(delta: float) -> void:
 		mapa.camara.position = camara_posicion
 	interactuar()
 	apuntar()
-	if mapa and not saltando:
+	if mapa:
 		var celda_actual: Vector2i = mapa.posicion_a_celda(position)
-		mapa.recoger_en(celda_actual)
-		
-		if mapa.es_lava(celda_actual) and z_index != 2:
-			lava = true
-		
+		if not saltando:
+			mapa.recoger_en(celda_actual)
+			if mapa.es_lava(celda_actual) and z_index != 2:
+				lava = true
 		if deslizando and Global.efecto != Global.Efectos.MANTEQUILLA:
 			Global.posicion_jugador = celda_actual
 		morir_por_locura()
@@ -105,7 +106,7 @@ func _process(delta: float) -> void:
 			position = position.move_toward(pos_destino, 0.6 * velocidad_desliz * delta)
 			if tirando:
 				camara_posicion += Vector2(direccion_jugador)*velocidad_desliz*delta*0.6
-		
+		buffer_input(position, pos_destino)
 		if position.distance_to(pos_destino) < 0.5:
 			position = pos_destino
 			deslizando = false
@@ -114,6 +115,11 @@ func _process(delta: float) -> void:
 			z_index = 0
 			mapa.terminar_nivel()
 			morir(Global.hambre, Global.posicion_jugador, Global.locura, mapa.locura_maxima)
+			if buffer:
+				direccion_jugador = dir_buffer
+				mover()
+				dir_buffer = direccion_jugador
+				buffer = false
 
 func suavizar_camara(pos_camara: Vector2, pos_jugador: Vector2, delta: float) -> void:
 	if not suave_camara:
@@ -124,21 +130,33 @@ func suavizar_camara(pos_camara: Vector2, pos_jugador: Vector2, delta: float) ->
 			camara_posicion = pos_jugador
 
 func apuntar():
-	if not deslizando and not saltando and not muriendo and not lava and not tirando:
-		if Input.is_action_just_pressed("right"):
+	var no_proceso = not deslizando and not saltando and not muriendo and not lava and not tirando
+	if Input.is_action_just_pressed("right"):
+		if buffer:
+			dir_buffer = direcciones.derecha
+		if no_proceso:
 			direccion_jugador = direcciones.derecha
 			$AnimatedSprite2D.play("quieto_derecha")
 			derecha = true
 			mover()
-		elif Input.is_action_just_pressed("left"):
+	elif Input.is_action_just_pressed("left"):
+		if buffer:
+			dir_buffer = direcciones.izquierda
+		if no_proceso:
 			direccion_jugador = direcciones.izquierda
-			$AnimatedSprite2D.play("quieto_izquierda")
+			$AnimatedSprite2D.play("quieto_derecha")
 			derecha = false
 			mover()
-		elif Input.is_action_just_pressed("up"):
+	elif Input.is_action_just_pressed("up"):
+		if buffer:
+			dir_buffer = direcciones.arriba
+		if no_proceso:
 			direccion_jugador = direcciones.arriba
 			mover()
-		elif Input.is_action_just_pressed("down"):
+	elif Input.is_action_just_pressed("down"):
+		if buffer:
+			dir_buffer = direcciones.abajo
+		if no_proceso:
 			direccion_jugador = direcciones.abajo
 			mover()
 
@@ -197,6 +215,18 @@ func mover():
 					Global.hambre -= 1
 					reproducir_sonido(sonido_federico_on)
 
+func buffer_input(posicion:Vector2, destino:Vector2):
+	if saltando or deslizando or tirando:
+		var cambio_direccion = (
+		Input.is_action_just_pressed("right") and not direccion_jugador == direcciones.derecha
+		or Input.is_action_just_pressed("left") and not direccion_jugador == direcciones.izquierda
+		or Input.is_action_just_pressed("up") and not direccion_jugador == direcciones.arriba
+		or Input.is_action_just_pressed("down") and not direccion_jugador == direcciones.abajo)
+		if posicion.distance_to(destino) < distancia_buffer and cambio_direccion:
+			buffer = true
+			apuntar()
+			
+			
 func animar_salto(destino: Vector2) -> void:
 	y_sort_enabled = false
 	z_index = 2
