@@ -113,13 +113,19 @@ func _ready() -> void:
 	Global.posicion_jugador = posicion_inicial
 	Global.hambre = hambre_inicial
 	Global.efecto = Global.Efectos.BASE
+	
+	ControlGlobal.speedrun_corriendo = true
+	if has_node("CanvasLayer/RelojSpeedrun"):
+		$CanvasLayer/RelojSpeedrun.visible = ControlGlobal.speedrun_visible
+		$CanvasLayer/RelojSpeedrun.text = ControlGlobal.speedrun_formateado
+	
 	reproductor_comer = AudioStreamPlayer.new()
 	add_child(reproductor_comer)
 	generar_jugador(posicion_inicial)
 	generar_objetos(lista_objetos)
 	
 
-func _process(delta:float) ->void:
+func _process(delta: float) -> void:
 	if not Global.locura_on:
 		texto.text = "Hambre: " + str(Global.hambre)
 	else:
@@ -131,6 +137,11 @@ func _process(delta:float) ->void:
 	cambiar_indicador(Global.efecto)
 	_indicador_secreto()
 	_indicador_pan_con_pan()
+	
+	if has_node("CanvasLayer/RelojSpeedrun"):
+		$CanvasLayer/RelojSpeedrun.visible = ControlGlobal.speedrun_visible
+		if ControlGlobal.speedrun_visible:
+			$CanvasLayer/RelojSpeedrun.text = ControlGlobal.speedrun_formateado
 
 func cambiar_indicador(efecto: Global.Efectos):
 	var mantequilla: Texture2D = preload("res://assets/sprites/panconmantequilla.png")

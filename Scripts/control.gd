@@ -19,9 +19,27 @@ const NIVELES: Array[String] = [
 	"res://Scenes/nivel_final.tscn"
 ]
 
+var speedrun_visible: bool = true
+var speedrun_corriendo: bool = false
+var tiempo_speedrun: float = 0.0
+var speedrun_formateado: String = "00:00.00"
+var dev_usado: bool = false
 
+func reiniciar_speedrun() -> void:
+	tiempo_speedrun = 0.0
+	speedrun_formateado = "00:00.00"
+	speedrun_corriendo = true
+
+func formatear_tiempo(t: float) -> String:
+	var horas: int = int(t) / 3600
+	var minutos: int = (int(t) % 3600) / 60
+	var segundos: int = int(t) % 60
+	var centesimas: int = int(fmod(t, 1.0) * 100.0)
+	if horas > 0:
+		return "%02d:%02d:%02d.%02d" % [horas, minutos, segundos, centesimas]
+	return "%02d:%02d.%02d" % [minutos, segundos, centesimas
+]
 const SONIDO_VICTORIA: AudioStream = preload("res://assets/sounds/victoria1.wav")
-
 func reproducir_puerta() -> void:
 	if SONIDO_VICTORIA:
 		var player := AudioStreamPlayer.new()
@@ -29,7 +47,6 @@ func reproducir_puerta() -> void:
 		add_child(player)
 		player.finished.connect(player.queue_free)
 		player.play()
-
 
 const ESCENA_FINAL_VERDADERO: String = "res://Scenes/final_verdadero.tscn"
 
@@ -48,7 +65,10 @@ func _sincronizar_nivel_inicial() -> void:
 	if escena_actual and escena_actual.scene_file_path in NIVELES:
 		indice_nivel_actual = NIVELES.find(escena_actual.scene_file_path)
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
+	if speedrun_corriendo:
+		tiempo_speedrun += delta
+		speedrun_formateado = formatear_tiempo(tiempo_speedrun)
 	if Global.muerto:
 		Global.muerto = false
 		cargar_nivel_por_indice(indice_nivel_actual)
@@ -72,12 +92,15 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event.physical_keycode == KEY_R:
 		cargar_nivel_por_indice(indice_nivel_actual)
 	elif event.physical_keycode == KEY_F:
+		dev_usado = true
 		if Global.modo_dev:
 			print ("modo dev off")
 			Global.modo_dev = false
 		else:
 			print("modo dev on")
 			Global.modo_dev = true
+	elif event.is_action_pressed("toggle_speedrun"):
+		speedrun_visible = not speedrun_visible
 
 func cargar_nivel_por_indice(idx: int) -> void:
 	if idx >= 0 and idx < NIVELES.size():

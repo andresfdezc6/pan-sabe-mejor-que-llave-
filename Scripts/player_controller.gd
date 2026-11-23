@@ -4,9 +4,11 @@ var mapa: Node2D
 
 @export var velocidad_suavizado: float = 15.0
 @export var velocidad_desliz: float = 625.0
+@export var aceleracion_desliz: float = 0.3
 @export var altura_salto: float = 200.0
 @export var duracion_salto: float = 0.8
 @export var distancia_buffer: float = 70.0
+
 @export_group("Sonidos")
 @export var sonido_andar: AudioStream
 @export var sonido_deslizar: AudioStream
@@ -40,6 +42,7 @@ var lava: bool = false
 var suave_camara: bool = false
 var buffer: bool = false
 var dir_buffer: Vector2
+var velocidad_actual_desliz: float 
 
 func _ready() -> void:
 	$AnimatedSprite2D.play("quieto_derecha")
@@ -67,6 +70,7 @@ func reproducir_sonido(sonido: AudioStream, es_aleatorio_normal: bool = false) -
 
 func _reiniciar_timer_aleatorio() -> void:
 	timer_aleatorio.start(randf_range(intervalo_aleatorio_min, intervalo_aleatorio_max))
+
 func _on_timer_aleatorio_timeout() -> void:
 	if not muriendo:
 		if Global.locura_on:
@@ -97,8 +101,9 @@ func _process(delta: float) -> void:
 		var pos_destino: Vector2 = mapa.celda_a_posicion(Global.posicion_jugador)
 		
 		if deslizando:
-			position = position.move_toward(pos_destino, velocidad_desliz * delta)
-			camara_posicion += Vector2(direccion_jugador)*velocidad_desliz*delta
+			velocidad_actual_desliz += aceleracion_desliz * delta
+			position = position.move_toward(pos_destino, velocidad_actual_desliz * delta)
+			camara_posicion += Vector2(direccion_jugador)*velocidad_actual_desliz*delta
 		elif suave_camara:
 			position = position.lerp(pos_destino, velocidad_suavizado * delta)
 			camara_posicion += (pos_destino - camara_posicion)*delta*3.5
@@ -172,6 +177,7 @@ func interactuar():
 			elif Global.federico == Global.Federico.GOKU:
 				Global.federico = Global.Federico.OFF
 				print("OFF")
+
 func mover():
 	if mapa and (Global.hambre > 0 or Global.locura_on):
 		if Global.efecto == Global.Efectos.BASE:
@@ -185,6 +191,7 @@ func mover():
 				suave_camara = false                     
 				Global.posicion_jugador = mapa.calcular_desliz(Global.posicion_jugador, direccion_jugador)
 				deslizando = true
+				velocidad_actual_desliz = velocidad_desliz
 				Global.hambre -= 1
 				reproducir_sonido(sonido_deslizar)
 		elif Global.efecto == Global.Efectos.FEDERICO and mapa.es_saltable(Global.posicion_jugador, direccion_jugador):
@@ -225,8 +232,7 @@ func buffer_input(posicion:Vector2, destino:Vector2):
 		if posicion.distance_to(destino) < distancia_buffer and cambio_direccion:
 			buffer = true
 			apuntar()
-			
-			
+
 func animar_salto(destino: Vector2) -> void:
 	y_sort_enabled = false
 	z_index = 2
@@ -244,7 +250,6 @@ func animar_salto(destino: Vector2) -> void:
 	y_sort_enabled = true
 	z_index = 1
 
-
 func arco(t: float, inicio: Vector2, destino: Vector2) -> void:
 	position = inicio.lerp(destino, t)
 	$AnimatedSprite2D.position.y = -4.0 * altura_salto * t * (1.0 - t)
@@ -260,12 +265,13 @@ func crear_sprite_federico(textura: Texture2D, pos: Vector2, prioridad_z: int) -
 	fede.modulate.a = 0.0
 	mapa.add_child(fede)
 	return fede
+
 func animar_federico_on(destino: Vector2) -> void:
 	var dir := Vector2(direccion_jugador)
 	var pos_tiron: Vector2 = destino + dir * 10.0
 	var pos_final_tiron: Vector2 = pos_tiron + dir * 8.0
 	var fede := crear_sprite_federico(federico_on, pos_tiron, 4)
-	
+
 	var tween := create_tween()
 	tween.tween_property(fede, "scale", Vector2.ONE, 0.12).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	tween.parallel().tween_property(fede, "modulate:a", 1.0, 0.1)
@@ -294,6 +300,7 @@ func morir(hambre:int, pos: Vector2i, locura: int, locura_max):
 		return
 	if hambre == 0 and not Global.locura_on or mapa.es_lava(pos) or locura >= locura_max or lava:
 		iniciar_muerte()
+
 func morir_por_locura() -> void:
 	if muriendo or mapa.es_meta(Global.posicion_jugador):
 		return

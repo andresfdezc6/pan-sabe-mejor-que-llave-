@@ -3,6 +3,7 @@ extends Control
 @onready var sprite_fin: TextureRect = $Sprite2D
 @onready var texto_secreto: RichTextLabel = $RichTextLabel3
 @onready var texto_reiniciar: RichTextLabel = $RichTextLabel5
+@onready var tiempo: RichTextLabel = $RichTextLabel4
 
 var puede_reiniciar: bool = false
 var tween_entrada: Tween
@@ -10,6 +11,7 @@ var tween_parpadeo: Tween
 
 func _ready() -> void:
 	get_tree().paused = false
+	ControlGlobal.speedrun_corriendo = false
 	
 	sprite_fin.pivot_offset_ratio = Vector2(0.5, 0.5)
 	var escala_sprite: Vector2 = sprite_fin.scale
@@ -18,6 +20,16 @@ func _ready() -> void:
 	
 	texto_secreto.modulate.a = 0.0
 	texto_reiniciar.modulate.a = 0.0
+	tiempo.modulate.a = 0.0
+
+	if ControlGlobal.speedrun_visible:
+		tiempo.visible = true
+		if not ControlGlobal.dev_usado:
+			tiempo.text = "TIEMPO: " + ControlGlobal.formatear_tiempo(ControlGlobal.tiempo_speedrun)
+		else:
+			tiempo.text = "TIEMPO: TE CREES MUY LISTO, ¿NO?"
+	else:
+		tiempo.visible = false
 	
 	var mostrar_secreto: bool = not Global.secreto
 	if mostrar_secreto:
@@ -25,6 +37,7 @@ func _ready() -> void:
 		Global.secreto = true
 	else:
 		texto_secreto.visible = false
+		
 	tween_entrada = create_tween()
 	
 	tween_entrada.tween_property(sprite_fin, "modulate:a", 1.0, 0.5).set_trans(Tween.TRANS_SINE)
@@ -34,6 +47,9 @@ func _ready() -> void:
 		tween_entrada.tween_property(texto_secreto, "modulate:a", 1.0, 0.4).set_trans(Tween.TRANS_SINE)
 
 	tween_entrada.tween_property(texto_reiniciar, "modulate:a", 1.0, 0.35).set_trans(Tween.TRANS_SINE)
+	if ControlGlobal.speedrun_visible:
+		tween_entrada.parallel().tween_property(tiempo, "modulate:a", 1.0, 0.35).set_trans(Tween.TRANS_SINE)
+		
 	tween_entrada.tween_callback(_iniciar_parpadeo)
 
 func _iniciar_parpadeo() -> void:
@@ -54,6 +70,8 @@ func _input(event: InputEvent) -> void:
 			tween_parpadeo.kill()
 		
 		ControlGlobal.indice_nivel_actual = 0
+		ControlGlobal.tiempo_speedrun = 0.0
+		ControlGlobal.speedrun_formateado = "00:00.00"
 		Global.muerto = false
 		Global.locura = 0
 		Global.locura_on = false

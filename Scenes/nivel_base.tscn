@@ -266,6 +266,18 @@ grow_horizontal = 0
 theme_override_font_sizes/normal_font_size = 48
 horizontal_alignment = 2
 
+[node name="RelojSpeedrun" parent="CanvasLayer" unique_id=1768765747 instance=ExtResource("3_esr58")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -1135.0
+offset_top = 1.0
+offset_right = -729.0
+offset_bottom = 220.0
+grow_horizontal = 0
+theme_override_font_sizes/normal_font_size = 48
+text = "00:00:00"
+
 [node name="indicador_objeto" type="Sprite2D" parent="CanvasLayer" unique_id=274572565]
 position = Vector2(1068, 147)
 
