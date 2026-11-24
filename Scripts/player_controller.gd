@@ -91,7 +91,7 @@ func _process(delta: float) -> void:
 		var celda_actual: Vector2i = mapa.posicion_a_celda(position)
 		if not saltando:
 			mapa.recoger_en(celda_actual)
-			if mapa.es_lava(celda_actual) and z_index != 2:
+			if mapa.es_lava(celda_actual) and z_index != 2 and not saltando:
 				lava = true
 		if deslizando and Global.efecto != Global.Efectos.MANTEQUILLA:
 			Global.posicion_jugador = celda_actual
