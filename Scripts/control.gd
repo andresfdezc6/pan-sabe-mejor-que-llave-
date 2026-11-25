@@ -109,6 +109,7 @@ func cargar_nivel_por_indice(idx: int) -> void:
 
 func cargar_siguiente_nivel() -> void:
 	if indice_nivel_actual == NIVELES.size() - 1 and Global.secreto_on:
+		speedrun_corriendo = false
 		get_tree().change_scene_to_file(ESCENA_FINAL_VERDADERO)
 		return
 	cargar_nivel_por_indice(indice_nivel_actual + 1)

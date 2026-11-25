@@ -5,6 +5,7 @@ func aplicar_efecto() -> void:
 	if mapa.scene_file_path == "res://Scenes/nivel_8.tscn":
 		abrir_y_generar_secreto()
 	elif not Global.secreto_on:
+		ControlGlobal.speedrun_corriendo = false
 		get_tree().change_scene_to_file("res://Scenes/final_malo.tscn")
 	else:
 		cambiar_casillas_cerradas()

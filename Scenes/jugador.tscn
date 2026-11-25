@@ -44,6 +44,7 @@ animations = [{
 y_sort_enabled = true
 script = ExtResource("1_c1mnh")
 aceleracion_desliz = 300.0
+distancia_buffer = 120.0
 sonido_andar = ExtResource("2_oua2g")
 sonido_deslizar = ExtResource("3_mb44e")
 sonido_federico_on = ExtResource("4_aknpy")

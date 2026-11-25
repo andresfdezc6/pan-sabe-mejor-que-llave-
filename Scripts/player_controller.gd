@@ -4,8 +4,8 @@ var mapa: Node2D
 
 @export var velocidad_suavizado: float = 15.0
 @export var velocidad_desliz: float = 625.0
-@export var aceleracion_desliz: float = 0.3
-@export var altura_salto: float = 200.0
+@export var aceleracion_desliz: float =  0.3
+@export var altura_salto: float = 200.0 
 @export var duracion_salto: float = 0.8
 @export var distancia_buffer: float = 70.0
 
@@ -41,7 +41,7 @@ var derecha: bool = true
 var lava: bool = false
 var suave_camara: bool = false
 var buffer: bool = false
-var dir_buffer: Vector2
+var dir_buffer: Vector2i
 var velocidad_actual_desliz: float 
 
 func _ready() -> void:
@@ -82,101 +82,115 @@ func _on_timer_aleatorio_timeout() -> void:
 func _process(delta: float) -> void:
 	if Global.locura_on and is_instance_valid(reproductor_aleatorio_normal) and reproductor_aleatorio_normal.playing:
 		reproductor_aleatorio_normal.stop()
+	if not mapa:
+		return
 	if mapa.camara_on and not saltando:
-		suavizar_camara(camara_posicion, position, delta)
+		suavizar_camara(delta)
 		mapa.camara.position = camara_posicion
 	interactuar()
 	apuntar()
-	if mapa:
-		var celda_actual: Vector2i = mapa.posicion_a_celda(position)
-		if not saltando:
-			mapa.recoger_en(celda_actual)
-			if mapa.es_lava(celda_actual) and z_index != 2 and not saltando:
-				lava = true
-		if deslizando and Global.efecto != Global.Efectos.MANTEQUILLA:
-			Global.posicion_jugador = celda_actual
-		morir_por_locura()
-		if muriendo:
-			return
-		var pos_destino: Vector2 = mapa.celda_a_posicion(Global.posicion_jugador)
-		
+	var celda_actual: Vector2i = mapa.posicion_a_celda(position)
+	if not saltando:
+		mapa.recoger_en(celda_actual)
+		if mapa.es_lava(celda_actual) and z_index != 2:
+			lava = true
+	if deslizando and Global.efecto != Global.Efectos.MANTEQUILLA:
+		Global.posicion_jugador = celda_actual
+	morir_por_locura()
+	if muriendo:
+		return
+	var pos_destino: Vector2 = mapa.celda_a_posicion(Global.posicion_jugador)
+	
+	if not saltando:
 		if deslizando:
 			velocidad_actual_desliz += aceleracion_desliz * delta
 			position = position.move_toward(pos_destino, velocidad_actual_desliz * delta)
-			camara_posicion += Vector2(direccion_jugador)*velocidad_actual_desliz*delta
+			camara_posicion += Vector2(direccion_jugador) * velocidad_actual_desliz * delta
 		elif suave_camara:
 			position = position.lerp(pos_destino, velocidad_suavizado * delta)
-			camara_posicion += (pos_destino - camara_posicion)*delta*3.5
+			camara_posicion += (pos_destino - camara_posicion) * delta * 3.5
 		else:
 			position = position.move_toward(pos_destino, 0.6 * velocidad_desliz * delta)
 			if tirando:
-				camara_posicion += Vector2(direccion_jugador)*velocidad_desliz*delta*0.6
-		buffer_input(position, pos_destino)
-		if position.distance_to(pos_destino) < 0.5:
-			position = pos_destino
-			deslizando = false
-			tirando = false
-			suave_camara = true
-			z_index = 0
-			mapa.terminar_nivel()
-			morir(Global.hambre, Global.posicion_jugador, Global.locura, mapa.locura_maxima)
-			if buffer:
-				direccion_jugador = dir_buffer
-				mover()
-				dir_buffer = direccion_jugador
-				buffer = false
+				camara_posicion += Vector2(direccion_jugador) * velocidad_desliz * delta * 0.6
 
-func suavizar_camara(pos_camara: Vector2, pos_jugador: Vector2, delta: float) -> void:
+	buffer_input(position, pos_destino)
+
+	if position.distance_to(pos_destino) < 0.5 and not saltando:
+		position = pos_destino
+		deslizando = false
+		tirando = false  
+		suave_camara = true
+		z_index = 0
+		mapa.terminar_nivel()
+		morir()
+		if buffer:
+			direccion_jugador = dir_buffer
+			if direccion_jugador == direcciones.derecha:
+				$AnimatedSprite2D.play("quieto_derecha")
+				derecha = true
+			elif direccion_jugador == direcciones.izquierda:
+				$AnimatedSprite2D.play("quieto_izquierda")
+				derecha = false
+			mover()
+			buffer = false
+
+# Definición:
+func suavizar_camara(delta: float) -> void:
 	if not suave_camara:
-		var aux: Vector2 = pos_camara - pos_jugador
+		var aux: Vector2 = camara_posicion - position
 		if aux.length() > 0.15:
-			camara_posicion = pos_camara.lerp(pos_jugador, 3.0 * delta)
+			camara_posicion = camara_posicion.lerp(position, 3.0 * delta)
 		else:
-			camara_posicion = pos_jugador
+			camara_posicion = position
 
 func apuntar():
-	var no_proceso = not deslizando and not saltando and not muriendo and not lava and not tirando
-	if Input.is_action_just_pressed("right"):
-		if buffer:
-			dir_buffer = direcciones.derecha
-		if no_proceso:
+	if not deslizando and not saltando and not muriendo and not lava and not tirando:
+		if Input.is_action_just_pressed("right"):
 			direccion_jugador = direcciones.derecha
 			$AnimatedSprite2D.play("quieto_derecha")
 			derecha = true
 			mover()
-	elif Input.is_action_just_pressed("left"):
-		if buffer:
-			dir_buffer = direcciones.izquierda
-		if no_proceso:
+		elif Input.is_action_just_pressed("left"):
 			direccion_jugador = direcciones.izquierda
-			$AnimatedSprite2D.play("quieto_derecha")
+			$AnimatedSprite2D.play("quieto_izquierda")
 			derecha = false
 			mover()
-	elif Input.is_action_just_pressed("up"):
-		if buffer:
-			dir_buffer = direcciones.arriba
-		if no_proceso:
+		elif Input.is_action_just_pressed("up"):
 			direccion_jugador = direcciones.arriba
 			mover()
-	elif Input.is_action_just_pressed("down"):
-		if buffer:
-			dir_buffer = direcciones.abajo
-		if no_proceso:
+		elif Input.is_action_just_pressed("down"):
 			direccion_jugador = direcciones.abajo
 			mover()
 
+func buffer_input(posicion: Vector2, destino: Vector2):
+	if (saltando or deslizando or tirando) and posicion.distance_to(destino) < distancia_buffer:
+		if Input.is_action_just_pressed("right") and direccion_jugador != direcciones.derecha:
+			dir_buffer = direcciones.derecha
+			buffer = true
+		elif Input.is_action_just_pressed("left") and direccion_jugador != direcciones.izquierda:
+			dir_buffer = direcciones.izquierda
+			buffer = true
+		elif Input.is_action_just_pressed("up") and direccion_jugador != direcciones.arriba:
+			dir_buffer = direcciones.arriba
+			buffer = true
+		elif Input.is_action_just_pressed("down") and direccion_jugador != direcciones.abajo:
+			dir_buffer = direcciones.abajo
+			buffer = true
+
 func interactuar():
-	if Global.efecto == Global.Efectos.FEDERICO:
-		if Input.is_action_just_pressed("interactuar"):
-			if Global.federico == Global.Federico.OFF:
-				Global.federico = Global.Federico.ON
-				print("ON")
-			elif Global.federico == Global.Federico.ON:
-				Global.federico = Global.Federico.GOKU
-				print("GOKU")
-			elif Global.federico == Global.Federico.GOKU:
-				Global.federico = Global.Federico.OFF
-				print("OFF")
+	if not muriendo:
+		if Global.efecto == Global.Efectos.FEDERICO:
+			if Input.is_action_just_pressed("interactuar"):
+				if Global.federico == Global.Federico.OFF:
+					Global.federico = Global.Federico.ON
+					print("ON")
+				elif Global.federico == Global.Federico.ON:
+					Global.federico = Global.Federico.GOKU
+					print("GOKU")
+				elif Global.federico == Global.Federico.GOKU:
+					Global.federico = Global.Federico.OFF
+					print("OFF")
 
 func mover():
 	if mapa and (Global.hambre > 0 or Global.locura_on):
@@ -212,26 +226,14 @@ func mover():
 				reproducir_sonido(sonido_andar)
 				
 			elif Global.federico == Global.Federico.ON:
-				if mapa.es_transitable(Global.posicion_jugador + 2 * direccion_jugador):
-					suave_camara = false                 
-					tirando = true
-					y_sort_enabled = false
-					z_index = 2
-					Global.posicion_jugador += 2 * direccion_jugador
-					animar_federico_on(mapa.celda_a_posicion(Global.posicion_jugador))
-					Global.hambre -= 1
-					reproducir_sonido(sonido_federico_on)
-
-func buffer_input(posicion:Vector2, destino:Vector2):
-	if saltando or deslizando or tirando:
-		var cambio_direccion = (
-		Input.is_action_just_pressed("right") and not direccion_jugador == direcciones.derecha
-		or Input.is_action_just_pressed("left") and not direccion_jugador == direcciones.izquierda
-		or Input.is_action_just_pressed("up") and not direccion_jugador == direcciones.arriba
-		or Input.is_action_just_pressed("down") and not direccion_jugador == direcciones.abajo)
-		if posicion.distance_to(destino) < distancia_buffer and cambio_direccion:
-			buffer = true
-			apuntar()
+				suave_camara = false
+				tirando = true
+				y_sort_enabled = false
+				z_index = 2
+				Global.posicion_jugador += 2 * direccion_jugador
+				animar_federico_on(mapa.celda_a_posicion(Global.posicion_jugador))
+				Global.hambre -= 1
+				reproducir_sonido(sonido_federico_on)
 
 func animar_salto(destino: Vector2) -> void:
 	y_sort_enabled = false
@@ -295,10 +297,10 @@ func animar_federico_goku(inicio: Vector2, destino: Vector2) -> void:
 	tween.parallel().tween_property(fede, "modulate:a", 0.0, duracion_salto * 0.35)
 	tween.tween_callback(fede.queue_free)
 
-func morir(hambre:int, pos: Vector2i, locura: int, locura_max):
+func morir() -> void:
 	if muriendo:
 		return
-	if hambre == 0 and not Global.locura_on or mapa.es_lava(pos) or locura >= locura_max or lava:
+	if (Global.hambre == 0 and not Global.locura_on) or lava:
 		iniciar_muerte()
 
 func morir_por_locura() -> void:
@@ -309,6 +311,7 @@ func morir_por_locura() -> void:
 
 func iniciar_muerte() -> void:
 	lava = false
+	buffer = false
 	var lilbro = $AnimatedSprite2D
 	muriendo = true
 	reproducir_sonido(sonido_muerte)
